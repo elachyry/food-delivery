@@ -1,0 +1,107 @@
+{
+    "selected_language": "Selected Language",
+    "save": "Save",
+    "you_can_cahnge_your_language": "You can change your language later",
+    "select_a_language": "Select a language",
+    "home": "Home",
+    "back_to_Home": "Back to home",
+    "continue": "Continue",
+    "skip":"Skip",
+    "next": "Next",
+    "login":"Login",
+    "signup": "SignUp",
+
+
+    "on_boarding_page_0_title": "Welcome to Food Express",
+    "on_boarding_page_0_subtitle": "Let's get started!",
+    "on_boarding_page_1_title": "Order food",
+    "on_boarding_page_1_subtitle": "Ordering food has never been easier. Browse menus, select dishes, and pay with just a few taps.",
+    "on_boarding_page_2_title": "Find Your Favorite Restaurants",
+    "on_boarding_page_2_subtitle": "Explore the best restaurants in your area and discover new ones. You can filter by cuisine type, rating, and more.",
+    "on_boarding_page_3_title": "Place your order",
+    "on_boarding_page_3_subtitle": "Your food will be delivered straight to your door. No need to brave the elements or leave your house.",
+    
+
+    "welcome_page_title":"Welcome to Food Express!",
+    "welcome_page_subtitle":"Browse through our menu and discover new dishes from different cultures. Customize your orders and select your preferred payment method.",
+    "welcome_page_subtitle_2":"Sign up now to start ordering.",
+
+    "email": "Email",
+    "password": "Password",
+    "welcome_back" :"Welcome Back!",
+    "forgot_password" : "Forgot Password?",
+    "or_continue_with" : "Or continue with",
+    "not_a_member": "Not a member?",
+    "register_now": "Register Now",
+    "password_field_cant_be_empty": "The password field can't be empty.",
+    "email_is_not_valid_or_badly_formatted": "The email is not valid or badly formatted.",
+    "email_field_cant_be_empty" : "The email field can't be empty.",
+    "the_password_is_invalid_for_the_given_email": "The password is invalid for the given email.",
+    "this_user_has_been_disabled_please_contact_support_for_help": "This user has been disabled, Please contact support for help.",
+    "no_user_corresponding_to_the_given_email": "No user corresponding to the given email.",
+    "an_error_occurred_please_try_again_later": "An error occurred, please try again later.",
+    "login_failed": "Login Failed",
+
+
+
+    "full_name" : "Full Name",
+    "phone_number": "Phone Number",
+    "already_a_member": "Already a member?",
+    "fullname_field_cant_be_empty":"The full name field can't be empty.",
+    "phone_field_cant_be_empty":"The phone number field can't be empty.",
+    "please_enter_a_strong_password": "Please enter a strong password.",
+    "an_account_already_exists_for_that_email": "An account already exists for that email.",
+    "an_account_already_exists_for_that_phone": "An account already exists for that phone number.",
+    "operation_is_not_allowed_please_contact_support": "Operation is not allowed. Please contact support.",
+    "signup_failed" : "Signup Failed",
+    "phone_is_to_short": "The phone number is too short.",
+    "enter_your_phone_number": "Enter your phone number.",
+    "provide_your_phone_number_to_link_it_with_you_account": "Provide your phone number to link it with your account.",
+    "your_phone_number_has_been_added": "Your Phone Number has been added successfully.",
+    "phone_is_not_valid_or_badly_formatted": "The Phone Number is not valid or badly formatted.",
+    "success" : "Success",
+
+
+    "forgot_password_title" : "Select One",
+    "forgot_password_subtitle" : "Select one of the options below to reset your password.",
+    "reset_vai_email": "Reset via Email Verification.",
+    "reset_vai_phone": "Reset via Phone Number Verification.",
+    "forgot_password_email_subtitle" : "Provide the account email for which you want to reset your password.",
+    "forgot_password_phone_subtitle" : "Provide the account phone number for which you want to reset your password.",
+    "Enter_the_verification_code_sent_at" : "Enter the verification code sent at:",
+    "verification_code" : "Verification Code",
+    "the_provided_phone_number_is_not_valid": "The provided phone number is not valid.",
+    "your_account_has_been_created": "Your account has been created successfully.",
+    "error": "Error",
+    "no_account_exists_for_that_phone": "No account exists for that phone number.",
+    "no_accoun_exists_for_that_email": "No account exists for that email.",
+
+
+
+    "profile": "Profile",
+    "settings": "Settings",
+    "edit_profile": "Edit Profile",
+    "my_orders": "My Orders",
+    "your_favorites": "My Favorites",
+    "address": "Addresses",
+    "about_us": "About us",
+    "logout": "Logout",
+    "new_password": "New Password",
+    "old_password": "Old Password",
+    "update": "Update",
+    "joined": "Joined",
+    "upload_image": "Upload an Image",
+    "take_picture": "Take a picture",
+    "select_from_gallery": "Select From Gallery",
+    "your_image_has_been_updated": "Your image has been updated successfully.",
+    "old_password_is_incorrect": "The old password is incorrect.",
+    "old_password_field_cant_be_empty": "The old password can't be empty.",
+    "new_password_field_cant_be_empty": "The new password can't be empty.",
+    "your_profile_has_been_updated": "Your profile has been updated successfully.",
+    "update_password": "Update password",
+
+
+    "enter_your_location": "Enter your location"
+
+
+}
