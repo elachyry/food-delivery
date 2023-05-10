@@ -45,6 +45,18 @@ class RestaurantDetailsBottomNavBar extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state is CartLoaded) {
+              int itemCount = 0;
+              if (state.cart
+                      .itemQuantity(state.cart.menuItems)[restaurant!.id] !=
+                  null) {
+                state.cart
+                    .itemQuantity(state.cart.menuItems)[restaurant!.id]!
+                    .entries
+                    .forEach((element) {
+                  itemCount += element.value;
+                });
+              }
+
               return Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -54,7 +66,7 @@ class RestaurantDetailsBottomNavBar extends StatelessWidget {
                       badges.Badge(
                         position: badges.BadgePosition.topEnd(top: 0, end: -5),
                         badgeContent: Text(
-                          '${state.cart.itemQuantity(state.cart.menuItems).entries.length}',
+                          '$itemCount',
                         ),
                         child: const Icon(
                           Bootstrap.basket,

@@ -30,6 +30,15 @@ class RemoveItem extends CartEvent {
   List<Object> get props => [menuItem];
 }
 
+class RemoveItemTotal extends CartEvent {
+  final MenuItem menuItem;
+
+  const RemoveItemTotal({required this.menuItem});
+
+  @override
+  List<Object> get props => [menuItem];
+}
+
 class SelectToggle extends CartEvent {
   const SelectToggle();
   @override

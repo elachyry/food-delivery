@@ -82,4 +82,7 @@ class ImageConstants {
   static const String dashboardBackground =
       'assets/images/background/dashboard_background.png';
   static const String fire = 'assets/images/icons/fire.png';
+
+  //Cart Screen
+  static const String emptyCart = 'assets/images/icons/empty-cart.png';
 }

@@ -7,12 +7,16 @@ import '../../models/menu_item.dart';
 
 class CartItem extends StatelessWidget {
   final CartLoaded state;
+  final int restauratId;
   final int index;
+  final MenuItem menuItem;
   const CartItem({
     super.key,
     required this.elements,
     required this.state,
+    required this.restauratId,
     required this.index,
+    required this.menuItem,
   });
 
   final String elements;
@@ -20,10 +24,35 @@ class CartItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
+      margin: const EdgeInsets.symmetric(
+        vertical: 3,
+      ),
       child: Dismissible(
-        key: const ValueKey(1),
+        key: ValueKey(menuItem.id),
         direction: DismissDirection.endToStart,
+        confirmDismiss: (direction) {
+          return showDialog(
+            context: context,
+            builder: (ctx) => AlertDialog(
+              title: const Text('Are you sure?'),
+              content: const Text('Do you want to remove this item?'),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(ctx).pop(false);
+                  },
+                  child: const Text('No'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(ctx).pop(true);
+                  },
+                  child: const Text('Yes'),
+                ),
+              ],
+            ),
+          );
+        },
         background: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
@@ -40,8 +69,18 @@ class CartItem extends StatelessWidget {
             size: 35,
           ),
         ),
+        onDismissed: (direction) {
+          context.read<CartBloc>().add(
+                RemoveItemTotal(
+                    menuItem: state.cart
+                        .itemQuantity(state.cart.menuItems)[restauratId]!
+                        .keys
+                        .elementAt(index)),
+              );
+        },
         child: Card(
-          elevation: 3,
+          key: ValueKey(menuItem.id),
+          elevation: 1,
           child: Container(
             padding: const EdgeInsets.only(top: 15, bottom: 15, right: 10),
             child: Row(
@@ -57,11 +96,7 @@ class CartItem extends StatelessWidget {
                     width: 90,
                     height: 90,
                     child: Image.network(
-                      (state.cart
-                              .itemQuantity(state.cart.menuItems)
-                              .keys
-                              .elementAt(index) as MenuItem)
-                          .imageUrl,
+                      menuItem.imageUrl,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -74,11 +109,7 @@ class CartItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        (state.cart
-                                .itemQuantity(state.cart.menuItems)
-                                .keys
-                                .elementAt(index) as MenuItem)
-                            .name,
+                        menuItem.name,
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -99,12 +130,7 @@ class CartItem extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            (state.cart
-                                    .itemQuantity(state.cart.menuItems)
-                                    .keys
-                                    .elementAt(index) as MenuItem)
-                                .price
-                                .toStringAsFixed(2),
+                            menuItem.price.toStringAsFixed(2),
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge!
@@ -142,9 +168,10 @@ class CartItem extends StatelessWidget {
                               context.read<CartBloc>().add(
                                     AddItem(
                                         menuItem: state.cart
-                                            .itemQuantity(state.cart.menuItems)
+                                            .itemQuantity(state.cart.menuItems)[
+                                                restauratId]!
                                             .keys
-                                            .elementAt(index) as MenuItem),
+                                            .elementAt(index)),
                                   );
                             },
                             child: ClipRRect(
@@ -166,7 +193,7 @@ class CartItem extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: Colors.grey.withOpacity(0.05)),
                             child: Text(
-                              '${state.cart.itemQuantity(state.cart.menuItems).entries.elementAt(index).value}',
+                              '${(state.cart.itemQuantity(state.cart.menuItems)[restauratId]!.entries.elementAt(index)).value}',
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 18,
@@ -178,9 +205,10 @@ class CartItem extends StatelessWidget {
                               context.read<CartBloc>().add(
                                     RemoveItem(
                                         menuItem: state.cart
-                                            .itemQuantity(state.cart.menuItems)
+                                            .itemQuantity(state.cart.menuItems)[
+                                                restauratId]!
                                             .keys
-                                            .elementAt(index) as MenuItem),
+                                            .elementAt(index)),
                                   );
                             },
                             child: ClipRRect(

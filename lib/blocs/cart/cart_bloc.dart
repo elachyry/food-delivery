@@ -20,6 +20,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     if (event is RemoveItem) {
       yield* _mapRemoveItemToState(event, state);
     }
+    if (event is RemoveItemTotal) {
+      yield* _mapRemoveItemTotalToState(event, state);
+    }
     if (event is SelectToggle) {
       yield* _mapSelectToggleToState(event, state);
     }
@@ -29,7 +32,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     yield CartLoading();
     try {
       await Future<void>.delayed(const Duration(seconds: 1));
-      yield CartLoaded(cart: const Cart());
+      yield const CartLoaded(cart: Cart());
     } catch (_) {}
   }
 
@@ -48,10 +51,29 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   Stream<CartState> _mapRemoveItemToState(
       RemoveItem event, CartState state) async* {
     if (state is CartLoaded) {
+      final items = state.cart.menuItems
+          .where((element) => element.id == event.menuItem.id);
+      if (items.length == 1) {
+        return;
+      }
       try {
         yield CartLoaded(
           cart: state.cart.copyWith(
             menuItems: List.from(state.cart.menuItems)..remove(event.menuItem),
+          ),
+        );
+      } catch (_) {}
+    }
+  }
+
+  Stream<CartState> _mapRemoveItemTotalToState(
+      RemoveItemTotal event, CartState state) async* {
+    if (state is CartLoaded) {
+      try {
+        yield CartLoaded(
+          cart: state.cart.copyWith(
+            menuItems: List.from(state.cart.menuItems)
+              ..removeWhere((element) => element.id == event.menuItem.id),
           ),
         );
       } catch (_) {}

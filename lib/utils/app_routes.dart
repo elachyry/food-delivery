@@ -139,7 +139,7 @@ class AppRoutes {
     ),
     GetPage(
       name: _cartScreen,
-      page: () => const CartScreen(),
+      page: () => CartScreen(),
     ),
     GetPage(
       name: _filterScreen,
