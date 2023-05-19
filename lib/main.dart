@@ -7,6 +7,7 @@ import 'package:multi_languges/blocs/coupon/coupon_bloc.dart';
 import 'package:multi_languges/blocs/filters/filters_bloc.dart';
 import 'package:multi_languges/blocs/place/place_bloc.dart';
 import 'package:multi_languges/repositories/coupon/coupon_repository.dart';
+import 'controllers/cart_controller.dart';
 import 'firebase_options.dart';
 
 import './blocs/autocomplete/autocomplete_bloc.dart';
@@ -24,7 +25,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
-  ).then((value) => Get.put(AuthController()));
+  ).then((value) {
+    Get.put(AuthController());
+    Get.put(CartController());
+  });
   final Map<String, Map<String, String>> languages = await dep.init();
 
   runApp(MyApp(

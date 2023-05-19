@@ -46,6 +46,8 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Obx(() {
+          print('test ${userController.myData}');
+
           if (userController.myData.isEmpty) {
             return SizedBox(
               height: MediaQuery.of(context).size.height - 50,
@@ -178,7 +180,9 @@ class ProfileScreen extends StatelessWidget {
                 ProfileListItem(
                   leadingIcon: LineAwesomeIcons.store,
                   title: 'my_orders'.tr,
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRoutes.ordersScreenRoute);
+                  },
                 ),
                 ProfileListItem(
                   leadingIcon: Icons.favorite,

@@ -6,13 +6,17 @@ import 'package:multi_languges/controllers/dashboard_controller.dart';
 import 'package:multi_languges/screens/dashboard/dashbord_screen.dart';
 import 'package:multi_languges/screens/profile/profile_screen.dart';
 
+import '../../controllers/auth/user_controller.dart';
+
 class TabScreen extends StatelessWidget {
   TabScreen({super.key});
   final controller = Get.put(DashboardController());
+  final userController = Get.put(UserController());
+
   PageController pageController = PageController(initialPage: 0);
   final _pages = [
     {
-      'page': const DashboardScreen(),
+      'page': DashboardScreen(),
       'title': 'home',
     },
     {
@@ -31,10 +35,10 @@ class TabScreen extends StatelessWidget {
         body: PageView(
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
-          children: const <Widget>[
+          children: <Widget>[
             DashboardScreen(),
-            ProfileScreen(),
-            ProfileScreen(),
+            const ProfileScreen(),
+            const ProfileScreen(),
           ],
         ),
         bottomNavigationBar: WaterDropNavBar(
@@ -45,6 +49,8 @@ class TabScreen extends StatelessWidget {
           waterDropColor: Theme.of(context).primaryColorDark,
           // selectedItemColor: Theme.of(context).primaryColor,
           onItemSelected: (i) {
+            userController.getUserData();
+
             controller.currentIndex.value = i;
             pageController.animateToPage(
               controller.currentIndex.value,

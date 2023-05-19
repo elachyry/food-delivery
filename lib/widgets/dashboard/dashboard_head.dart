@@ -10,6 +10,7 @@ import 'package:multi_languges/utils/constants/image_constants.dart';
 import 'package:multi_languges/widgets/filter/show_filter_modal_bottom_sheet.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
+import '../../controllers/auth/auth_controller.dart';
 
 class DashboardHead extends StatelessWidget {
   const DashboardHead({
@@ -50,14 +51,19 @@ class DashboardHead extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text(
-                          'Hay Salam, Dakhla',
-                          style:
-                              Theme.of(context).textTheme.titleMedium!.copyWith(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                          textAlign: TextAlign.start,
+                        GestureDetector(
+                          onTap: () => AuthController.instance.logout(),
+                          child: Text(
+                            'Hay Salam, Dakhla',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                            textAlign: TextAlign.start,
+                          ),
                         ),
                         const Icon(
                           Icons.arrow_drop_down_sharp,

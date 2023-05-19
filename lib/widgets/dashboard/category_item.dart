@@ -3,17 +3,22 @@ import 'package:get/get.dart';
 import 'package:multi_languges/models/category.dart';
 import 'package:multi_languges/models/restaurant.dart';
 import 'package:multi_languges/screens/restaurant_listing/restaurant_listing_screen.dart';
+import 'package:multi_languges/utils/constants/image_constants.dart';
+
+import '../../controllers/category_controller.dart';
+import '../../controllers/restaurant_controller.dart';
 
 class CategoryItem extends StatelessWidget {
   final Category category;
-  const CategoryItem({
+  CategoryItem({
     super.key,
     required this.category,
   });
-
+  final restaurantController = Get.put(RestaurantController());
+  final categoryController = Get.put(CategoryController());
   @override
   Widget build(BuildContext context) {
-    final List<Restaurant> restaurants = Restaurant.restaurants
+    final List<Restaurant> restaurants = restaurantController.restaurants
         .where(
           (element) => element.tags.contains(category.name),
         )
@@ -40,7 +45,16 @@ class CategoryItem extends StatelessWidget {
             SizedBox(
               height: 40,
               width: 40,
-              child: category.image,
+              child: FadeInImage(
+                imageErrorBuilder: (context, error, stackTrace) =>
+                    Image.asset(ImageConstants.categoryPlaceholder),
+                placeholder:
+                    const AssetImage(ImageConstants.categoryPlaceholder),
+                image: NetworkImage(
+                  category.imageUrl,
+                ),
+                fit: BoxFit.cover,
+              ),
             ),
             const SizedBox(
               height: 8,

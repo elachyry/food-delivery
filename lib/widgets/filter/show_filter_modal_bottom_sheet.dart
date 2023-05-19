@@ -6,10 +6,15 @@ import 'package:multi_languges/models/restaurant.dart';
 import 'package:multi_languges/screens/restaurant_listing/restaurant_listing_screen.dart';
 import 'package:multi_languges/widgets/filter/custom_popular_filters.dart';
 
+import '../../controllers/rating_controller.dart';
+import '../../controllers/restaurant_controller.dart';
 import '../../widgets/filter/custom_catygory_filter.dart';
 import '../../widgets/filter/custom_price_filter.dart';
 
 Future<dynamic> showFilterModalBotomSheet(BuildContext context) {
+  final restaurnatController = Get.put(RestaurantController());
+  final ratingController = Get.put(RatingController());
+
   return showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -168,15 +173,17 @@ Future<dynamic> showFilterModalBotomSheet(BuildContext context) {
                             .map((e) => e.popular.popular)
                             .toList();
 
-                        List<Restaurant> filtre1 = Restaurant.restaurants
-                            .where(
-                              (restaurant) => categories.any(
-                                (category) =>
-                                    restaurant.tags.contains(category),
-                              ),
-                            )
-                            .toList();
-                        List<Restaurant> filtre2 = Restaurant.restaurants
+                        List<Restaurant> filtre1 =
+                            restaurnatController.restaurants
+                                .where(
+                                  (restaurant) => categories.any(
+                                    (category) =>
+                                        restaurant.tags.contains(category),
+                                  ),
+                                )
+                                .toList();
+                        List<Restaurant> filtre2 = restaurnatController
+                            .restaurants
                             .where(
                               (restaurant) => prices.any(
                                 (price) =>
@@ -188,7 +195,7 @@ Future<dynamic> showFilterModalBotomSheet(BuildContext context) {
                         List<Restaurant> filtre4 = [];
 
                         if (populars.contains('Fast delivery')) {
-                          filtre3 = Restaurant.restaurants
+                          filtre3 = restaurnatController.restaurants
                               .where(
                                   (restaurant) => restaurant.deliveryTime <= 30)
                               .toList();
@@ -206,21 +213,38 @@ Future<dynamic> showFilterModalBotomSheet(BuildContext context) {
 
                         if (populars.contains('Top rated')) {
                           if (filtredRestaurants.isEmpty) {
-                            filtredRestaurants = Restaurant.restaurants;
+                            filtredRestaurants =
+                                restaurnatController.restaurants;
                           }
                           filtredRestaurants.sort(
                             (a, b) {
                               var ratingA = 0.0;
-                              for (var e in a.ratings) {
+                              for (var e in ratingController.ratings
+                                  .where((element) =>
+                                      a.ratingsId.contains(element.id))
+                                  .toList()) {
                                 ratingA += e.rate;
                               }
-                              ratingA = ratingA / a.ratings.length;
+                              ratingA = ratingA /
+                                  ratingController.ratings
+                                      .where((element) =>
+                                          a.ratingsId.contains(element.id))
+                                      .toList()
+                                      .length;
 
                               var ratingB = 0.0;
-                              for (var e in b.ratings) {
+                              for (var e in ratingController.ratings
+                                  .where((element) =>
+                                      a.ratingsId.contains(element.id))
+                                  .toList()) {
                                 ratingB += e.rate;
                               }
-                              ratingB = ratingB / b.ratings.length;
+                              ratingB = ratingB /
+                                  ratingController.ratings
+                                      .where((element) =>
+                                          a.ratingsId.contains(element.id))
+                                      .toList()
+                                      .length;
 
                               return ratingB.compareTo(ratingA);
                             },
@@ -228,18 +252,19 @@ Future<dynamic> showFilterModalBotomSheet(BuildContext context) {
                         }
                         // print('after sort $filtredRestaurants');
 
-                        if (populars.contains('New added')) {
-                          if (filtredRestaurants.isEmpty) {
-                            filtredRestaurants = Restaurant.restaurants;
-                          }
-                          filtredRestaurants.sort(
-                            (a, b) => DateTime.parse(b.addedAt)
-                                .compareTo(DateTime.parse(a.addedAt)),
-                          );
-                        }
+                        // if (populars.contains('New added')) {
+                        //   if (filtredRestaurants.isEmpty) {
+                        //     filtredRestaurants =
+                        //         restaurnatController.restaurants;
+                        //   }
+                        //   filtredRestaurants.sort(
+                        //     (a, b) => DateTime.parse(b.addedAt)
+                        //         .compareTo(DateTime.parse(a.addedAt)),
+                        //   );
+                        // }
 
                         if (populars.contains('Free delivery')) {
-                          filtre4 = Restaurant.restaurants
+                          filtre4 = restaurnatController.restaurants
                               .where(
                                   (restaurant) => restaurant.deliveryFee == 0)
                               .toList();
@@ -256,7 +281,7 @@ Future<dynamic> showFilterModalBotomSheet(BuildContext context) {
                         if (populars.isEmpty &&
                             prices.isEmpty &&
                             categories.isEmpty) {
-                          filtredRestaurants = Restaurant.restaurants;
+                          filtredRestaurants = restaurnatController.restaurants;
                         }
                         Get.back();
                         Get.back();

@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/controllers/auth/auth_controller.dart';
 import 'package:multi_languges/controllers/auth/user_controller.dart';
 import 'package:multi_languges/utils/constants/image_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../controllers/cart_controller.dart';
 import '../utils/app_routes.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -59,17 +59,18 @@ class _SplashScreenState extends State<SplashScreen>
           // User is already logged in, navigate to dashboard screen
           userController.getUserData();
           Get.offAllNamed(AppRoutes.tabsScreenRoute);
-          print('user not null');
+          // print('user not null');
         } else {
-          print('user null');
+          // print('user null');
 
           if (initScreen == 0 || initScreen == null) {
-            print('user null and initScreen = 0');
+            // print('user null and initScreen = 0');
 
             Get.offAllNamed(AppRoutes.selectLanguageScreenRoute);
           } else {
-            print('user null and initScreen = 1');
-
+            // print('user null and initScreen = 1');
+            final cartController = Get.find<CartController>();
+            cartController.getCart();
             Get.offAllNamed(AppRoutes.welecomeScreenRoute);
           }
         }

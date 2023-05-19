@@ -82,6 +82,18 @@ class ImageConstants {
   static const String dashboardBackground =
       'assets/images/background/dashboard_background.png';
   static const String fire = 'assets/images/icons/fire.png';
+  static const String categoryPlaceholder =
+      'assets/images/placeholders/main-menu.png';
+  static const String restaurnantPlaceholder =
+      'assets/images/placeholders/restaurant.png';
+  static const String menuItemPlaceholder =
+      'assets/images/placeholders/lunch.png';
+  static const String logoPlaceholder =
+      'assets/images/placeholders/logo-place.png';
+
+  //Checkout Screen
+  static const String cashOnDelivery =
+      'assets/images/icons/cash-on-delivery.png';
 
   //Cart Screen
   static const String emptyCart = 'assets/images/icons/empty-cart.png';

@@ -2,16 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
+import 'package:multi_languges/screens/checkout/checkout_screen.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
+import '../../controllers/auth/user_controller.dart';
+import '../../models/menu_item.dart';
 import 'add_coupon_bottom_nav_bar.dart';
 
 class CartBottomNavBar extends StatelessWidget {
   final double total;
-  const CartBottomNavBar({
+  final Map<String, Map<MenuItem, int>> itemQuantity;
+  final Map<String, double> itemSubtotal;
+  CartBottomNavBar({
     super.key,
     required this.total,
+    required this.itemQuantity,
+    required this.itemSubtotal,
   });
+  final userController = Get.put(UserController());
 
   @override
   Widget build(BuildContext context) {
@@ -167,9 +175,17 @@ class CartBottomNavBar extends StatelessWidget {
                           onPressed:
                               state.cart.grandTotal(state.cart.menuItems) == 0
                                   ? null
-                                  : () {},
+                                  : () {
+                                      userController.getUserData();
+                                      final val = total;
+                                      Get.to(() => CheckoutScreen(
+                                            total: val,
+                                            itemQuantity: itemQuantity,
+                                            itemSubtotal: itemSubtotal,
+                                          ));
+                                    },
                           child: Text(
-                            'Checkout',
+                            'Continue',
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!

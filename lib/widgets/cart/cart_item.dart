@@ -3,13 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:multi_languges/controllers/dashboard_controller.dart';
+import 'package:multi_languges/utils/constants/image_constants.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
 import '../../models/menu_item.dart';
 
 class CartItem extends StatelessWidget {
   final CartLoaded state;
-  final int restauratId;
+  final String restauratId;
   final int index;
   final MenuItem menuItem;
   const CartItem({
@@ -116,13 +117,18 @@ class CartItem extends StatelessWidget {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: SizedBox(
-                      width: 90,
-                      height: 90,
-                      child: Image.network(
-                        menuItem.imageUrl,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
+                        width: 90,
+                        height: 90,
+                        child: FadeInImage(
+                          image: NetworkImage(
+                            menuItem.imageUrl,
+                          ),
+                          placeholder: const AssetImage(
+                              ImageConstants.menuItemPlaceholder),
+                          imageErrorBuilder: (context, error, stackTrace) =>
+                              Image.asset(ImageConstants.menuItemPlaceholder),
+                          fit: BoxFit.cover,
+                        )),
                   ),
                   SizedBox(
                     height: 90,

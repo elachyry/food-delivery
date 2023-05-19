@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:multi_languges/models/menu_item.dart';
+import 'package:multi_languges/utils/constants/image_constants.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
+import '../../controllers/cart_controller.dart';
 
 class FoodItem extends StatelessWidget {
   final MenuItem menuItem;
-  const FoodItem({
+  FoodItem({
     super.key,
     required this.menuItem,
   });
@@ -18,6 +20,8 @@ class FoodItem extends StatelessWidget {
         colorText: Colors.white,
         duration: const Duration(milliseconds: 1500));
   }
+
+  final cartController = Get.put(CartController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +38,17 @@ class FoodItem extends StatelessWidget {
             width: 110,
             height: 110,
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(50),
-              child: Image.network(
-                menuItem.imageUrl,
-                fit: BoxFit.cover,
-              ),
-            ),
+                borderRadius: BorderRadius.circular(50),
+                child: FadeInImage(
+                  imageErrorBuilder: (context, error, stackTrace) =>
+                      Image.asset(ImageConstants.menuItemPlaceholder),
+                  placeholder:
+                      const AssetImage(ImageConstants.menuItemPlaceholder),
+                  image: NetworkImage(
+                    menuItem.imageUrl,
+                  ),
+                  fit: BoxFit.cover,
+                )),
           ),
           Expanded(
             child: Container(
@@ -76,6 +85,7 @@ class FoodItem extends StatelessWidget {
                                 context
                                     .read<CartBloc>()
                                     .add(AddItem(menuItem: menuItem));
+                                // cartController.addToCart(menuItem);
                                 showSnackBar(
                                     'succes'.tr,
                                     'The item added to cart successfully.',

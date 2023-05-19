@@ -1,27 +1,45 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:multi_languges/models/restaurant.dart';
 import 'package:multi_languges/widgets/restaurant_details/read_more_paragraph.dart';
 
+import '../../controllers/rating_controller.dart';
+import '../../models/rating.dart';
+
 class Restaurantinformations extends StatelessWidget {
-  const Restaurantinformations({
+  Restaurantinformations({
     super.key,
     required this.restaurant,
   });
+  final ratingController = Get.put(RatingController());
 
   final Restaurant? restaurant;
 
   @override
   Widget build(BuildContext context) {
+    // var rating = 0.0;
+
+    // for (var e in restaurant!.ratings) {
+    //   rating += e.rate;
+    // }
+
+    // rating = rating / restaurant!.ratings.length;
+
     var rating = 0.0;
+    ratingController.loadRatings();
+    for (var e in restaurant!.ratingsId) {
+      Rating rat =
+          ratingController.ratings.firstWhere((element) => element.id == e);
+      rating += rat.rate;
+    }
+    rating = rating / restaurant!.ratingsId.length;
+
     String delivery = restaurant!.deliveryFee.toString();
     bool freedelivery = restaurant!.deliveryFee == 0;
-    for (var e in restaurant!.ratings) {
-      rating += e.rate;
-    }
+
     if (freedelivery) {
       delivery = 'Free Delivery';
     }
-    rating = rating / restaurant!.ratings.length;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -39,29 +57,29 @@ class Restaurantinformations extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        Row(
-          children: restaurant!.tags
-              .map(
-                (e) => restaurant!.tags.indexOf(e) ==
-                        restaurant!.tags.length - 1
-                    ? Text(
-                        e,
-                        style:
-                            Theme.of(context).textTheme.titleMedium!.copyWith(
-                                  color: Colors.grey,
-                                ),
-                        textAlign: TextAlign.center,
-                      )
-                    : Text(
-                        '$e, ',
-                        style:
-                            Theme.of(context).textTheme.titleMedium!.copyWith(
-                                  color: Colors.grey,
-                                ),
-                        textAlign: TextAlign.center,
-                      ),
-              )
-              .toList(),
+        SizedBox(
+          width: double.infinity,
+          height: 20,
+          child: ListView.builder(
+            itemCount: restaurant!.tags.length,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) => index ==
+                    restaurant!.tags.length - 1
+                ? Text(
+                    restaurant!.tags[index],
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: Colors.grey,
+                        ),
+                    textAlign: TextAlign.center,
+                  )
+                : Text(
+                    '${restaurant!.tags[index]}, ',
+                    style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                          color: Colors.grey,
+                        ),
+                    textAlign: TextAlign.center,
+                  ),
+          ),
         ),
         const SizedBox(
           height: 8,
@@ -79,7 +97,7 @@ class Restaurantinformations extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  '${rating.toStringAsFixed(1)} (${restaurant!.ratings.length})',
+                  '$rating (${restaurant!.ratingsId.length})',
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         color: Colors.grey,
                       ),

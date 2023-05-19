@@ -60,6 +60,7 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> {
                 ),
                 SizedBox(
                   child: FoodListView(
+                    // key: UniqueKey(),
                     selectedIndex: selectedIndex,
                     callBack: callBack,
                     pageController: pageController,

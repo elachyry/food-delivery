@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:multi_languges/models/restaurant.dart';
 import 'package:multi_languges/widgets/dashboard/restaurant_item.dart';
 import 'package:multi_languges/widgets/filter/show_category_modal_bottom_sheet.dart';
 import 'package:multi_languges/widgets/filter/show_filter_modal_bottom_sheet.dart';
 
+import '../../controllers/restaurant_controller.dart';
+
 class RestaurantListingScreen extends StatelessWidget {
   final List<Restaurant> restaurants;
-  const RestaurantListingScreen({
+  RestaurantListingScreen({
     super.key,
     required this.restaurants,
   });
+  final restaurantController = Get.put(RestaurantController());
 
   @override
   Widget build(BuildContext context) {
+    print(restaurantController.restaurants);
+
     final appbar = AppBar(
       backgroundColor: Colors.white,
       title: Text(

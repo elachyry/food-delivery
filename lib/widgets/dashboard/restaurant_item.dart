@@ -2,29 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:multi_languges/models/restaurant.dart';
 import 'package:multi_languges/screens/restaurant_details/restaurant_details_screen.dart';
+import 'package:multi_languges/utils/constants/image_constants.dart';
+
+import '../../controllers/menu_items_controller.dart';
+import '../../controllers/rating_controller.dart';
+import '../../models/rating.dart';
 
 class RestaurantItem extends StatelessWidget {
   final Restaurant restaurant;
-  const RestaurantItem({
+  RestaurantItem({
     super.key,
     required this.restaurant,
   });
 
+  final ratingController = Get.put(RatingController());
+  final menuItemsController = Get.put(MenuItemsController());
+
   @override
   Widget build(BuildContext context) {
-    var rating = 0.0;
+    // var rating = 0.0;
+
+    // for (var e in restaurant.ratings) {
+    //   rating += e.rate;
+    // }
+    // rating = rating / restaurant.ratings.length;
+
     String delivery = restaurant.deliveryFee.toString();
     bool freedelivery = restaurant.deliveryFee == 0;
-    for (var e in restaurant.ratings) {
-      rating += e.rate;
+
+    var rating = 0.0;
+    ratingController.loadRatings();
+    for (var e in restaurant.ratingsId) {
+      Rating rat =
+          ratingController.ratings.firstWhere((element) => element.id == e);
+      rating += rat.rate;
     }
-    rating = rating / restaurant.ratings.length;
+    rating = rating / restaurant.ratingsId.length;
 
     if (freedelivery) {
       delivery = 'Free Delivery';
     }
     return InkWell(
       onTap: () {
+        menuItemsController.loadMenuItems();
         Get.to(() => RestaurantDetailsScreen(restaurant: restaurant));
       },
       child: Padding(
@@ -42,12 +62,17 @@ class RestaurantItem extends StatelessWidget {
                     borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(15),
                         topRight: Radius.circular(15)),
-                    child: Image.network(
-                      restaurant.imageUrl,
-                      width: double.infinity,
-                      height: 180,
-                      fit: BoxFit.cover,
-                    ),
+                    child: FadeInImage(
+                        image: NetworkImage(
+                          restaurant.imageUrl,
+                        ),
+                        imageErrorBuilder: (context, error, stackTrace) =>
+                            Image.asset(ImageConstants.restaurnantPlaceholder),
+                        placeholder: const AssetImage(
+                            ImageConstants.restaurnantPlaceholder),
+                        width: double.infinity,
+                        height: 180,
+                        fit: BoxFit.cover),
                   ),
                   Positioned(
                     right: 5,
@@ -97,13 +122,16 @@ class RestaurantItem extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                child: Row(
-                  children: restaurant.tags
-                      .map(
-                        (e) => restaurant.tags.indexOf(e) ==
-                                restaurant.tags.length - 1
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 20,
+                  child: ListView.builder(
+                    itemCount: restaurant.tags.length,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) =>
+                        index == restaurant.tags.length - 1
                             ? Text(
-                                e,
+                                restaurant.tags[index],
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium!
@@ -113,7 +141,7 @@ class RestaurantItem extends StatelessWidget {
                                 textAlign: TextAlign.center,
                               )
                             : Text(
-                                '$e, ',
+                                '${restaurant.tags[index]}, ',
                                 style: Theme.of(context)
                                     .textTheme
                                     .titleMedium!
@@ -122,8 +150,7 @@ class RestaurantItem extends StatelessWidget {
                                     ),
                                 textAlign: TextAlign.center,
                               ),
-                      )
-                      .toList(),
+                  ),
                 ),
               ),
               Padding(
@@ -141,7 +168,7 @@ class RestaurantItem extends StatelessWidget {
                           width: 5,
                         ),
                         Text(
-                          '${rating.toStringAsFixed(1)} (${restaurant.ratings.length})',
+                          '$rating (${restaurant.ratingsId.length})',
                           style:
                               Theme.of(context).textTheme.titleSmall!.copyWith(
                                     color: Colors.grey,

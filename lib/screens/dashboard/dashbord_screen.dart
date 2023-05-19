@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../models/category.dart';
+import '../../controllers/category_controller.dart';
+import '../../controllers/restaurant_controller.dart';
 import '../../models/coupon.dart';
-import '../../models/restaurant.dart';
 import '../../screens/restaurant_listing/restaurant_listing_screen.dart';
 import '../../utils/constants/image_constants.dart';
 import '../../widgets/dashboard/category_item.dart';
@@ -12,103 +12,121 @@ import '../../widgets/dashboard/dashboard_head.dart';
 import '../../widgets/dashboard/restaurant_item.dart';
 
 class DashboardScreen extends StatelessWidget {
-  const DashboardScreen({super.key});
+  DashboardScreen({super.key});
 
+  final restaurantController = Get.put(RestaurantController());
+  final categoryController = Get.put(CategoryController());
   @override
   Widget build(BuildContext context) {
+    restaurantController.loadRedtaurants();
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const DashboardHead(),
-            Container(
-              padding: const EdgeInsets.only(
-                left: 20,
-                top: 5,
-                bottom: 10,
-              ),
-              color: Colors.grey.shade200,
-              alignment: Alignment.topCenter,
-              child: SizedBox(
-                height: 100,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: Category.categories.length,
-                  itemBuilder: (context, index) => CategoryItem(
-                    category: Category.categories[index],
-                  ),
+      body: Obx(() {
+        // print('is empty ${restaurantController.restaurants.isEmpty}');
+        // print(restaurantController.restaurants);
+
+        if (restaurantController.restaurants.isEmpty) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return SingleChildScrollView(
+          child: Column(
+            children: [
+              DashboardHead(),
+              Container(
+                padding: const EdgeInsets.only(
+                  left: 20,
+                  top: 5,
+                  bottom: 10,
                 ),
-              ),
-            ),
-            Coupon.coupons.isEmpty ? Container() : const CouponSlide(),
-            Container(
-              padding: const EdgeInsets.only(right: 15, left: 15, top: 20),
-              color: Colors.grey.shade200,
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            'Restaurants',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleLarge!
-                                .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(left: 5, bottom: 10),
-                            child: Image.asset(
-                              ImageConstants.fire,
-                              width: 30,
-                              height: 30,
-                            ),
-                          ),
-                        ],
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                        onPressed: () {
-                          Get.to(
-                            () => RestaurantListingScreen(
-                              restaurants: Restaurant.restaurants,
-                            ),
-                          );
-                        },
-                        child: Text(
-                          'View All',
-                          style:
-                              Theme.of(context).textTheme.titleMedium!.copyWith(
-                                    color: Theme.of(context).primaryColor,
-                                  ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.75,
-                    child: ListView.builder(
-                      padding: EdgeInsets.zero,
-                      itemCount: Restaurant.restaurants.length,
-                      itemBuilder: (context, index) => RestaurantItem(
-                        restaurant: Restaurant.restaurants[index],
+                color: Colors.grey.shade200,
+                alignment: Alignment.topCenter,
+                child: SizedBox(
+                  height: 100,
+                  child: Obx(
+                    () => ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      shrinkWrap: true,
+                      itemCount: categoryController.categories.length,
+                      itemBuilder: (context, index) => CategoryItem(
+                        category: categoryController.categories[index],
                       ),
                     ),
                   ),
-                ],
+                ),
               ),
-            ),
-          ],
-        ),
-      ),
+              Coupon.coupons.isEmpty ? Container() : const CouponSlide(),
+              Container(
+                padding: const EdgeInsets.only(right: 15, left: 15, top: 20),
+                color: Colors.grey.shade200,
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              'Restaurants',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                            Container(
+                              margin:
+                                  const EdgeInsets.only(left: 5, bottom: 10),
+                              child: Image.asset(
+                                ImageConstants.fire,
+                                width: 30,
+                                height: 30,
+                              ),
+                            ),
+                          ],
+                        ),
+                        TextButton(
+                          style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                          onPressed: () {
+                            Get.to(
+                              () => RestaurantListingScreen(
+                                restaurants: restaurantController.restaurants,
+                              ),
+                            );
+                          },
+                          child: Text(
+                            'View All',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium!
+                                .copyWith(
+                                  color: Theme.of(context).primaryColor,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.75,
+                      child: ListView.builder(
+                        padding: EdgeInsets.zero,
+                        itemCount: restaurantController.restaurants.length,
+                        itemBuilder: (context, index) => RestaurantItem(
+                          restaurant: restaurantController.restaurants[index],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }

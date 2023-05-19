@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:multi_languges/models/restaurant.dart';
+import 'package:multi_languges/utils/constants/image_constants.dart';
 
 class RestaurantDetailsHead extends StatelessWidget {
   const RestaurantDetailsHead({
@@ -67,8 +68,13 @@ class RestaurantDetailsHead extends StatelessWidget {
           top: MediaQuery.of(context).size.height * 0.2,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(50),
-            child: Image.network(
-              restaurant!.logoUrl,
+            child: FadeInImage(
+              imageErrorBuilder: (context, error, stackTrace) =>
+                  Image.asset(ImageConstants.logoPlaceholder),
+              placeholder: const AssetImage(ImageConstants.logoPlaceholder),
+              image: NetworkImage(
+                restaurant!.logoUrl,
+              ),
               fit: BoxFit.cover,
               width: 80,
             ),

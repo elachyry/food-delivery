@@ -61,16 +61,13 @@ class UserController extends GetxController {
   }
 
   void getUserData() async {
-    print('id user = ${AuthController.instance.auth.currentUser!.uid}');
     final DocumentSnapshot snapshot = await firestore
         .collection('users')
         .doc(AuthController.instance.auth.currentUser!.uid)
         .get();
     if (snapshot.exists) {
-      print('user data');
       myData.value = snapshot.data() as Map<dynamic, dynamic>;
       if (myData['phoneNumber'] == '') {
-        print('test');
         Get.offAllNamed(AppRoutes.phoneNumberScreenRoute);
       }
     }

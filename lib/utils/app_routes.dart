@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:multi_languges/screens/dashboard/tab_screen.dart';
+import 'package:multi_languges/screens/orders/orders_screen.dart';
 
 import '../screens/auth/phone_number_screen.dart';
 import '../screens/cart/cart_screen.dart';
-import '../screens/checkout/checkout_screen.dart';
 import '../screens/filter/filter_screen.dart';
 import '../screens/location/location_screen.dart';
 import '../screens/meal_details/meal_details_screen.dart';
@@ -51,6 +51,8 @@ class AppRoutes {
   static const String _tabsScreen = '/tabs';
   static const String _mealDetailsScreen = '/meal-details';
 
+  static const String _ordersScreen = '/orders';
+
   static String get initialRoute => _initialScreen;
   static String get splashScreenRoute => _splashScreen;
   static String get selectLanguageScreenRoute => _selectLanguageScreen;
@@ -78,6 +80,8 @@ class AppRoutes {
   static String get restaurantDetailsScreenRoute => _restaurantDetailsScreen;
   static String get tabsScreenRoute => _tabsScreen;
   static String get mealDetailsScreenRoute => _mealDetailsScreen;
+
+  static String get ordersScreenRoute => _ordersScreen;
 
   static List<GetPage> routes = [
     GetPage(
@@ -126,7 +130,7 @@ class AppRoutes {
     ),
     GetPage(
       name: _dashboardScreen,
-      page: () => const DashboardScreen(),
+      page: () => DashboardScreen(),
     ),
     GetPage(
       name: _phoneNumberScreen,
@@ -152,23 +156,27 @@ class AppRoutes {
       name: _locationScreen,
       page: () => const LocationScreen(),
     ),
-    GetPage(
-      name: _checkoutScreen,
-      page: () => const CheckoutScreen(),
-    ),
+    // GetPage(
+    //   name: _checkoutScreen,
+    //   page: () => const CheckoutScreen(total: 0),
+    // ),
     GetPage(
       name: _restaurantDetailsScreen,
       page: () => const RestaurantDetailsScreen(restaurant: null),
     ),
     GetPage(
       name: _restaurantListingScreen,
-      page: () => const RestaurantListingScreen(
-        restaurants: [],
+      page: () => RestaurantListingScreen(
+        restaurants: const [],
       ),
     ),
     GetPage(
       name: _tabsScreen,
       page: () => TabScreen(),
+    ),
+    GetPage(
+      name: _ordersScreen,
+      page: () => const OrdersScreen(),
     ),
     GetPage(
       name: _mealDetailsScreen,

@@ -2,10 +2,13 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:get/get.dart';
 import 'package:multi_languges/models/menu_item.dart';
 
+import '../../controllers/cart_controller.dart';
 import '../../models/cart.dart';
 import '../../models/coupon.dart';
+import '../../repositories/cart_repository.dart';
 import '../coupon/coupon_bloc.dart';
 
 part 'cart_event.dart';
@@ -14,6 +17,8 @@ part 'cart_state.dart';
 class CartBloc extends Bloc<CartEvent, CartState> {
   final CouponBloc _couponBloc;
   StreamSubscription? _couponSubscription;
+  final _cartRepo = CartRepository();
+  final cartController = Get.find<CartController>();
 
   CartBloc({required CouponBloc couponBloc})
       : _couponBloc = couponBloc,
@@ -47,21 +52,35 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     if (event is RemoveCoupon) {
       yield* _mapRemoveCouponToState(event, state);
     }
+    if (event is ClearCart) {
+      yield* _mapClearCartToState(event, state);
+    }
   }
 
   Stream<CartState> _mapStartCartToState() async* {
     yield CartLoading();
     try {
-      await Future<void>.delayed(const Duration(seconds: 1));
-      yield const CartLoaded(cart: Cart());
+      // await Future<void>.delayed(const Duration(seconds: 1));
+      cartController.getCart();
+      yield CartLoaded(cart: cartController.cart as Cart);
     } catch (_) {}
   }
 
   Stream<CartState> _mapAddItemToState(AddItem event, CartState state) async* {
     if (state is CartLoaded) {
       try {
+        // print('cart befor ${state.cart}');
         yield CartLoaded(
           cart: state.cart.copyWith(
+            menuItems: List.from(state.cart.menuItems)..add(event.menuItem),
+            checkStates: Map.from(state.cart.checkStates)
+              ..[event.menuItem.id] = true,
+          ),
+        );
+        // print('cart after ${state.cart}');
+
+        await _cartRepo.updateCart(
+          state.cart.copyWith(
             menuItems: List.from(state.cart.menuItems)..add(event.menuItem),
             checkStates: Map.from(state.cart.checkStates)
               ..[event.menuItem.id] = true,
@@ -85,6 +104,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             menuItems: List.from(state.cart.menuItems)..remove(event.menuItem),
           ),
         );
+
+        await _cartRepo.updateCart(
+          state.cart.copyWith(
+            menuItems: List.from(state.cart.menuItems)..remove(event.menuItem),
+          ),
+        );
       } catch (_) {}
     }
   }
@@ -95,8 +120,35 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       try {
         yield CartLoaded(
           cart: state.cart.copyWith(
-            menuItems: List.from(state.cart.menuItems)
-              ..removeWhere((element) => element.id == event.menuItem.id),
+              menuItems: List.from(state.cart.menuItems)
+                ..removeWhere((element) => element.id == event.menuItem.id),
+              checkStates: Map.from(state.cart.checkStates)
+                ..remove(event.menuItem.id)),
+        );
+        await _cartRepo.updateCart(
+          state.cart.copyWith(
+              menuItems: List.from(state.cart.menuItems)
+                ..removeWhere((element) => element.id == event.menuItem.id),
+              checkStates: Map.from(state.cart.checkStates)
+                ..remove(event.menuItem.id)),
+        );
+      } catch (_) {}
+    }
+  }
+
+  Stream<CartState> _mapClearCartToState(
+      ClearCart event, CartState state) async* {
+    if (state is CartLoaded) {
+      try {
+        yield CartLoaded(
+            cart: state.cart.copyWith(
+          menuItems: [],
+          checkStates: {},
+        ));
+        await _cartRepo.updateCart(
+          state.cart.copyWith(
+            menuItems: [],
+            checkStates: {},
           ),
         );
       } catch (_) {}
@@ -111,6 +163,9 @@ class CartBloc extends Bloc<CartEvent, CartState> {
             cart: state.cart.copyWith(
                 checkStates: Map.from(state.cart.checkStates)
                   ..[event.menuItem.id] = event.value));
+        await _cartRepo.updateCart(state.cart.copyWith(
+            checkStates: Map.from(state.cart.checkStates)
+              ..[event.menuItem.id] = event.value));
       } catch (_) {}
     }
   }
@@ -120,6 +175,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     if (state is CartLoaded) {
       try {
         yield CartLoaded(cart: state.cart.copyWith(coupon: event.coupon));
+        await _cartRepo.updateCart(state.cart.copyWith(coupon: event.coupon));
       } catch (_) {}
     }
   }
@@ -129,6 +185,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     if (state is CartLoaded) {
       try {
         yield CartLoaded(cart: state.cart.deleteCoupon());
+        await _cartRepo.updateCart(state.cart);
+        await _cartRepo.updateCart(state.cart.copyWith().deleteCoupon());
       } catch (_) {}
     }
   }

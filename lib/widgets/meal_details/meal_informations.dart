@@ -3,7 +3,11 @@ import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:multi_languges/controllers/dashboard_controller.dart';
 
+import '../../controllers/ingredient_controller.dart';
+import '../../controllers/menu_items_controller.dart';
+import '../../controllers/rating_controller.dart';
 import '../../models/menu_item.dart';
+import '../../models/rating.dart';
 
 class Mealinformations extends StatelessWidget {
   Mealinformations({
@@ -11,31 +15,58 @@ class Mealinformations extends StatelessWidget {
     required this.menuItem,
   });
 
+  final menuItemsController = Get.put(MenuItemsController());
+  final ratingController = Get.put(RatingController());
+  final ingrediantController = Get.put(IngredientController());
+
   final MenuItem? menuItem;
   final controller = Get.put(DashboardController());
   @override
   Widget build(BuildContext context) {
-    var rating = 0.0;
+    // var rating = 0.0;
 
-    for (var e in menuItem!.ratings) {
-      rating += e.rate;
-    }
+    // for (var e in menuItem!.ratings) {
+    //   rating += e.rate;
+    // }
 
-    rating = rating / menuItem!.ratings.length;
+    // rating = rating / menuItem!.ratings.length;
+
+    // String elements = '';
+
+    // int size = menuItem!.elements.length;
+
+    // int i = 0;
+    // for (var e in menuItem!.elements) {
+    //   if (i == size - 1) {
+    //     elements += '${e['quantity']}x${e['name']}';
+    //   } else {
+    //     elements += '${e['quantity']}x${e['name']}, ';
+    //   }
+    //   i++;
+    // }
 
     String elements = '';
 
     int size = menuItem!.elements.length;
 
     int i = 0;
-    for (var e in menuItem!.elements) {
+    menuItem!.elements.forEach((key, value) {
       if (i == size - 1) {
-        elements += '${e['quantity']}x${e['name']}';
+        elements += '$key x $value';
       } else {
-        elements += '${e['quantity']}x${e['name']}, ';
+        elements += '$key x $value, ';
       }
       i++;
+    });
+
+    var rating = 0.0;
+    ratingController.loadRatings();
+    for (var e in menuItem!.ratingsId) {
+      Rating rat =
+          ratingController.ratings.firstWhere((element) => element.id == e);
+      rating += rat.rate;
     }
+    rating = rating / menuItem!.ratingsId.length;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -85,7 +116,7 @@ class Mealinformations extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        '${rating.toStringAsFixed(1)} (${menuItem!.ratings.length} Reviews)',
+                        '$rating (${menuItem!.ratingsId.length} Reviews)',
                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
                               color: Colors.grey,
                             ),
@@ -186,7 +217,7 @@ class Mealinformations extends StatelessWidget {
         const SizedBox(
           height: 20,
         ),
-        Container(
+        SizedBox(
           width: double.infinity,
           height: 100,
           child: ListView.separated(
@@ -205,13 +236,19 @@ class Mealinformations extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Image.network(
-                        menuItem!.ingredients[index].imageUrl,
+                        ingrediantController.ingrediants
+                            .firstWhere((element) =>
+                                menuItem!.ingredientsId[index] == element.name)
+                            .imageUrl,
                         width: 50,
                         height: 50,
                         fit: BoxFit.cover,
                       ),
                       Text(
-                        menuItem!.ingredients[index].name,
+                        ingrediantController.ingrediants
+                            .firstWhere((element) =>
+                                menuItem!.ingredientsId[index] == element.name)
+                            .name,
                         overflow: TextOverflow.clip,
                         textAlign: TextAlign.center,
                       ),
@@ -222,7 +259,7 @@ class Mealinformations extends StatelessWidget {
               separatorBuilder: (context, index) => const SizedBox(
                     width: 10,
                   ),
-              itemCount: menuItem!.ingredients.length),
+              itemCount: menuItem!.ingredientsId.length),
         )
       ],
     );

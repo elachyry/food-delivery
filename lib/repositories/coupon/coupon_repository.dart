@@ -12,7 +12,7 @@ class CouponRepository extends BaseCouponRepository {
   @override
   Stream<List<Coupon>> getCoupons() {
     return _firestore.collection('coupons').snapshots().map((event) {
-      return event.docs.map((e) => Coupon.fromSnapshot(e)).toList();
+      return event.docs.map((e) => Coupon.fromFirestore(e)).toList();
     });
   }
 

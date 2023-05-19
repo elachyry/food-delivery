@@ -1,9 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:get/get.dart';
 import 'package:multi_languges/models/category_filter.dart';
 import 'package:multi_languges/models/filter.dart';
 import 'package:multi_languges/models/popular_filters.dart';
 import 'package:multi_languges/models/price_filter.dart';
+
+import '../../controllers/category_controller.dart';
 
 part 'filters_event.dart';
 part 'filters_state.dart';
@@ -25,10 +28,20 @@ class FiltersBloc extends Bloc<FiltersEvent, FiltersState> {
   }
 }
 
+final categoryContoller = Get.put(CategoryController());
+
 Stream<FiltersState> _mapFilterLoadToState() async* {
   yield FiltersLoaded(
     filter: Filter(
-      categoryFilters: CategoryFilter.filters,
+      categoryFilters: categoryContoller.categories
+          .map(
+            (e) => CategoryFilter(
+              id: e.id,
+              category: e,
+              value: false,
+            ),
+          )
+          .toList(),
       priceFilters: PriceFilter.filters,
       popularFilters: PopularFilters.filters,
     ),

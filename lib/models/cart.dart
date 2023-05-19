@@ -1,15 +1,18 @@
-import 'package:equatable/equatable.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:collection/collection.dart';
-import 'package:flutter/material.dart';
+import 'package:equatable/equatable.dart';
 import 'package:get/get.dart';
+
+import 'package:multi_languges/controllers/restaurant_controller.dart';
 import 'package:multi_languges/models/coupon.dart';
-import 'package:multi_languges/models/restaurant.dart';
 
 import '../models/menu_item.dart';
 
 class Cart extends Equatable {
   final List<MenuItem> menuItems;
-  final Map<int, bool> checkStates;
+  final Map<String, bool> checkStates;
   final Coupon? coupon;
 
   const Cart({
@@ -20,7 +23,7 @@ class Cart extends Equatable {
 
   Cart copyWith({
     List<MenuItem>? menuItems,
-    Map<int, bool>? checkStates,
+    Map<String, bool>? checkStates,
     Coupon? coupon,
   }) {
     return Cart(
@@ -37,20 +40,20 @@ class Cart extends Equatable {
   @override
   List<Object?> get props => [menuItems, checkStates, coupon];
 
-  Map<int, List<MenuItem>> groupedMenuItems(List<MenuItem> menuItems) {
+  Map<String, List<MenuItem>> groupedMenuItems(List<MenuItem> menuItems) {
     final items = groupBy(menuItems, (MenuItem e) {
       return e.restaurantId;
     });
     return items;
   }
 
-  Map<int, Map<MenuItem, int>> itemQuantity(List<MenuItem> menuItems2) {
+  Map<String, Map<MenuItem, int>> itemQuantity(List<MenuItem> menuItems2) {
     final items = groupBy(menuItems, (MenuItem e) {
       return e.restaurantId;
     });
 
     // print('Items : $items');
-    Map<int, Map<MenuItem, int>> quantityItems = {};
+    Map<String, Map<MenuItem, int>> quantityItems = {};
 
     // items.forEach((key, value) {
     //   quantityItems[key] = {};
@@ -84,11 +87,11 @@ class Cart extends Equatable {
     return quantityItems;
   }
 
-  Map<int, double> subtotal(List<MenuItem> menuItems2) {
+  Map<String, double> subtotal(List<MenuItem> menuItems2) {
     final items = groupBy(menuItems, (MenuItem e) {
       return e.restaurantId;
     });
-    Map<int, double> mapSubTotal = {};
+    Map<String, double> mapSubTotal = {};
 
     final itemsQuantity = itemQuantity(menuItems2);
     double totale = 0;
@@ -116,11 +119,12 @@ class Cart extends Equatable {
   }
 
   double grandTotal(List<MenuItem> menuItems2) {
+    final restaurantController = Get.put(RestaurantController());
     final subTotal = subtotal(menuItems2);
     double total = 0;
     subTotal.forEach((key, value) {
       if (value != 0) {
-        total += Restaurant.restaurants
+        total += restaurantController.restaurants
                 .firstWhere((element) => element.id == key)
                 .deliveryFee +
             value;
@@ -133,4 +137,32 @@ class Cart extends Equatable {
     }
     return total;
   }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'menuItems': menuItems.map((x) => x.toMap()).toList(),
+      'checkStates': checkStates,
+      'coupon': coupon?.toMap(),
+    };
+  }
+
+  factory Cart.fromMap(Map<String, dynamic> map) {
+    return Cart(
+      menuItems: List<MenuItem>.from(
+        (map['menuItems'] as List<int>).map<MenuItem>(
+          (x) => MenuItem.fromMap(x as Map<String, dynamic>),
+        ),
+      ),
+      checkStates:
+          Map<String, bool>.from((map['checkStates'] as Map<String, bool>)),
+      coupon: map['coupon'] != null
+          ? Coupon.fromMap(map['coupon'] as Map<String, dynamic>)
+          : null,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Cart.fromJson(String source) =>
+      Cart.fromMap(json.decode(source) as Map<String, dynamic>);
 }

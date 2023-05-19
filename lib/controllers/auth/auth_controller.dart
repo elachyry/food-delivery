@@ -3,13 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 import '../../controllers/auth/user_controller.dart';
 import '../../exceptions/signup_with_email_and_password_exception.dart';
 import '../../exceptions/signin_with_email_and_password_exception.dart';
-import '../../utils/app_routes.dart';
-import '../../models/user.dart' as Modals;
+import '../../models/user.dart' as modals;
 
 class AuthController extends GetxController {
   static AuthController get instance => Get.find();
@@ -31,13 +29,13 @@ class AuthController extends GetxController {
     // ever(_firebaseUser, _initialScreen);
   }
 
-  void _initialScreen(User? user) {
-    if (user == null) {
-      Get.offAllNamed(AppRoutes.welecomeScreenRoute);
-    } else {
-      Get.offAllNamed(AppRoutes.tabsScreenRoute);
-    }
-  }
+  // void _initialScreen(User? user) {
+  //   if (user == null) {
+  //     Get.offAllNamed(AppRoutes.welecomeScreenRoute);
+  //   } else {
+  //     Get.offAllNamed(AppRoutes.tabsScreenRoute);
+  //   }
+  // }
 
   Future<void> createUserWithEmailAndPassword(
       String email, String password) async {
@@ -93,7 +91,7 @@ class AuthController extends GetxController {
     }
   }
 
-  void phoneAuth(String phoneNumber, Modals.User user) async {
+  void phoneAuth(String phoneNumber, modals.User user) async {
     await auth.verifyPhoneNumber(
       phoneNumber: phoneNumber,
       timeout: const Duration(minutes: 1),
@@ -140,7 +138,7 @@ class AuthController extends GetxController {
     );
   }
 
-  Future<void> verifyOTP(String otp, Modals.User user) async {
+  Future<void> verifyOTP(String otp, modals.User user) async {
     try {
       isLoading.value = true;
       await auth
@@ -158,7 +156,7 @@ class AuthController extends GetxController {
         });
       });
       isLoading.value = false;
-    } on FirebaseAuthException catch (error) {
+    } on FirebaseAuthException catch (_) {
       isLoading.value = false;
     } catch (error) {
       isLoading.value = false;
@@ -175,7 +173,25 @@ class AuthController extends GetxController {
     } catch (error) {
       isLoading.value = false;
 
-      print('Error checking email: $error');
+      // print('Error checking email: $error');
+      return false;
+    }
+  }
+
+  Future<bool> isEmailAlreadyExist2(String email) async {
+    try {
+      // print('email2 $email');
+      final result = await firestore
+          .collection('users')
+          .where('email', isEqualTo: email)
+          .get();
+      isLoading.value = false;
+      // print('email3 ${result.docs.first['email']}');
+      return result.docs.isNotEmpty;
+    } catch (error) {
+      isLoading.value = false;
+
+      // print('Error checking field: $error');
       return false;
     }
   }
@@ -189,12 +205,12 @@ class AuthController extends GetxController {
           .where('phoneNumber', isGreaterThanOrEqualTo: phone)
           .get();
       isLoading.value = false;
-      print(result.docs.first['phoneNumber']);
+      // print(result.docs.first['phoneNumber']);
       return result.docs.isNotEmpty;
     } catch (error) {
       isLoading.value = false;
 
-      print('Error checking field: $error');
+      // print('Error checking field: $error');
       return false;
     }
   }
@@ -256,7 +272,7 @@ class AuthController extends GetxController {
         userController.getUserData();
       });
       isLoading.value = false;
-    } on FirebaseAuthException catch (error) {
+    } on FirebaseAuthException catch (_) {
       isLoading.value = false;
     } catch (error) {
       isLoading.value = false;
@@ -286,7 +302,7 @@ class AuthController extends GetxController {
           duration: const Duration(milliseconds: 1500),
         );
       }
-      print('Error sending password reset email: $error');
+      // print('Error sending password reset email: $error');
     }
   }
 
@@ -345,10 +361,12 @@ class AuthController extends GetxController {
       );
 
       await auth.signInWithCredential(credential);
+      // print('email ${googleUser.email}');
       final isEmailAlreadyExist =
-          await AuthController.instance.isEmailAlreadyExist(googleUser.email);
+          await AuthController.instance.isEmailAlreadyExist2(googleUser.email);
+      // print('isEmailAlreadyExist $isEmailAlreadyExist');
       if (!isEmailAlreadyExist) {
-        userController.createUser(Modals.User(
+        userController.createUser(modals.User(
             fullName: googleUser.displayName,
             email: googleUser.email,
             phoneNumber: '',
