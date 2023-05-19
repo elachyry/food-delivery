@@ -40,7 +40,31 @@ class RemoveItemTotal extends CartEvent {
 }
 
 class SelectToggle extends CartEvent {
-  const SelectToggle();
+  final MenuItem menuItem;
+  final bool value;
+  const SelectToggle({
+    required this.menuItem,
+    required this.value,
+  });
+  @override
+  List<Object> get props => [
+        menuItem,
+        value,
+      ];
+}
+
+class AddCoupon extends CartEvent {
+  final Coupon coupon;
+
+  const AddCoupon({required this.coupon});
+
+  @override
+  List<Object> get props => [coupon];
+}
+
+class RemoveCoupon extends CartEvent {
+  const RemoveCoupon();
+
   @override
   List<Object> get props => [];
 }

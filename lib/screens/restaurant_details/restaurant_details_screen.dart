@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 import 'package:multi_languges/models/restaurant.dart';
 import 'package:multi_languges/widgets/restaurant_details/category_list.dart';

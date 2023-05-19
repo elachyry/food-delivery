@@ -1,28 +1,41 @@
 import 'package:equatable/equatable.dart';
 import 'package:collection/collection.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:multi_languges/models/coupon.dart';
 import 'package:multi_languges/models/restaurant.dart';
 
 import '../models/menu_item.dart';
 
 class Cart extends Equatable {
   final List<MenuItem> menuItems;
+  final Map<int, bool> checkStates;
+  final Coupon? coupon;
 
   const Cart({
     this.menuItems = const <MenuItem>[],
+    this.checkStates = const {},
+    this.coupon,
   });
 
   Cart copyWith({
     List<MenuItem>? menuItems,
+    Map<int, bool>? checkStates,
+    Coupon? coupon,
   }) {
     return Cart(
       menuItems: menuItems ?? this.menuItems,
+      checkStates: checkStates ?? this.checkStates,
+      coupon: coupon ?? this.coupon,
     );
   }
 
+  Cart deleteCoupon() {
+    return Cart(menuItems: menuItems, checkStates: checkStates, coupon: null);
+  }
+
   @override
-  List<Object?> get props => [
-        menuItems,
-      ];
+  List<Object?> get props => [menuItems, checkStates, coupon];
 
   Map<int, List<MenuItem>> groupedMenuItems(List<MenuItem> menuItems) {
     final items = groupBy(menuItems, (MenuItem e) {
@@ -63,10 +76,10 @@ class Cart extends Equatable {
       }
       quantity = {};
     }
-    List<MapEntry<int, Map<MenuItem, int>>> entryList =
-        quantityItems.entries.toList();
-    entryList.sort((a, b) => a.key.compareTo(b.key));
-    Map<int, Map<MenuItem, int>> sortedMap = Map.fromEntries(entryList);
+    // List<MapEntry<int, Map<MenuItem, int>>> entryList =
+    //     quantityItems.entries.toList();
+    // entryList.sort((a, b) => a.key.compareTo(b.key));
+    // Map<int, Map<MenuItem, int>> sortedMap = Map.fromEntries(entryList);
 
     return quantityItems;
   }
@@ -80,13 +93,21 @@ class Cart extends Equatable {
     final itemsQuantity = itemQuantity(menuItems2);
     double totale = 0;
     itemsQuantity.forEach((key, value) {
+      mapSubTotal[key] = 0;
       value.forEach((key2, value2) {
-        totale = key2.price * value2;
-        if (!mapSubTotal.containsKey(key)) {
-          mapSubTotal[key] = totale;
-        } else {
-          mapSubTotal[key] = mapSubTotal[key]! + totale;
+        if (checkStates[key2.id] == true) {
+          totale = key2.price * value2;
+          if (!mapSubTotal.containsKey(key)) {
+            mapSubTotal[key] = totale;
+          } else {
+            mapSubTotal[key] = mapSubTotal[key]! + totale;
+          }
         }
+        // } else {
+        //   print('final else');
+
+        //   mapSubTotal[key] = 0;
+        // }
       });
       totale = 0;
     });
@@ -98,29 +119,18 @@ class Cart extends Equatable {
     final subTotal = subtotal(menuItems2);
     double total = 0;
     subTotal.forEach((key, value) {
-      total += Restaurant.restaurants
-              .firstWhere((element) => element.id == key)
-              .deliveryFee +
-          value;
+      if (value != 0) {
+        total += Restaurant.restaurants
+                .firstWhere((element) => element.id == key)
+                .deliveryFee +
+            value;
+      }
     });
-    return total;
-  }
-
-  Map itemselected(menuItem) {
-    var selected = {};
-    for (var element in menuItems) {
-      if (!selected.containsKey(element)) {
-        selected[element] = false;
-      } else {
-        selected[element] = !selected[element];
+    if (coupon != null) {
+      if (total >= coupon!.conditionAmount) {
+        total -= coupon!.discount;
       }
     }
-    return selected;
-  }
-
-  double get subTotal => menuItems.fold(
-      0, (previousValue, element) => previousValue + element.price);
-  double total(subTotal) {
-    return subTotal + 5;
+    return total;
   }
 }

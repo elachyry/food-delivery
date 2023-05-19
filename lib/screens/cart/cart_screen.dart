@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:multi_languges/controllers/dashboard_controller.dart';
 import 'package:multi_languges/models/menu_item.dart';
 import 'package:multi_languges/models/restaurant.dart';
@@ -14,13 +14,11 @@ import '../../widgets/cart/cart_item.dart';
 class CartScreen extends StatelessWidget {
   CartScreen({super.key});
   final contoller = Get.put(DashboardController());
-  double total = 0;
 
   @override
   Widget build(BuildContext context) {
-    // SchedulerBinding.instance.addPostFrameCallback((_) {
-    //   contoller.grandTotal.value = total;
-    // });
+    double total = 0;
+
     final appBar = AppBar(
       leading: Padding(
         padding: const EdgeInsets.only(left: 10),
@@ -39,6 +37,23 @@ class CartScreen extends StatelessWidget {
           ),
         ),
       ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(right: 5),
+          child: Obx(
+            () => IconButton(
+                onPressed: contoller.isCartEmpty.value
+                    ? null
+                    : () {
+                        contoller.isEdit.value = !contoller.isEdit.value;
+                      },
+                icon: const Icon(
+                  Bootstrap.pencil,
+                  color: Colors.black,
+                )),
+          ),
+        )
+      ],
       centerTitle: true,
       title: Text(
         'Cart',
@@ -60,6 +75,11 @@ class CartScreen extends StatelessWidget {
           );
         } else if (state is CartLoaded) {
           total = state.cart.grandTotal(state.cart.menuItems);
+          if (state.cart.menuItems.isEmpty) {
+            contoller.isCartEmpty.value = true;
+          } else {
+            contoller.isCartEmpty.value = false;
+          }
           return state.cart.menuItems.isEmpty
               ? Scaffold(
                   appBar: appBar,
@@ -102,7 +122,7 @@ class CartScreen extends StatelessWidget {
                       child: Column(
                         children: [
                           SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.78,
+                            height: MediaQuery.of(context).size.height * 0.698,
                             child: ListView.builder(
                                 padding: EdgeInsets.zero,
                                 itemCount: state.cart
@@ -122,12 +142,15 @@ class CartScreen extends StatelessWidget {
                                       .firstWhere((element) =>
                                           element.id == restaurantId)
                                       .deliveryFee;
-                                  double subtitle = state.cart.subtotal(
+                                  double subtotal = state.cart.subtotal(
                                           state.cart.menuItems)[restaurantId]
                                       as double;
 
+                                  if (subtotal == 0) {
+                                    deliveryFees = 0;
+                                  }
                                   double restaurantTotal =
-                                      deliveryFees + subtitle;
+                                      deliveryFees + subtotal;
                                   // total += restaurantTotal;
 
                                   return Container(
@@ -232,7 +255,7 @@ class CartScreen extends StatelessWidget {
                                                   Row(
                                                     children: [
                                                       Text(
-                                                        subtitle
+                                                        subtotal
                                                             .toStringAsFixed(2),
                                                         style: Theme.of(context)
                                                             .textTheme

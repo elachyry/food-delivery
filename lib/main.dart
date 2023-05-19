@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart' as bloc;
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:multi_languges/blocs/cart/cart_bloc.dart';
+import 'package:multi_languges/blocs/coupon/coupon_bloc.dart';
 import 'package:multi_languges/blocs/filters/filters_bloc.dart';
 import 'package:multi_languges/blocs/place/place_bloc.dart';
+import 'package:multi_languges/repositories/coupon/coupon_repository.dart';
 import 'firebase_options.dart';
 
 import './blocs/autocomplete/autocomplete_bloc.dart';
@@ -69,7 +71,13 @@ class MyApp extends StatelessWidget {
               create: (context) => FiltersBloc()..add(FilterLoad()),
             ),
             bloc.BlocProvider(
-              create: (context) => CartBloc()..add(StartCart()),
+              create: (context) => CouponBloc(couponRepo: CouponRepository())
+                ..add(LoadCoupons()),
+            ),
+            bloc.BlocProvider(
+              create: (context) => CartBloc(
+                  couponBloc: bloc.BlocProvider.of<CouponBloc>(context))
+                ..add(StartCart()),
             ),
           ],
           child: GetMaterialApp(

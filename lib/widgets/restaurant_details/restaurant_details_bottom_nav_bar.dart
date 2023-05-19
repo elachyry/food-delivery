@@ -5,6 +5,7 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:badges/badges.dart' as badges;
 
 import 'package:multi_languges/models/restaurant.dart';
+import 'package:multi_languges/utils/app_routes.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
 
@@ -110,7 +111,9 @@ class RestaurantDetailsBottomNavBar extends StatelessWidget {
                   ),
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(AppRoutes.cartScreenRoute);
+                      },
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all<Color>(
                             Theme.of(context).primaryColorDark,
@@ -127,27 +130,14 @@ class RestaurantDetailsBottomNavBar extends StatelessWidget {
                             ),
                           )),
                       child: FittedBox(
-                        child: Text.rich(TextSpan(children: [
-                          TextSpan(
-                            text: 'Add',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
-                                  color: Colors.white,
-                                ),
-                          ),
-                          TextSpan(
-                            text: ' 90.00 Dh',
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium!
-                                .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
-                                ),
-                          )
-                        ])),
+                        child: Text(
+                          'Go to cart',
+                          style:
+                              Theme.of(context).textTheme.titleMedium!.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                        ),
                       ),
                     ),
                   ),

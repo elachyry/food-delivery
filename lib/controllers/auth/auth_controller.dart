@@ -118,6 +118,7 @@ class AuthController extends GetxController {
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red.shade200,
             colorText: Colors.red,
+            duration: const Duration(milliseconds: 1500),
           );
         } else {
           Get.snackbar(
@@ -126,6 +127,7 @@ class AuthController extends GetxController {
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red.shade200,
             colorText: Colors.red,
+            duration: const Duration(milliseconds: 1500),
           );
         }
       },
@@ -220,6 +222,7 @@ class AuthController extends GetxController {
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red.shade200,
             colorText: Colors.red,
+            duration: const Duration(milliseconds: 1500),
           );
         } else {
           Get.snackbar(
@@ -228,6 +231,7 @@ class AuthController extends GetxController {
             snackPosition: SnackPosition.BOTTOM,
             backgroundColor: Colors.red.shade200,
             colorText: Colors.red,
+            duration: const Duration(milliseconds: 1500),
           );
         }
       },
@@ -269,6 +273,7 @@ class AuthController extends GetxController {
         'Password reset email sent',
         'Please check your email to reset your password',
         snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(milliseconds: 1500),
       );
     } catch (error) {
       isLoading.value = false;
@@ -278,6 +283,7 @@ class AuthController extends GetxController {
           'Error sending password reset email',
           error.message ?? 'An unknown error occurred',
           snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(milliseconds: 1500),
         );
       }
       print('Error sending password reset email: $error');
@@ -357,6 +363,7 @@ class AuthController extends GetxController {
         'Error signing in with Google',
         error.message ?? 'An unknown error occurred',
         snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(milliseconds: 1500),
       );
     } catch (error) {
       showSnackBarError(
@@ -367,11 +374,9 @@ class AuthController extends GetxController {
 }
 
 void showSnackBarError(String titleText, String messageText) {
-  Get.snackbar(
-    titleText,
-    messageText,
-    snackPosition: SnackPosition.BOTTOM,
-    backgroundColor: Colors.red.shade500,
-    colorText: Colors.white,
-  );
+  Get.snackbar(titleText, messageText,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.red.shade500,
+      colorText: Colors.white,
+      duration: const Duration(milliseconds: 1500));
 }

@@ -1,5 +1,6 @@
 import 'package:coupon_uikit/coupon_uikit.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:multi_languges/models/coupon.dart';
 
 class HorizontalCoupon extends StatelessWidget {
@@ -31,15 +32,30 @@ class HorizontalCoupon extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    FittedBox(
-                      child: Text(
-                        coupon.discount,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        FittedBox(
+                          child: Text(
+                            coupon.discount.toStringAsFixed(0),
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
-                      ),
+                        const FittedBox(
+                          child: Text(
+                            'Dh',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        )
+                      ],
                     ),
                     Text(
                       coupon.title,
@@ -58,7 +74,7 @@ class HorizontalCoupon extends StatelessWidget {
               child: Center(
                 child: FittedBox(
                   child: Text(
-                    coupon.subtitle,
+                    'For Orders Over\n${coupon.conditionAmount.toStringAsFixed(0)}Dh',
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       color: Colors.white,
@@ -105,7 +121,7 @@ class HorizontalCoupon extends StatelessWidget {
             const Spacer(),
             FittedBox(
               child: Text(
-                coupon.validation,
+                'Valid Till - ${DateFormat('dd MMM yyyy').format(coupon.validation)}',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Colors.black45,

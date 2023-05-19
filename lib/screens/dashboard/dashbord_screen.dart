@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../models/category.dart';
+import '../../models/coupon.dart';
 import '../../models/restaurant.dart';
 import '../../screens/restaurant_listing/restaurant_listing_screen.dart';
 import '../../utils/constants/image_constants.dart';
@@ -40,7 +41,7 @@ class DashboardScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const CouponSlide(),
+            Coupon.coupons.isEmpty ? Container() : const CouponSlide(),
             Container(
               padding: const EdgeInsets.only(right: 15, left: 15, top: 20),
               color: Colors.grey.shade200,

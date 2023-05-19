@@ -134,6 +134,7 @@ class UserController extends GetxController {
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Colors.green.shade500,
       colorText: Colors.white,
+      duration: const Duration(milliseconds: 1500),
     );
   }
 
@@ -144,6 +145,7 @@ class UserController extends GetxController {
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Colors.red.shade500,
       colorText: Colors.white,
+      duration: const Duration(milliseconds: 1500),
     );
   }
 

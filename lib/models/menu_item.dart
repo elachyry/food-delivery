@@ -1,6 +1,9 @@
 import 'package:equatable/equatable.dart';
-import 'package:multi_languges/models/category.dart';
-import 'package:multi_languges/models/ingredient.dart';
+
+import './category.dart';
+import './ingredient.dart';
+
+import './rating.dart';
 
 class MenuItem extends Equatable {
   final int id;
@@ -12,6 +15,7 @@ class MenuItem extends Equatable {
   final List<Ingredient> ingredients;
   final double price;
   final String imageUrl;
+  final List<Rating> ratings;
 
   static final menuItems = [
     MenuItem(
@@ -34,6 +38,84 @@ class MenuItem extends Equatable {
           'quantity': '1',
         },
       ],
+      ingredients: const [
+        Ingredient(
+          id: 1,
+          name: 'Ground beef',
+          imageUrl:
+              'https://img.freepik.com/free-icon/meat_318-387863.jpg?size=626&ext=jpg',
+        ),
+        Ingredient(
+          id: 2,
+          name: 'Cheddar cheese',
+          imageUrl:
+              'https://img.freepik.com/free-icon/cheese_318-896581.jpg?size=626&ext=jpg',
+        ),
+        Ingredient(
+          id: 3,
+          name: 'Burger buns',
+          imageUrl:
+              'https://img.freepik.com/free-icon/bun_318-879575.jpg?size=626&ext=jpg',
+        ),
+        Ingredient(
+          id: 4,
+          name: 'Lettuce',
+          imageUrl:
+              'https://img.freepik.com/free-icon/lettuce_318-369163.jpg?size=626&ext=jpg',
+        ),
+        Ingredient(
+          id: 5,
+          name: 'Tomato',
+          imageUrl:
+              'https://img.freepik.com/free-icon/tomato_318-892194.jpg?size=626&ext=jpg',
+        ),
+        Ingredient(
+          id: 6,
+          name: 'Onion',
+          imageUrl:
+              'https://img.freepik.com/free-icon/onion_318-937760.jpg?size=626&ext=jpg',
+        ),
+        Ingredient(
+          id: 7,
+          name: 'Ketchup',
+          imageUrl:
+              'https://img.freepik.com/free-icon/tomato-sauce_318-913129.jpg?size=626&ext=jpg',
+        ),
+        Ingredient(
+          id: 8,
+          name: 'Mustard',
+          imageUrl:
+              'https://img.freepik.com/free-icon/sauce_318-850962.jpg?size=626&ext=jpg',
+        ),
+        Ingredient(
+          id: 9,
+          name: 'Mayonnaise',
+          imageUrl:
+              'https://img.freepik.com/free-icon/mayonnaise_318-706569.jpg?size=626&ext=jpg',
+        ),
+      ],
+      ratings: [
+        Rating(
+          id: 1,
+          custmer: 'Mohammed Elachyry',
+          rate: 3.5,
+        ),
+        Rating(
+          id: 2,
+          custmer: 'Mohammed Elachyry',
+          rate: 5,
+        ),
+        Rating(
+          id: 3,
+          custmer: 'Mohammed Elachyry',
+          rate: 4,
+        ),
+        Rating(
+          id: 4,
+          custmer: 'Mohammed Elachyry',
+          rate: 4.5,
+        ),
+      ],
       price: 8.99,
       imageUrl:
           'https://images.unsplash.com/photo-1572802419224-296b0aeee0d9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=815&q=80',
@@ -50,6 +132,28 @@ class MenuItem extends Equatable {
           'quantity': '1',
         },
       ],
+      ratings: [
+        Rating(
+          id: 1,
+          custmer: 'Mohammed Elachyry',
+          rate: 3.5,
+        ),
+        Rating(
+          id: 2,
+          custmer: 'Mohammed Elachyry',
+          rate: 5,
+        ),
+        Rating(
+          id: 3,
+          custmer: 'Mohammed Elachyry',
+          rate: 4,
+        ),
+        Rating(
+          id: 4,
+          custmer: 'Mohammed Elachyry',
+          rate: 4.5,
+        ),
+      ],
       price: 2.99,
       imageUrl:
           'https://images.unsplash.com/photo-1518013431117-eb1465fa5752?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
@@ -65,6 +169,28 @@ class MenuItem extends Equatable {
           'name': 'Chocolate Milkshake',
           'quantity': '1',
         },
+      ],
+      ratings: [
+        Rating(
+          id: 1,
+          custmer: 'Mohammed Elachyry',
+          rate: 3.5,
+        ),
+        Rating(
+          id: 2,
+          custmer: 'Mohammed Elachyry',
+          rate: 5,
+        ),
+        Rating(
+          id: 3,
+          custmer: 'Mohammed Elachyry',
+          rate: 4,
+        ),
+        Rating(
+          id: 4,
+          custmer: 'Mohammed Elachyry',
+          rate: 4.5,
+        ),
       ],
       price: 4.99,
       imageUrl:
@@ -86,6 +212,28 @@ class MenuItem extends Equatable {
           'quantity': '1',
         },
       ],
+      ratings: [
+        Rating(
+          id: 1,
+          custmer: 'Mohammed Elachyry',
+          rate: 3.5,
+        ),
+        Rating(
+          id: 2,
+          custmer: 'Mohammed Elachyry',
+          rate: 5,
+        ),
+        Rating(
+          id: 3,
+          custmer: 'Mohammed Elachyry',
+          rate: 4,
+        ),
+        Rating(
+          id: 4,
+          custmer: 'Mohammed Elachyry',
+          rate: 4.5,
+        ),
+      ],
       price: 12.99,
       imageUrl:
           'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80',
@@ -105,6 +253,28 @@ class MenuItem extends Equatable {
           'name': 'Pepsi',
           'quantity': '1',
         },
+      ],
+      ratings: [
+        Rating(
+          id: 1,
+          custmer: 'Mohammed Elachyry',
+          rate: 3.5,
+        ),
+        Rating(
+          id: 2,
+          custmer: 'Mohammed Elachyry',
+          rate: 5,
+        ),
+        Rating(
+          id: 3,
+          custmer: 'Mohammed Elachyry',
+          rate: 4,
+        ),
+        Rating(
+          id: 4,
+          custmer: 'Mohammed Elachyry',
+          rate: 4.5,
+        ),
       ],
       price: 7.99,
       imageUrl:
@@ -130,6 +300,28 @@ class MenuItem extends Equatable {
           'quantity': '1',
         },
       ],
+      ratings: [
+        Rating(
+          id: 1,
+          custmer: 'Mohammed Elachyry',
+          rate: 3.5,
+        ),
+        Rating(
+          id: 2,
+          custmer: 'Mohammed Elachyry',
+          rate: 5,
+        ),
+        Rating(
+          id: 3,
+          custmer: 'Mohammed Elachyry',
+          rate: 4,
+        ),
+        Rating(
+          id: 4,
+          custmer: 'Mohammed Elachyry',
+          rate: 4.5,
+        ),
+      ],
       price: 4.99,
       imageUrl:
           'https://images.unsplash.com/photo-1591299177061-2151e53fcaea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80',
@@ -153,6 +345,28 @@ class MenuItem extends Equatable {
           'name': 'Pepsi',
           'quantity': '1',
         },
+      ],
+      ratings: [
+        Rating(
+          id: 1,
+          custmer: 'Mohammed Elachyry',
+          rate: 3.5,
+        ),
+        Rating(
+          id: 2,
+          custmer: 'Mohammed Elachyry',
+          rate: 5,
+        ),
+        Rating(
+          id: 3,
+          custmer: 'Mohammed Elachyry',
+          rate: 4,
+        ),
+        Rating(
+          id: 4,
+          custmer: 'Mohammed Elachyry',
+          rate: 4.5,
+        ),
       ],
       price: 8.99,
       imageUrl:
@@ -178,6 +392,28 @@ class MenuItem extends Equatable {
           'quantity': '1',
         },
       ],
+      ratings: [
+        Rating(
+          id: 1,
+          custmer: 'Mohammed Elachyry',
+          rate: 3.5,
+        ),
+        Rating(
+          id: 2,
+          custmer: 'Mohammed Elachyry',
+          rate: 5,
+        ),
+        Rating(
+          id: 3,
+          custmer: 'Mohammed Elachyry',
+          rate: 4,
+        ),
+        Rating(
+          id: 4,
+          custmer: 'Mohammed Elachyry',
+          rate: 4.5,
+        ),
+      ],
       price: 11.99,
       imageUrl:
           'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
@@ -201,6 +437,28 @@ class MenuItem extends Equatable {
           'name': 'Pepsi',
           'quantity': '1',
         },
+      ],
+      ratings: [
+        Rating(
+          id: 1,
+          custmer: 'Mohammed Elachyry',
+          rate: 3.5,
+        ),
+        Rating(
+          id: 2,
+          custmer: 'Mohammed Elachyry',
+          rate: 5,
+        ),
+        Rating(
+          id: 3,
+          custmer: 'Mohammed Elachyry',
+          rate: 4,
+        ),
+        Rating(
+          id: 4,
+          custmer: 'Mohammed Elachyry',
+          rate: 4.5,
+        ),
       ],
       price: 3.99,
       imageUrl:
@@ -226,6 +484,28 @@ class MenuItem extends Equatable {
           'quantity': '1',
         },
       ],
+      ratings: [
+        Rating(
+          id: 1,
+          custmer: 'Mohammed Elachyry',
+          rate: 3.5,
+        ),
+        Rating(
+          id: 2,
+          custmer: 'Mohammed Elachyry',
+          rate: 5,
+        ),
+        Rating(
+          id: 3,
+          custmer: 'Mohammed Elachyry',
+          rate: 4,
+        ),
+        Rating(
+          id: 4,
+          custmer: 'Mohammed Elachyry',
+          rate: 4.5,
+        ),
+      ],
       price: 9.99,
       imageUrl:
           'https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=434&q=80',
@@ -249,6 +529,28 @@ class MenuItem extends Equatable {
           'name': 'Pepsi',
           'quantity': '1',
         },
+      ],
+      ratings: [
+        Rating(
+          id: 1,
+          custmer: 'Mohammed Elachyry',
+          rate: 3.5,
+        ),
+        Rating(
+          id: 2,
+          custmer: 'Mohammed Elachyry',
+          rate: 5,
+        ),
+        Rating(
+          id: 3,
+          custmer: 'Mohammed Elachyry',
+          rate: 4,
+        ),
+        Rating(
+          id: 4,
+          custmer: 'Mohammed Elachyry',
+          rate: 4.5,
+        ),
       ],
       price: 6.99,
       imageUrl:
@@ -274,6 +576,28 @@ class MenuItem extends Equatable {
           'quantity': '1',
         },
       ],
+      ratings: [
+        Rating(
+          id: 1,
+          custmer: 'Mohammed Elachyry',
+          rate: 3.5,
+        ),
+        Rating(
+          id: 2,
+          custmer: 'Mohammed Elachyry',
+          rate: 5,
+        ),
+        Rating(
+          id: 3,
+          custmer: 'Mohammed Elachyry',
+          rate: 4,
+        ),
+        Rating(
+          id: 4,
+          custmer: 'Mohammed Elachyry',
+          rate: 4.5,
+        ),
+      ],
       price: 4.99,
       imageUrl:
           'https://images.unsplash.com/photo-1624371414361-e670edf4898d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
@@ -290,6 +614,7 @@ class MenuItem extends Equatable {
     this.ingredients = const [],
     required this.price,
     required this.imageUrl,
+    required this.ratings,
   });
 
   @override

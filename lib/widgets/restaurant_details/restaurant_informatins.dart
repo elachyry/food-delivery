@@ -126,8 +126,7 @@ class Restaurantinformations extends StatelessWidget {
           height: 18,
         ),
         ReadMoreParagraph(
-          text:
-              '${restaurant!.name} is a cozy French bistro located in the heart of the city. The restaurant offers a warm and intimate atmosphere, with a rustic decor that transports you to the streets of Paris. The menu features classic French dishes, including escargots, bouillabaisse, and coq au vin, all made with the freshest ingredients. The wine list is extensive, featuring a variety of French and international wines to perfectly complement your meal. With its charming ambiance and delicious cuisine, "La Petite Maison" is the perfect spot for a romantic dinner or a night out with friends.',
+          text: '${restaurant!.name} ${restaurant!.description}',
         ),
       ],
     );

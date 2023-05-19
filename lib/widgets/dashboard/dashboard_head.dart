@@ -9,6 +9,8 @@ import 'package:multi_languges/utils/app_routes.dart';
 import 'package:multi_languges/utils/constants/image_constants.dart';
 import 'package:multi_languges/widgets/filter/show_filter_modal_bottom_sheet.dart';
 
+import '../../blocs/cart/cart_bloc.dart';
+
 class DashboardHead extends StatelessWidget {
   const DashboardHead({
     super.key,
@@ -66,29 +68,55 @@ class DashboardHead extends StatelessWidget {
                     )
                   ],
                 ),
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 1,
-                    ),
-                  ),
-                  child: badges.Badge(
-                    position: badges.BadgePosition.topEnd(top: -5, end: 2),
-                    badgeContent: const Text('0'),
-                    child: IconButton(
-                      onPressed: () {
-                        Get.toNamed(AppRoutes.cartScreenRoute);
-                      },
-                      icon: const Icon(
-                        Icons.shopping_cart_outlined,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    ),
-                  ),
+                BlocBuilder<CartBloc, CartState>(
+                  builder: (context, state) {
+                    if (state is CartLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (state is CartLoaded) {
+                      int itemCount = 0;
+
+                      state.cart
+                          .itemQuantity(state.cart.menuItems)
+                          .forEach((key, value) {
+                        for (var element in value.entries) {
+                          itemCount += element.value;
+                        }
+                      });
+
+                      return Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.white,
+                            width: 1,
+                          ),
+                        ),
+                        child: badges.Badge(
+                          position:
+                              badges.BadgePosition.topEnd(top: -5, end: 2),
+                          badgeContent: Text(itemCount.toString()),
+                          child: IconButton(
+                            onPressed: () {
+                              Get.toNamed(AppRoutes.cartScreenRoute);
+                            },
+                            icon: const Icon(
+                              Icons.shopping_cart_outlined,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                      );
+                    } else {
+                      return Center(
+                        child:
+                            Text('an_error_occurred_please_try_again_later'.tr),
+                      );
+                    }
+                  },
                 ),
               ],
             ),

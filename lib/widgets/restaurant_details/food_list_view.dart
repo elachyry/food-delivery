@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:multi_languges/models/restaurant.dart';
+import 'package:multi_languges/screens/meal_details/meal_details_screen.dart';
 import 'package:multi_languges/widgets/restaurant_details/food_item.dart';
 
 class FoodListView extends StatelessWidget {
@@ -36,8 +38,13 @@ class FoodListView extends StatelessWidget {
                   itemBuilder: (context, index) {
                     final item = menuItems.firstWhere((element) =>
                         element.category.name == categories[selectedIndex]);
-                    print('test ${item.name}');
-                    return FoodItem(menuItem: item);
+                    return GestureDetector(
+                      onTap: () {
+                        Get.to(() => MealDetailsScreen(
+                            menuItem: item, restaurant: restaurant));
+                      },
+                      child: FoodItem(menuItem: item),
+                    );
                   },
                   separatorBuilder: (context, index) => const SizedBox(
                         height: 5,

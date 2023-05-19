@@ -1,14 +1,29 @@
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:multi_languges/models/menu_item.dart';
 
 import '../../models/cart.dart';
+import '../../models/coupon.dart';
+import '../coupon/coupon_bloc.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
 
 class CartBloc extends Bloc<CartEvent, CartState> {
-  CartBloc() : super(CartLoading());
+  final CouponBloc _couponBloc;
+  StreamSubscription? _couponSubscription;
+
+  CartBloc({required CouponBloc couponBloc})
+      : _couponBloc = couponBloc,
+        super(CartLoading()) {
+    _couponSubscription = couponBloc.stream.listen((state) {
+      if (state is CouponSelected) {
+        add(AddCoupon(coupon: state.coupon));
+      }
+    });
+  }
 
   @override
   Stream<CartState> mapEventToState(CartEvent event) async* {
@@ -26,6 +41,12 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     if (event is SelectToggle) {
       yield* _mapSelectToggleToState(event, state);
     }
+    if (event is AddCoupon) {
+      yield* _mapAddCouponToState(event, state);
+    }
+    if (event is RemoveCoupon) {
+      yield* _mapRemoveCouponToState(event, state);
+    }
   }
 
   Stream<CartState> _mapStartCartToState() async* {
@@ -42,6 +63,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         yield CartLoaded(
           cart: state.cart.copyWith(
             menuItems: List.from(state.cart.menuItems)..add(event.menuItem),
+            checkStates: Map.from(state.cart.checkStates)
+              ..[event.menuItem.id] = true,
           ),
         );
       } catch (_) {}
@@ -84,7 +107,28 @@ class CartBloc extends Bloc<CartEvent, CartState> {
       SelectToggle event, CartState state) async* {
     if (state is CartLoaded) {
       try {
-        yield CartLoaded(cart: state.cart.copyWith());
+        yield CartLoaded(
+            cart: state.cart.copyWith(
+                checkStates: Map.from(state.cart.checkStates)
+                  ..[event.menuItem.id] = event.value));
+      } catch (_) {}
+    }
+  }
+
+  Stream<CartState> _mapAddCouponToState(
+      AddCoupon event, CartState state) async* {
+    if (state is CartLoaded) {
+      try {
+        yield CartLoaded(cart: state.cart.copyWith(coupon: event.coupon));
+      } catch (_) {}
+    }
+  }
+
+  Stream<CartState> _mapRemoveCouponToState(
+      RemoveCoupon event, CartState state) async* {
+    if (state is CartLoaded) {
+      try {
+        yield CartLoaded(cart: state.cart.deleteCoupon());
       } catch (_) {}
     }
   }

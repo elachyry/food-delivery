@@ -274,6 +274,7 @@ class EditProfileForm extends StatelessWidget {
                               snackPosition: SnackPosition.BOTTOM,
                               backgroundColor: Colors.red.shade200,
                               colorText: Colors.red,
+                              duration: const Duration(milliseconds: 1500),
                             );
                             return;
                           }

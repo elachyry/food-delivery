@@ -6,6 +6,7 @@ import '../screens/cart/cart_screen.dart';
 import '../screens/checkout/checkout_screen.dart';
 import '../screens/filter/filter_screen.dart';
 import '../screens/location/location_screen.dart';
+import '../screens/meal_details/meal_details_screen.dart';
 import '../screens/restaurant_details/restaurant_details_screen.dart';
 import '../screens/restaurant_listing/restaurant_listing_screen.dart';
 import '../screens/auth/forgot_password/forgot_password_email_screen.dart';
@@ -48,6 +49,7 @@ class AppRoutes {
   static const String _restaurantListingScreen = '/restaurant-listing';
   static const String _restaurantDetailsScreen = '/restaurant-details';
   static const String _tabsScreen = '/tabs';
+  static const String _mealDetailsScreen = '/meal-details';
 
   static String get initialRoute => _initialScreen;
   static String get splashScreenRoute => _splashScreen;
@@ -75,6 +77,7 @@ class AppRoutes {
   static String get restaurantListingScreenRoute => _restaurantListingScreen;
   static String get restaurantDetailsScreenRoute => _restaurantDetailsScreen;
   static String get tabsScreenRoute => _tabsScreen;
+  static String get mealDetailsScreenRoute => _mealDetailsScreen;
 
   static List<GetPage> routes = [
     GetPage(
@@ -155,7 +158,7 @@ class AppRoutes {
     ),
     GetPage(
       name: _restaurantDetailsScreen,
-      page: () => RestaurantDetailsScreen(restaurant: null),
+      page: () => const RestaurantDetailsScreen(restaurant: null),
     ),
     GetPage(
       name: _restaurantListingScreen,
@@ -166,6 +169,13 @@ class AppRoutes {
     GetPage(
       name: _tabsScreen,
       page: () => TabScreen(),
+    ),
+    GetPage(
+      name: _mealDetailsScreen,
+      page: () => const MealDetailsScreen(
+        menuItem: null,
+        restaurant: null,
+      ),
     ),
   ];
 }

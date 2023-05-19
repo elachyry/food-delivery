@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:multi_languges/models/menu_item.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
@@ -10,6 +11,13 @@ class FoodItem extends StatelessWidget {
     super.key,
     required this.menuItem,
   });
+  void showSnackBar(String titleText, String messageText, Color color) {
+    Get.snackbar(titleText, messageText,
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: color,
+        colorText: Colors.white,
+        duration: const Duration(milliseconds: 1500));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +76,10 @@ class FoodItem extends StatelessWidget {
                                 context
                                     .read<CartBloc>()
                                     .add(AddItem(menuItem: menuItem));
+                                showSnackBar(
+                                    'succes'.tr,
+                                    'The item added to cart successfully.',
+                                    Colors.green.shade500);
                               },
                               child: const Icon(
                                 Icons.add,

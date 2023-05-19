@@ -27,7 +27,6 @@ class GeolocationRepository extends BaseGeolocationRepository {
     }
     Position postion = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
-    print('altitude = ${postion.altitude}');
     // return await Location().getLocation() as Position;
     return await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high);
