@@ -15,7 +15,7 @@ class CategoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final categories = restaurant!.tags.toList();
-    return Container(
+    return SizedBox(
       height: 50,
       // padding: const EdgeInsets.all(5),
       child: ListView.separated(

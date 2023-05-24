@@ -10,7 +10,7 @@ class CategoryFilter extends Equatable {
   final bool value;
 
   final categoryContoller = Get.put(CategoryController());
-  static List<CategoryFilter> filters = [];
+  // static List<CategoryFilter> filters = [];
 
   CategoryFilter({
     required this.id,

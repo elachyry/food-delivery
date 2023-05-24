@@ -2,8 +2,6 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
 
 class Category extends Equatable {
   final String id;

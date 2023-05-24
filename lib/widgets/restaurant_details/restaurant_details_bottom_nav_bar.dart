@@ -46,7 +46,6 @@ class RestaurantDetailsBottomNavBar extends StatelessWidget {
                 child: CircularProgressIndicator(),
               );
             } else if (state is CartLoaded) {
-              print(state.cart);
               int itemCount = 0;
               if (state.cart
                       .itemQuantity(state.cart.menuItems)[restaurant!.id] !=

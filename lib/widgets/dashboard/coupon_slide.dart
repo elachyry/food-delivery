@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/models/coupon.dart';
 import 'package:clipboard/clipboard.dart';
 
 import 'package:multi_languges/widgets/dashboard/coupon_horisontal.dart';

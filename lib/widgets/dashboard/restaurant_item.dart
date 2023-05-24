@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:multi_languges/blocs/favorites/favorites_bloc.dart';
+import 'package:multi_languges/controllers/auth/user_controller.dart';
+import 'package:multi_languges/controllers/restaurant_controller.dart';
 import 'package:multi_languges/models/restaurant.dart';
 import 'package:multi_languges/screens/restaurant_details/restaurant_details_screen.dart';
 import 'package:multi_languges/utils/constants/image_constants.dart';
@@ -10,34 +14,40 @@ import '../../models/rating.dart';
 
 class RestaurantItem extends StatelessWidget {
   final Restaurant restaurant;
+  final bool isFavorite;
   RestaurantItem({
     super.key,
     required this.restaurant,
+    required this.isFavorite,
   });
 
   final ratingController = Get.put(RatingController());
+
   final menuItemsController = Get.put(MenuItemsController());
+
+  final userController = Get.put((UserController()));
+
+  final restaurantController = Get.put(RestaurantController());
 
   @override
   Widget build(BuildContext context) {
-    // var rating = 0.0;
-
-    // for (var e in restaurant.ratings) {
-    //   rating += e.rate;
-    // }
-    // rating = rating / restaurant.ratings.length;
-
     String delivery = restaurant.deliveryFee.toString();
     bool freedelivery = restaurant.deliveryFee == 0;
 
     var rating = 0.0;
-    ratingController.loadRatings();
-    for (var e in restaurant.ratingsId) {
-      Rating rat =
-          ratingController.ratings.firstWhere((element) => element.id == e);
-      rating += rat.rate;
+    ratingController.fetchRatings();
+    List<Rating> ratings = [];
+    ratingController.fetchRatings();
+    if (ratingController.ratings.isNotEmpty) {
+      for (var element in ratingController.ratings) {
+        if (element.restaurantId == restaurant.id) {
+          ratings.add(element);
+          rating += element.rate;
+        }
+      }
     }
-    rating = rating / restaurant.ratingsId.length;
+
+    rating = rating / ratings.length;
 
     if (freedelivery) {
       delivery = 'Free Delivery';
@@ -45,7 +55,9 @@ class RestaurantItem extends StatelessWidget {
     return InkWell(
       onTap: () {
         menuItemsController.loadMenuItems();
-        Get.to(() => RestaurantDetailsScreen(restaurant: restaurant));
+        Get.to(() => RestaurantDetailsScreen(
+              restaurant: restaurant,
+            ));
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5),
@@ -110,9 +122,19 @@ class RestaurantItem extends StatelessWidget {
                       ),
                     ),
                     IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.favorite_outline,
+                      onPressed: () {
+                        if (isFavorite) {
+                          context
+                              .read<FavoritesBloc>()
+                              .add(RemoveFavoriteEvent(restaurant.id));
+                        } else {
+                          context
+                              .read<FavoritesBloc>()
+                              .add(AddFavoriteEvent(restaurant.id));
+                        }
+                      },
+                      icon: Icon(
+                        isFavorite ? Icons.favorite : Icons.favorite_outline,
                         color: Colors.red,
                       ),
                     ),
@@ -168,7 +190,9 @@ class RestaurantItem extends StatelessWidget {
                           width: 5,
                         ),
                         Text(
-                          '$rating (${restaurant.ratingsId.length})',
+                          rating.isNaN || ratings.isEmpty
+                              ? 'No ratings'
+                              : '$rating (${ratings.length})',
                           style:
                               Theme.of(context).textTheme.titleSmall!.copyWith(
                                     color: Colors.grey,

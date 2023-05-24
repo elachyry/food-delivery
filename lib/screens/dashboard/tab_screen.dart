@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:multi_languges/screens/favorites/favorites_screen.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 import 'package:multi_languges/controllers/dashboard_controller.dart';
@@ -14,20 +15,20 @@ class TabScreen extends StatelessWidget {
   final userController = Get.put(UserController());
 
   PageController pageController = PageController(initialPage: 0);
-  final _pages = [
-    {
-      'page': DashboardScreen(),
-      'title': 'home',
-    },
-    {
-      'page': const ProfileScreen(),
-      'title': 'favorates',
-    },
-    {
-      'page': const ProfileScreen(),
-      'title': 'profile',
-    },
-  ];
+  // final _pages = [
+  //   {
+  //     'page': DashboardScreen(),
+  //     'title': 'home',
+  //   },
+  //   {
+  //     'page': const FavoritesScreen(),
+  //     'title': 'favorates',
+  //   },
+  //   {
+  //     'page': const ProfileScreen(),
+  //     'title': 'profile',
+  //   },
+  // ];
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -37,7 +38,7 @@ class TabScreen extends StatelessWidget {
           controller: pageController,
           children: <Widget>[
             DashboardScreen(),
-            const ProfileScreen(),
+            const FavoritesScreen(),
             const ProfileScreen(),
           ],
         ),

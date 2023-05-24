@@ -38,5 +38,6 @@ class MenuItemsController extends GetxController {
     menuItemsStream.listen((menuItemsList) {
       menuItems.value = menuItemsList;
     });
+    // print('menuItems tttttttt = $menuItems');
   }
 }

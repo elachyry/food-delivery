@@ -162,7 +162,9 @@ class AppRoutes {
     // ),
     GetPage(
       name: _restaurantDetailsScreen,
-      page: () => const RestaurantDetailsScreen(restaurant: null),
+      page: () => const RestaurantDetailsScreen(
+        restaurant: null,
+      ),
     ),
     GetPage(
       name: _restaurantListingScreen,

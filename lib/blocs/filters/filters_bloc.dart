@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:multi_languges/models/category_filter.dart';
 import 'package:multi_languges/models/filter.dart';
@@ -33,15 +33,13 @@ final categoryContoller = Get.put(CategoryController());
 Stream<FiltersState> _mapFilterLoadToState() async* {
   yield FiltersLoaded(
     filter: Filter(
-      categoryFilters: categoryContoller.categories
-          .map(
-            (e) => CategoryFilter(
-              id: e.id,
-              category: e,
-              value: false,
-            ),
-          )
-          .toList(),
+      categoryFilters: categoryContoller.categories.map((e) {
+        return CategoryFilter(
+          id: e.id,
+          category: e,
+          value: false,
+        );
+      }).toList(),
       priceFilters: PriceFilter.filters,
       popularFilters: PopularFilters.filters,
     ),

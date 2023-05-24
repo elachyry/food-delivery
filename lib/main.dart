@@ -7,6 +7,9 @@ import 'package:multi_languges/blocs/coupon/coupon_bloc.dart';
 import 'package:multi_languges/blocs/filters/filters_bloc.dart';
 import 'package:multi_languges/blocs/place/place_bloc.dart';
 import 'package:multi_languges/repositories/coupon/coupon_repository.dart';
+import 'package:multi_languges/repositories/user_reposityory.dart';
+import 'blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
+import 'blocs/favorites/favorites_bloc.dart';
 import 'controllers/cart_controller.dart';
 import 'firebase_options.dart';
 
@@ -72,9 +75,6 @@ class MyApp extends StatelessWidget {
               ),
             ),
             bloc.BlocProvider(
-              create: (context) => FiltersBloc()..add(FilterLoad()),
-            ),
-            bloc.BlocProvider(
               create: (context) => CouponBloc(couponRepo: CouponRepository())
                 ..add(LoadCoupons()),
             ),
@@ -82,6 +82,19 @@ class MyApp extends StatelessWidget {
               create: (context) => CartBloc(
                   couponBloc: bloc.BlocProvider.of<CouponBloc>(context))
                 ..add(StartCart()),
+            ),
+            bloc.BlocProvider(
+              create: (context) => FavoritesBloc(UserRepository())
+                ..add(
+                  LoadFavoritesEvent(),
+                ),
+            ),
+            bloc.BlocProvider(
+              create: (context) => FavoriteMenuItemsBloc(UserRepository())
+                ..add(LoadFavoritesMenuItemsEvent()),
+            ),
+            bloc.BlocProvider(
+              create: (context) => FiltersBloc()..add(FilterLoad()),
             ),
           ],
           child: GetMaterialApp(

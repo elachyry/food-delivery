@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:multi_languges/blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
 import 'package:multi_languges/controllers/menu_items_controller.dart';
 import 'package:multi_languges/models/restaurant.dart';
 import 'package:multi_languges/screens/meal_details/meal_details_screen.dart';
@@ -25,23 +27,6 @@ class FoodListView extends StatelessWidget {
   Widget build(BuildContext context) {
     final categories = restaurant!.tags.toList();
 
-    // final restauranItems = allMenuItems
-    //     .where((item) => restaurant!.menuItemsId.contains(item.id))
-    //     .toList();
-
-    // final menuItems = restaurant!.menuItemsId
-    //     .where(
-    //       (element) => allMenuItems.firstWhere((item) => item.categoryId == element)  element.category.name == categories[selectedIndex],
-    //     )
-    //     .toList();
-    // final menuItems = restauranItems
-    //     .where((item) =>
-    //         categoryController.categories
-    //             .firstWhere((element) => element.id == item.categoryId)
-    //             .name ==
-    //         categories[selectedIndex])
-    //     .toList();
-
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 25),
       height: MediaQuery.of(context).size.height * 0.5,
@@ -57,11 +42,9 @@ class FoodListView extends StatelessWidget {
                   );
                 }
                 final allMenuItems = menuItemController.menuItems;
-                debugPrint('rest id ${restaurant!.menuItemsId}');
                 final restauranItems = allMenuItems.where((item) {
                   return restaurant!.menuItemsId.contains(item.id);
                 }).toList();
-                // print('all  $restauranItems');
 
                 final menuItems = restauranItems
                     .where((item) =>
@@ -72,34 +55,43 @@ class FoodListView extends StatelessWidget {
                         categories[selectedIndex])
                     .toList();
 
-                // print('all rest $restauranItems');
-
-                // print('rest $restauranItems');
-
-                return ListView.separated(
-                    padding: EdgeInsets.zero,
-                    itemBuilder: (context, index) {
-                      final item = restauranItems.firstWhere((item) =>
-                          categoryController.categories
-                              .firstWhere(
-                                  (element) => element.id == item.categoryId)
-                              .name ==
-                          categories[selectedIndex]);
-                      return GestureDetector(
-                        onTap: () {
-                          Get.to(() => MealDetailsScreen(
-                              menuItem: item, restaurant: restaurant));
+                return BlocBuilder<FavoriteMenuItemsBloc,
+                    FavoriteMenuItemsState>(builder: (context, state) {
+                  if (state is FavoriteMenuItemsLoading) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (state is FavoriteMenuItemsLoaded) {
+                    return ListView.separated(
+                        padding: EdgeInsets.zero,
+                        itemBuilder: (context, index) {
+                          final item = restauranItems.firstWhere((item) =>
+                              categoryController.categories
+                                  .firstWhere((element) =>
+                                      element.id == item.categoryId)
+                                  .name ==
+                              categories[selectedIndex]);
+                          final isFavorite = state.favorites.contains(item.id);
+                          return GestureDetector(
+                            onTap: () {
+                              Get.to(() => MealDetailsScreen(
+                                  menuItem: item, restaurant: restaurant));
+                            },
+                            child: FoodItem(
+                              key: ValueKey(item.id),
+                              menuItem: item,
+                              isFavorite: isFavorite,
+                            ),
+                          );
                         },
-                        child: FoodItem(
-                          key: ValueKey(item.id),
-                          menuItem: item,
-                        ),
-                      );
-                    },
-                    separatorBuilder: (context, index) => const SizedBox(
-                          height: 5,
-                        ),
-                    itemCount: menuItems.length);
+                        separatorBuilder: (context, index) => const SizedBox(
+                              height: 5,
+                            ),
+                        itemCount: menuItems.length);
+                  } else {
+                    return Text('an_error_occurred_please_try_again_later'.tr);
+                  }
+                });
               }),
             )
             .toList(),

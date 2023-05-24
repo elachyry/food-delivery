@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 import 'package:multi_languges/controllers/auth/auth_controller.dart';
 import 'package:multi_languges/controllers/cart_controller.dart';
 import 'package:multi_languges/controllers/restaurant_controller.dart';

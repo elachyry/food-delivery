@@ -27,7 +27,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   Future<void> initScreenPrefrences() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    initScreen = await sharedPreferences.getInt('initScreen');
+    initScreen = sharedPreferences.getInt('initScreen');
     await sharedPreferences.setInt('initScreen', 1);
   }
 
@@ -58,7 +58,10 @@ class _SplashScreenState extends State<SplashScreen>
         if (user != null) {
           // User is already logged in, navigate to dashboard screen
           userController.getUserData();
+          userController.getFavorites();
           Get.offAllNamed(AppRoutes.tabsScreenRoute);
+          final cartController = Get.find<CartController>();
+          cartController.getCart();
           // print('user not null');
         } else {
           // print('user null');
@@ -69,8 +72,7 @@ class _SplashScreenState extends State<SplashScreen>
             Get.offAllNamed(AppRoutes.selectLanguageScreenRoute);
           } else {
             // print('user null and initScreen = 1');
-            final cartController = Get.find<CartController>();
-            cartController.getCart();
+
             Get.offAllNamed(AppRoutes.welecomeScreenRoute);
           }
         }

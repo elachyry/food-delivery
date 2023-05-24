@@ -41,7 +41,6 @@ class LocationSearchBox extends StatelessWidget {
                 ),
               ),
               onChanged: (value) {
-                print(value);
                 context
                     .read<AutocompleteBloc>()
                     .add(LoadAutocomplete(input: value));

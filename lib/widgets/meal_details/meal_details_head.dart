@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:multi_languges/blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
 
 import '../../controllers/dashboard_controller.dart';
 import '../../models/menu_item.dart';
@@ -8,10 +10,12 @@ class MealDetailsHead extends StatelessWidget {
   MealDetailsHead({
     super.key,
     required this.menuItem,
+    required this.isFavorite,
   });
 
   final MenuItem? menuItem;
   final controller = Get.put(DashboardController());
+  final bool isFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -57,12 +61,22 @@ class MealDetailsHead extends StatelessWidget {
             radius: 22,
             backgroundColor: Colors.white54,
             child: IconButton(
-              icon: const Icon(
-                Icons.favorite_border_outlined,
-                color: Colors.black,
+              icon: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_outline,
+                color: Colors.red,
                 size: 25,
               ),
-              onPressed: () {},
+              onPressed: () {
+                if (isFavorite) {
+                  context
+                      .read<FavoriteMenuItemsBloc>()
+                      .add(RemoveFavoriteMenuItemsEvent(menuItem!.id));
+                } else {
+                  context
+                      .read<FavoriteMenuItemsBloc>()
+                      .add(AddFavoriteMenuItemsEvent(menuItem!.id));
+                }
+              },
             ),
           ),
         ),

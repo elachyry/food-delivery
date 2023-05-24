@@ -8,7 +8,6 @@ import 'package:multi_languges/widgets/filter/custom_popular_filters.dart';
 
 import '../../controllers/rating_controller.dart';
 import '../../controllers/restaurant_controller.dart';
-import '../../widgets/filter/custom_catygory_filter.dart';
 import '../../widgets/filter/custom_price_filter.dart';
 
 Future<dynamic> showFilterModalBotomSheet(BuildContext context) {

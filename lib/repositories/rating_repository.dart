@@ -1,35 +1,39 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../models/rating.dart';
-
 class RatingRepository extends GetxController {
-  CollectionReference _ratingCollection =
+  final CollectionReference ratingsCollection =
       FirebaseFirestore.instance.collection('ratings');
 
-  Stream<QuerySnapshot> getRatingStream() {
-    return _ratingCollection.snapshots();
+  Future<void> addRating(Map<String, dynamic> ratingData) async {
+    try {
+      await ratingsCollection.add(ratingData);
+      // Rating added successfully
+    } catch (error) {
+      // Handle error
+    }
   }
 
-  Future<List<Rating>> getRatings() async {
+  Future<void> updateRating(
+      String ratingId, Map<String, dynamic> ratingData) async {
     try {
-      CollectionReference _ratingCollection =
-          FirebaseFirestore.instance.collection('ratings');
-
-      QuerySnapshot querySnapshot = await _ratingCollection.get();
-
-      // QuerySnapshot querySnapshot =
-      //     await _firestore.collection('menuItems').get();
-      List<Rating> ratings = [];
-      querySnapshot.docs.forEach((doc) {
-        ratings.add(Rating.fromFirestore(doc));
-        // print('rating ${Rating.fromFirestore(doc)}');
-      });
-      // print('ratings $ratings');
-      return ratings;
-    } catch (e) {
-      print('Error getting rating: $e');
-      return [];
+      await ratingsCollection.doc(ratingId).update(ratingData);
+      // Rating updated successfully
+    } catch (error) {
+      // Handle error
     }
+  }
+
+  Future<void> deleteRating(String ratingId) async {
+    try {
+      await ratingsCollection.doc(ratingId).delete();
+      // Rating deleted successfully
+    } catch (error) {
+      // Handle error
+    }
+  }
+
+  Stream<QuerySnapshot> streamRatings() {
+    return ratingsCollection.orderBy('addedAt', descending: true).snapshots();
   }
 }

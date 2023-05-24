@@ -9,20 +9,27 @@ import 'package:multi_languges/utils/app_routes.dart';
 
 import '../../controllers/auth/auth_controller.dart';
 import '../../models/user.dart';
+import '../../repositories/user_reposityory.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
+  final UserRepository _userRepo = UserRepository();
 
   final firestore = FirebaseFirestore.instance;
   final firestorage = FirebaseStorage.instance;
 
   var myData = {}.obs;
-  Rxn<File> _image = Rxn<File>();
+  final Rxn<File> _image = Rxn<File>();
+
+  RxList<String> favoriteRestaurants = <String>[].obs;
+  RxList<String> favoriteMenuItems = <String>[].obs;
 
   var isImageSelected = false.obs;
   var isImageUpdating = false.obs;
   var updatePassword = false.obs;
   var isLoading = false.obs;
+
+  var isFavorite = false.obs;
 
   Rxn<File> get image => _image;
 
@@ -30,6 +37,30 @@ class UserController extends GetxController {
   void onInit() {
     super.onInit();
     getUserData();
+    getFavorites();
+  }
+
+  void getFavorites() async {
+    try {
+      favoriteRestaurants.clear();
+      favoriteMenuItems.clear();
+
+      List<String> restaurants = await _userRepo.getFavoriteRestaurants();
+      favoriteRestaurants.addAll(restaurants);
+
+      // Fetch favorite menu items
+      List<String> menuItems = await _userRepo.getFavoriteMenuItems();
+      favoriteMenuItems.addAll(menuItems);
+    } catch (_) {}
+  }
+
+  void toggleFavoriteMenuItem(String menuItemId, bool isFavorite) {
+    _userRepo.toggleFavoriteMenuItem(menuItemId, isFavorite);
+  }
+
+  void toggleFavoriteRestaurant(String restaurantId, bool isFavorite) {
+    _userRepo.toggleFavoriteRestaurant(restaurantId, isFavorite);
+    getFavorites();
   }
 
   Future<void> createUser(User user) async {

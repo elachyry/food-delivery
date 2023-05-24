@@ -12,7 +12,7 @@ class LoadGeolocation extends GeolocationEvent {}
 class UpdateGeolocation extends GeolocationEvent {
   final Position position;
 
-  UpdateGeolocation({required this.position});
+  const UpdateGeolocation({required this.position});
 
   @override
   List<Object?> get props => [position];

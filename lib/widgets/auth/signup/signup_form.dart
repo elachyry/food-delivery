@@ -16,11 +16,11 @@ class LoginForm extends StatelessWidget {
     var fullNameConroller = TextEditingController();
     var phoneNumberConroller = TextEditingController();
     var passwordConroller = TextEditingController();
-    final _formKey = GlobalKey<FormState>();
+    final formKey = GlobalKey<FormState>();
     final controller = Get.put(FormController());
 
     return Form(
-      key: _formKey,
+      key: formKey,
       child: Column(
         children: <Widget>[
           Container(
@@ -252,7 +252,7 @@ class LoginForm extends StatelessWidget {
                             .copyWith(fontWeight: FontWeight.bold),
                       ),
                       onPressed: () async {
-                        if (_formKey.currentState!.validate()) {
+                        if (formKey.currentState!.validate()) {
                           // AuthController.instance.createUserWithEmailAndPassword(
                           //   emailConroller.text.trim().toLowerCase(),
                           //   passwordConroller.text.trim(),

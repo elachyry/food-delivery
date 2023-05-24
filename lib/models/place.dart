@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:convert';
 
 class Place {
   final String id;
@@ -34,8 +33,8 @@ class Place {
   factory Place.fromMap(Map<String, dynamic> map) {
     return Place(
       name: map['name'] as String,
-      lat: map['lat'] as double,
-      lng: map['lng'] as double,
+      lat: map['lat'].toDouble(),
+      lng: map['lng'].toDouble(),
     );
   }
 }

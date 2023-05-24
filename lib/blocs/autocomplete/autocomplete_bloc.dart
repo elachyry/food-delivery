@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_languges/models/place_autocomplete.dart';
 import 'package:multi_languges/repositories/place/place_repository.dart';
 

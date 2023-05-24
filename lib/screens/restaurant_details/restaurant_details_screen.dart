@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 import 'package:multi_languges/models/restaurant.dart';
 import 'package:multi_languges/widgets/restaurant_details/category_list.dart';
@@ -8,9 +10,10 @@ import 'package:multi_languges/widgets/restaurant_details/restaurant_details_hea
 import 'package:multi_languges/widgets/restaurant_details/restaurant_informatins.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../blocs/favorites/favorites_bloc.dart';
+
 class RestaurantDetailsScreen extends StatefulWidget {
   final Restaurant? restaurant;
-
   const RestaurantDetailsScreen({
     super.key,
     required this.restaurant,
@@ -38,62 +41,90 @@ class _RestaurantDetailsScreenState extends State<RestaurantDetailsScreen> {
           RestaurantDetailsBottomNavBar(restaurant: widget.restaurant),
       extendBodyBehindAppBar: true,
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            RestaurantDetailsHead(restaurant: widget.restaurant),
-            Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 20, right: 20, top: 20, bottom: 10),
-                  child: Restaurantinformations(restaurant: widget.restaurant),
+        child: BlocBuilder<FavoritesBloc, FavoritesState>(
+          builder: (context, state) {
+            if (state is FavoritesLoading) {
+              return SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: const Center(
+                  child: CircularProgressIndicator(),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 20, right: 0, top: 15, bottom: 10),
-                  child: CategoryList(
-                    selectedIndex: selectedIndex,
-                    callBack: callBack,
+              );
+            } else if (state is FavoritesLoaded) {
+              final isFavorite =
+                  state.favorites.contains(widget.restaurant!.id);
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RestaurantDetailsHead(
                     restaurant: widget.restaurant,
+                    isFavorite: isFavorite,
                   ),
-                ),
-                SizedBox(
-                  child: FoodListView(
-                    // key: UniqueKey(),
-                    selectedIndex: selectedIndex,
-                    callBack: callBack,
-                    pageController: pageController,
-                    restaurant: widget.restaurant,
-                  ),
-                ),
-                Container(
-                  height: 60,
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: SmoothPageIndicator(
-                    controller: pageController,
-                    count: widget.restaurant!.tags.toList().length,
-                    effect: CustomizableEffect(
-                      dotDecoration: DotDecoration(
-                        width: 8,
-                        height: 8,
-                        color: Theme.of(context).primaryColorLight,
-                        borderRadius: BorderRadius.circular(
-                          8,
+                  Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 20, top: 20, bottom: 10),
+                        child: Restaurantinformations(
+                            restaurant: widget.restaurant),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 0, top: 15, bottom: 10),
+                        child: CategoryList(
+                          selectedIndex: selectedIndex,
+                          callBack: callBack,
+                          restaurant: widget.restaurant,
                         ),
                       ),
-                      activeDotDecoration: DotDecoration(
-                        width: 10,
-                        height: 10,
-                        color: Theme.of(context).primaryColorDark,
+                      SizedBox(
+                        child: FoodListView(
+                          // key: UniqueKey(),
+                          selectedIndex: selectedIndex,
+                          callBack: callBack,
+                          pageController: pageController,
+                          restaurant: widget.restaurant,
+                        ),
                       ),
-                    ),
-                    onDotClicked: (index) => pageController.jumpToPage(index),
+                      (widget.restaurant!.tags.toList().isEmpty)
+                          ? Container()
+                          : Container(
+                              height: 60,
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 25),
+                              child: SmoothPageIndicator(
+                                controller: pageController,
+                                count: (widget.restaurant!.tags.toList().length)
+                                        .isNaN
+                                    ? 0
+                                    : widget.restaurant!.tags.toList().length,
+                                effect: CustomizableEffect(
+                                  dotDecoration: DotDecoration(
+                                    width: 8,
+                                    height: 8,
+                                    color: Theme.of(context).primaryColorLight,
+                                    borderRadius: BorderRadius.circular(
+                                      8,
+                                    ),
+                                  ),
+                                  activeDotDecoration: DotDecoration(
+                                    width: 10,
+                                    height: 10,
+                                    color: Theme.of(context).primaryColorDark,
+                                  ),
+                                ),
+                                onDotClicked: (index) =>
+                                    pageController.jumpToPage(index),
+                              ),
+                            ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ],
+                ],
+              );
+            } else {
+              return Text('an_error_occurred_please_try_again_later'.tr);
+            }
+          },
         ),
       ),
     );

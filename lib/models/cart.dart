@@ -88,9 +88,9 @@ class Cart extends Equatable {
   }
 
   Map<String, double> subtotal(List<MenuItem> menuItems2) {
-    final items = groupBy(menuItems, (MenuItem e) {
-      return e.restaurantId;
-    });
+    // final items = groupBy(menuItems, (MenuItem e) {
+    //   return e.restaurantId;
+    // });
     Map<String, double> mapSubTotal = {};
 
     final itemsQuantity = itemQuantity(menuItems2);

@@ -6,7 +6,7 @@ class ReadMoreParagraph extends StatelessWidget {
   final String text;
   final controller = Get.put(DashboardController());
 
-  ReadMoreParagraph({required this.text});
+  ReadMoreParagraph({super.key, required this.text});
 
   @override
   Widget build(BuildContext context) {

@@ -26,13 +26,23 @@ class Restaurantinformations extends StatelessWidget {
     // rating = rating / restaurant!.ratings.length;
 
     var rating = 0.0;
-    ratingController.loadRatings();
-    for (var e in restaurant!.ratingsId) {
-      Rating rat =
-          ratingController.ratings.firstWhere((element) => element.id == e);
-      rating += rat.rate;
+    ratingController.fetchRatings();
+    List<Rating> ratings = [];
+    if (ratingController.ratings.isNotEmpty) {
+      for (var element in ratingController.ratings) {
+        if (element.restaurantId == restaurant!.id) {
+          ratings.add(element);
+          rating += element.rate;
+        }
+      }
     }
-    rating = rating / restaurant!.ratingsId.length;
+
+    rating = rating / ratings.length;
+    // for (var e in restaurant!.ratingsId) {
+    //   Rating rat =
+    //       ratingController.ratings.firstWhere((element) => element.id == e);
+    //   rating += rat.rate;
+    // }
 
     String delivery = restaurant!.deliveryFee.toString();
     bool freedelivery = restaurant!.deliveryFee == 0;
@@ -97,7 +107,9 @@ class Restaurantinformations extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  '$rating (${restaurant!.ratingsId.length})',
+                  rating.isNaN || ratings.isEmpty
+                      ? 'No ratings'
+                      : '$rating (${ratings.length})',
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         color: Colors.grey,
                       ),

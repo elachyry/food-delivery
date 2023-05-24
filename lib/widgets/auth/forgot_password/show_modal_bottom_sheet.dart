@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/screens/auth/forgot_password/forgot_password_email_screen.dart';
 import 'package:multi_languges/utils/app_routes.dart';
 import './forget_password_button.dart';
 

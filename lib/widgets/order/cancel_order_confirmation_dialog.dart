@@ -22,7 +22,7 @@ class CancelOrderConfirmationDialog {
           actions: <Widget>[
             TextButton(
               child: Text(
-                'Anuller',
+                'No',
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium!

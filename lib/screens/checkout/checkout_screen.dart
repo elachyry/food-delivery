@@ -4,8 +4,7 @@ import 'package:get/get.dart';
 import 'package:multi_languges/blocs/cart/cart_bloc.dart';
 import 'package:multi_languges/controllers/auth/user_controller.dart';
 import 'package:multi_languges/controllers/order_controller.dart';
-import 'package:multi_languges/screens/dashboard/dashbord_screen.dart';
-import 'package:multi_languges/screens/dashboard/tab_screen.dart';
+
 import 'package:multi_languges/screens/orders/orders_screen.dart';
 
 import '../../models/menu_item.dart';

@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 class Price extends Equatable {
   final int id;
   final String price;
-  static List<Price> prices = [
+  static List<Price> prices = const [
     Price(
       id: 1,
       price: 'Low',
@@ -18,7 +18,7 @@ class Price extends Equatable {
     ),
   ];
 
-  Price({
+  const Price({
     required this.id,
     required this.price,
   });

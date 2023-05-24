@@ -95,6 +95,10 @@ class ImageConstants {
   static const String cashOnDelivery =
       'assets/images/icons/cash-on-delivery.png';
 
+  //Favorites Screen
+  static const String favoritesPlaceholder =
+      'assets/images/placeholders/leaf.png';
+
   //Cart Screen
   static const String emptyCart = 'assets/images/icons/empty-cart.png';
 }

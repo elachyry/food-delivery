@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:multi_languges/blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
 import 'package:multi_languges/models/menu_item.dart';
 
 import 'package:multi_languges/models/restaurant.dart';
-import 'package:multi_languges/widgets/restaurant_details/category_list.dart';
-import 'package:multi_languges/widgets/restaurant_details/food_list_view.dart';
-import 'package:multi_languges/widgets/restaurant_details/restaurant_details_bottom_nav_bar.dart';
-import 'package:multi_languges/widgets/restaurant_details/restaurant_details_head.dart';
-import 'package:multi_languges/widgets/restaurant_details/restaurant_informatins.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../widgets/meal_details/meal_details_bottom_nav_bar.dart';
 import '../../widgets/meal_details/meal_details_head.dart';
@@ -48,19 +44,41 @@ class _MealDetailsScreenState extends State<MealDetailsScreen> {
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.grey.shade100,
       body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            MealDetailsHead(menuItem: widget.menuItem),
-            Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.only(left: 20, top: 20, bottom: 10),
-                  child: Mealinformations(menuItem: widget.menuItem),
+        child: BlocBuilder<FavoriteMenuItemsBloc, FavoriteMenuItemsState>(
+          builder: (context, state) {
+            if (state is FavoriteMenuItemsLoading) {
+              return SizedBox(
+                height: MediaQuery.of(context).size.height,
+                child: const Center(
+                  child: CircularProgressIndicator(),
                 ),
-              ],
-            ),
-          ],
+              );
+            } else if (state is FavoriteMenuItemsLoaded) {
+              final isFavorite = state.favorites.contains(widget.menuItem!.id);
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MealDetailsHead(
+                    menuItem: widget.menuItem,
+                    isFavorite: isFavorite,
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(
+                            left: 20, top: 20, bottom: 10),
+                        child: Mealinformations(
+                          menuItem: widget.menuItem,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              );
+            } else {
+              return Text('an_error_occurred_please_try_again_later'.tr);
+            }
+          },
         ),
       ),
     );

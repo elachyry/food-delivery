@@ -18,6 +18,7 @@ class OrderRepository {
         .collection('orders')
         .doc(AuthController.instance.auth.currentUser!.uid)
         .collection('orders')
+        .orderBy('addedAt', descending: true)
         .get();
   }
 

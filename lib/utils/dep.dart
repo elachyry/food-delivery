@@ -22,14 +22,14 @@ Future<Map<String, Map<String, String>>> init() async {
   for (Language language in AppConstants.languages) {
     String jsonStringValues = await rootBundle
         .loadString('assets/languages/${language.languageCode}.json');
-    Map<String, dynamic> _mappedJson = jsonDecode(jsonStringValues);
-    Map<String, String> _json = Map();
+    Map<String, dynamic> mappedJson = jsonDecode(jsonStringValues);
+    Map<String, String> json = {};
 
-    _mappedJson.forEach((key, value) {
-      _json[key] = value.toString();
+    mappedJson.forEach((key, value) {
+      json[key] = value.toString();
     });
 
-    _languages['${language.languageCode}_${language.countryCode}'] = _json;
+    _languages['${language.languageCode}_${language.countryCode}'] = json;
   }
   return _languages;
 }

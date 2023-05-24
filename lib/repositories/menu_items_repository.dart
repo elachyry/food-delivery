@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controllers/auth/auth_controller.dart';
 import '../models/menu_item.dart';
 
 class MenuItemsRepository extends GetxService {
@@ -40,7 +39,7 @@ class MenuItemsRepository extends GetxService {
     //     return querySnapshot.docs
     //     .map((doc) => MenuItem.fromFirestore(doc))
     //     .toList();
-    print('test ');
+    // print('test ');
 
     return FirebaseFirestore.instance
         .collection('menuItems')

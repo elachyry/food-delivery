@@ -2,8 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:multi_languges/models/restaurant.dart';
 
-import '../models/rating.dart';
-
 class RestaurantRepository extends GetxController {
   // CollectionReference _restaurantCollection =
   //     FirebaseFirestore.instance.collection('restaurants');

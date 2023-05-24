@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:multi_languges/controllers/auth/user_controller.dart';
+import 'package:multi_languges/controllers/restaurant_controller.dart';
 import 'package:multi_languges/models/restaurant.dart';
 import 'package:multi_languges/utils/constants/image_constants.dart';
 
+import '../../blocs/favorites/favorites_bloc.dart';
+
 class RestaurantDetailsHead extends StatelessWidget {
-  const RestaurantDetailsHead({
+  RestaurantDetailsHead({
     super.key,
     required this.restaurant,
+    required this.isFavorite,
   });
+  final bool isFavorite;
 
-  final Restaurant? restaurant;
+  Restaurant? restaurant;
+
+  final restaurantController = Get.put(RestaurantController());
+
+  final userController = Get.put((UserController()));
 
   @override
   Widget build(BuildContext context) {
@@ -54,12 +65,22 @@ class RestaurantDetailsHead extends StatelessWidget {
             radius: 22,
             backgroundColor: Colors.white54,
             child: IconButton(
-              icon: const Icon(
-                Icons.favorite_border_outlined,
-                color: Colors.black,
+              icon: Icon(
+                isFavorite ? Icons.favorite : Icons.favorite_outline,
+                color: Colors.red,
                 size: 25,
               ),
-              onPressed: () {},
+              onPressed: () {
+                if (isFavorite) {
+                  context
+                      .read<FavoritesBloc>()
+                      .add(RemoveFavoriteEvent(restaurant!.id));
+                } else {
+                  context
+                      .read<FavoritesBloc>()
+                      .add(AddFavoriteEvent(restaurant!.id));
+                }
+              },
             ),
           ),
         ),

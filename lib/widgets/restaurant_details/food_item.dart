@@ -5,13 +5,16 @@ import 'package:multi_languges/models/menu_item.dart';
 import 'package:multi_languges/utils/constants/image_constants.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
+import '../../blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
 import '../../controllers/cart_controller.dart';
 
 class FoodItem extends StatelessWidget {
   final MenuItem menuItem;
+  final bool isFavorite;
   FoodItem({
     super.key,
     required this.menuItem,
+    required this.isFavorite,
   });
   void showSnackBar(String titleText, String messageText, Color color) {
     Get.snackbar(titleText, messageText,
@@ -138,9 +141,19 @@ class FoodItem extends StatelessWidget {
                         ],
                       ),
                       InkWell(
-                        onTap: () {},
-                        child: const Icon(
-                          Icons.favorite_border_outlined,
+                        onTap: () {
+                          if (isFavorite) {
+                            context
+                                .read<FavoriteMenuItemsBloc>()
+                                .add(RemoveFavoriteMenuItemsEvent(menuItem.id));
+                          } else {
+                            context
+                                .read<FavoriteMenuItemsBloc>()
+                                .add(AddFavoriteMenuItemsEvent(menuItem.id));
+                          }
+                        },
+                        child: Icon(
+                          isFavorite ? Icons.favorite : Icons.favorite_outline,
                           color: Colors.red,
                           size: 30,
                         ),

@@ -23,28 +23,6 @@ class Mealinformations extends StatelessWidget {
   final controller = Get.put(DashboardController());
   @override
   Widget build(BuildContext context) {
-    // var rating = 0.0;
-
-    // for (var e in menuItem!.ratings) {
-    //   rating += e.rate;
-    // }
-
-    // rating = rating / menuItem!.ratings.length;
-
-    // String elements = '';
-
-    // int size = menuItem!.elements.length;
-
-    // int i = 0;
-    // for (var e in menuItem!.elements) {
-    //   if (i == size - 1) {
-    //     elements += '${e['quantity']}x${e['name']}';
-    //   } else {
-    //     elements += '${e['quantity']}x${e['name']}, ';
-    //   }
-    //   i++;
-    // }
-
     String elements = '';
 
     int size = menuItem!.elements.length;
@@ -60,13 +38,19 @@ class Mealinformations extends StatelessWidget {
     });
 
     var rating = 0.0;
-    ratingController.loadRatings();
-    for (var e in menuItem!.ratingsId) {
-      Rating rat =
-          ratingController.ratings.firstWhere((element) => element.id == e);
-      rating += rat.rate;
+    ratingController.fetchRatings();
+    List<Rating> ratings = [];
+
+    if (ratingController.ratings.isNotEmpty) {
+      for (var element in ratingController.ratings) {
+        if (element.menuItemId == menuItem!.id) {
+          ratings.add(element);
+          rating += element.rate;
+        }
+      }
     }
-    rating = rating / menuItem!.ratingsId.length;
+
+    rating = rating / ratings.length;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -116,7 +100,9 @@ class Mealinformations extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        '$rating (${menuItem!.ratingsId.length} Reviews)',
+                        rating.isNaN || ratings.isEmpty
+                            ? 'No ratings'
+                            : '$rating (${ratings.length})',
                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
                               color: Colors.grey,
                             ),
@@ -220,46 +206,55 @@ class Mealinformations extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           height: 100,
-          child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return Container(
-                  width: 80,
-                  padding: const EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
-                    borderRadius: BorderRadius.circular(7),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Image.network(
-                        ingrediantController.ingrediants
-                            .firstWhere((element) =>
-                                menuItem!.ingredientsId[index] == element.name)
-                            .imageUrl,
-                        width: 50,
-                        height: 50,
-                        fit: BoxFit.cover,
-                      ),
-                      Text(
-                        ingrediantController.ingrediants
-                            .firstWhere((element) =>
-                                menuItem!.ingredientsId[index] == element.name)
-                            .name,
-                        overflow: TextOverflow.clip,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) => const SizedBox(
-                    width: 10,
-                  ),
-              itemCount: menuItem!.ingredientsId.length),
+          child: Obx(() {
+            if (ingrediantController.ingrediants.isEmpty) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            return ListView.separated(
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: 80,
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade300,
+                      borderRadius: BorderRadius.circular(7),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Image.network(
+                          ingrediantController.ingrediants
+                              .firstWhere((element) =>
+                                  menuItem!.ingredientsId[index] ==
+                                  element.name)
+                              .imageUrl,
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.cover,
+                        ),
+                        Text(
+                          ingrediantController.ingrediants
+                              .firstWhere((element) =>
+                                  menuItem!.ingredientsId[index] ==
+                                  element.name)
+                              .name,
+                          overflow: TextOverflow.clip,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) => const SizedBox(
+                      width: 10,
+                    ),
+                itemCount: menuItem!.ingredientsId.length);
+          }),
         )
       ],
     );

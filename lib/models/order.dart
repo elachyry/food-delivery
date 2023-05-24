@@ -54,34 +54,6 @@ class Order extends Equatable {
     );
   }
 
-  // Map<String, dynamic> toMap() {
-  //   return <String, dynamic>{
-  //     'id': id,
-  //     'consumerId': consumerId,
-  //     'restaurantId': restaurantId,
-  //     'menuItems': menuItems.map((x) => x.toMap()).toList(),
-  //     'total': total,
-  //     'status': getStatusValue(status),
-  //     'addedAt': addedAt,
-  //   };
-  // }
-
-  // factory Order.fromMap(Map<String, dynamic> map) {
-  //   return Order(
-  //     id: map['id'] as String,
-  //     consumerId: map['consumerId'] as String,
-  //     restaurantId: map['restaurantId'] as String,
-  //     menuItems: List<MenuItem>.from(
-  //       (map['menuItems'] as List<int>).map<MenuItem>(
-  //         (x) => MenuItem.fromMap(x as Map<String, dynamic>),
-  //       ),
-  //     ),
-  //     total: map['total'] as double,
-  //     status: getStatus(map['status']),
-  //     addedAt: map['addedAt'] as String,
-  //   );
-  // }
-
   @override
   List<Object> get props {
     return [

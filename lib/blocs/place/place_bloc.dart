@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:multi_languges/models/place.dart';
 import 'package:multi_languges/repositories/place/place_repository.dart';
 
@@ -18,7 +18,6 @@ class PlaceBloc extends Bloc<PlaceEvent, PlaceState> {
   @override
   Stream<PlaceState> mapEventToState(PlaceEvent event) async* {
     if (event is LoadPlace) {
-      print('event is PlaceLoaded');
       yield* _mapLoadPlaceToState(event);
     }
   }
@@ -29,9 +28,7 @@ class PlaceBloc extends Bloc<PlaceEvent, PlaceState> {
       _placeSubscription?.cancel();
       final Place place = await _placeRepository.getPlace(event.id);
       yield PlaceLoaded(place: place);
-    } catch (error) {
-      throw error;
-    }
+    } catch (_) {}
   }
 
   @override

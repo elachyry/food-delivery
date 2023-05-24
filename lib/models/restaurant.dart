@@ -8,6 +8,7 @@ class Restaurant extends Equatable {
   final String id;
   final String name;
   final String phone;
+  final String email;
   final String logoUrl;
   final String imageUrl;
   final String description;
@@ -20,7 +21,9 @@ class Restaurant extends Equatable {
   final String priceCategory;
   final Place location;
   final String addedAt;
+  bool isFavorate;
 
+  static Set<Restaurant> restaurants = {};
   // static final restaurants = [
   // Restaurant(
   //   id: 1,
@@ -249,6 +252,7 @@ class Restaurant extends Equatable {
     required this.name,
     required this.description,
     required this.phone,
+    required this.email,
     required this.logoUrl,
     required this.imageUrl,
     required this.tags,
@@ -260,6 +264,7 @@ class Restaurant extends Equatable {
     required this.priceCategory,
     required this.location,
     required this.addedAt,
+    this.isFavorate = false,
   });
 
   @override
@@ -279,6 +284,8 @@ class Restaurant extends Equatable {
         description,
         addedAt,
         location,
+        email,
+        isFavorate,
       ];
 
   Map<String, dynamic> toMap() {
@@ -286,6 +293,7 @@ class Restaurant extends Equatable {
       'id': id,
       'name': name,
       'phone': phone,
+      'email': email,
       'logoUrl': logoUrl,
       'imageUrl': imageUrl,
       'description': description,
@@ -302,12 +310,12 @@ class Restaurant extends Equatable {
   }
 
   factory Restaurant.fromFirestore(DocumentSnapshot snap) {
-    print(snap);
     return Restaurant(
       id: snap.id,
       name: snap['name'],
       logoUrl: snap['logoUrl'],
       phone: snap['phone'],
+      email: snap['email'],
       imageUrl: snap['imageUrl'],
       description: snap['description'],
       tags: List<String>.from((snap['tags'])),
