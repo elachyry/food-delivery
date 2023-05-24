@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:icons_plus/icons_plus.dart';
 
 class ProfileListItem extends StatelessWidget {
   final IconData leadingIcon;
@@ -17,15 +18,15 @@ class ProfileListItem extends StatelessWidget {
     return ListTile(
       onTap: onTap,
       leading: Container(
-        height: 40,
-        width: 40,
+        height: 55,
+        width: 55,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            color: Colors.orange.shade50),
+            borderRadius: BorderRadius.circular(15),
+            color: Theme.of(context).primaryColorLight.withAlpha(10)),
         child: Icon(
           leadingIcon,
-          color: title == 'your_favorites'.tr ? Colors.red : Colors.orange,
-          size: 35,
+          color: Theme.of(context).primaryColorDark,
+          size: 30,
         ),
       ),
       title: Text(
@@ -41,9 +42,9 @@ class ProfileListItem extends StatelessWidget {
               width: 30,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: Colors.grey.shade100),
+                  color: Theme.of(context).primaryColorLight.withAlpha(5)),
               child: Icon(
-                Icons.arrow_back_ios_new,
+                Bootstrap.chevron_right,
                 color: title == 'logout'.tr ? Colors.red : Colors.grey,
                 size: 20,
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
+import 'package:icons_plus/icons_plus.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:multi_languges/blocs/filters/filters_bloc.dart';
@@ -11,11 +12,14 @@ import 'package:multi_languges/widgets/filter/show_filter_modal_bottom_sheet.dar
 
 import '../../blocs/cart/cart_bloc.dart';
 import '../../controllers/auth/auth_controller.dart';
+import '../../screens/search/search_screen.dart';
 
 class DashboardHead extends StatelessWidget {
-  const DashboardHead({
+  DashboardHead({
     super.key,
   });
+
+  final focuseNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -136,10 +140,19 @@ class DashboardHead extends StatelessWidget {
               padding: const EdgeInsets.only(
                   top: 12, right: 12, left: 12, bottom: 5),
               child: TextField(
+                focusNode: focuseNode,
+                onTap: () {
+                  focuseNode.unfocus();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SearchScreen(),
+                      ));
+                },
                 decoration: InputDecoration(
                   prefixIcon: const Icon(
-                    LineAwesomeIcons.search,
-                    size: 35,
+                    Bootstrap.search,
+                    // size: 35,
                   ),
                   suffixIcon: BlocBuilder<FiltersBloc, FiltersState>(
                     builder: (context, state) {

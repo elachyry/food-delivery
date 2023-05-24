@@ -1,7 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+
 import 'package:multi_languges/models/place.dart';
 
 class Restaurant extends Equatable {
@@ -306,6 +309,7 @@ class Restaurant extends Equatable {
       'priceCategory': priceCategory,
       'location': location.toMap(),
       'addedAt': addedAt,
+      'isFavorate': isFavorate,
     };
   }
 
@@ -329,4 +333,27 @@ class Restaurant extends Equatable {
       location: Place.fromMap(snap['location']),
     );
   }
+
+  factory Restaurant.fromMap(Map<String, dynamic> snap) {
+    return Restaurant(
+      id: snap['id'],
+      name: snap['name'],
+      logoUrl: snap['logoUrl'],
+      phone: snap['phone'],
+      email: snap['email'],
+      imageUrl: snap['imageUrl'],
+      description: snap['description'],
+      tags: List<String>.from((snap['tags'])),
+      menuItemsId: List<String>.from((snap['menuItemsId'])),
+      deliveryTime: snap['deliveryTime'],
+      deliveryFee: snap['deliveryFee'].toDouble(),
+      distance: snap['distance'].toDouble(),
+      ratingsId: List<String>.from((snap['ratingsId'])),
+      priceCategory: snap['priceCategory'],
+      addedAt: snap['addedAt'],
+      location: Place.fromMap(snap['location']),
+    );
+  }
+
+  String toJson() => json.encode(toMap());
 }

@@ -1,0 +1,152 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+class NotificationsScreen extends StatefulWidget {
+  const NotificationsScreen({super.key});
+
+  @override
+  State<NotificationsScreen> createState() => _NotificationsScreenState();
+}
+
+class _NotificationsScreenState extends State<NotificationsScreen> {
+  bool newItems = false;
+  bool notifications = true;
+  bool newRestaurant = false;
+  bool orderUpdates = false;
+  @override
+  Widget build(BuildContext context) {
+    final appBar = AppBar(
+      leading: IconButton(
+        onPressed: () {
+          Get.back();
+        },
+        icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
+      ),
+      centerTitle: true,
+      title: Text(
+        'Notifications'.tr,
+        textAlign: TextAlign.center,
+        style: Theme.of(context).textTheme.titleLarge!.copyWith(
+            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),
+      ),
+      shadowColor: Colors.transparent,
+      backgroundColor: Colors.transparent,
+    );
+    return Scaffold(
+      appBar: appBar,
+      body: SingleChildScrollView(
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          height:
+              MediaQuery.of(context).size.height - appBar.preferredSize.height,
+          child: Column(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8)),
+                padding: const EdgeInsets.symmetric(vertical: 5),
+                margin: const EdgeInsets.symmetric(vertical: 5),
+                child: SwitchListTile(
+                  value: notifications,
+                  onChanged: (value) {
+                    setState(() {
+                      notifications = value;
+                    });
+                  },
+                  title: const Text(
+                    'Notifications',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8)),
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                margin: const EdgeInsets.symmetric(vertical: 5),
+                child: SwitchListTile(
+                  value: notifications ? orderUpdates : false,
+                  onChanged: (value) {
+                    setState(() {
+                      if (notifications) {
+                        orderUpdates = value;
+                      }
+                    });
+                  },
+                  title: const Text(
+                    'Order updates',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: const Text(
+                    'Notification when your order status changes',
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8)),
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                margin: const EdgeInsets.symmetric(vertical: 5),
+                child: SwitchListTile(
+                  value: notifications ? newRestaurant : false,
+                  onChanged: (value) {
+                    setState(() {
+                      if (notifications) {
+                        newRestaurant = value;
+                      }
+                    });
+                  },
+                  title: const Text(
+                    'New Restaurants',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: const Text(
+                    'Notification when a new restaurant joins us',
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(8)),
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: SwitchListTile(
+                  value: notifications ? newItems : false,
+                  onChanged: (value) {
+                    setState(() {
+                      if (notifications) {
+                        newItems = value;
+                      }
+                    });
+                  },
+                  title: const Text(
+                    'New items',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: const Text(
+                    'Notification when your favorites restaurants add new menus',
+                    style: TextStyle(
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

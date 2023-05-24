@@ -51,21 +51,23 @@ class LanguageItem extends StatelessWidget {
                     height: 5,
                   ),
                   Container(
-                    height: 80,
+                    // height: 50,
                     margin: const EdgeInsets.all(9),
                     child: Image.asset(
                       'assets/images/languages_flags/${language.imageUrl}',
-                      width: 80,
+                      width: 50,
                     ),
                   ),
-                  Text(
-                    language.languageName,
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: language.languageName == 'العربية'
-                          ? 'Almarai'
-                          : 'VarelaRound',
+                  Expanded(
+                    child: Text(
+                      language.languageName,
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: language.languageName == 'العربية'
+                            ? 'Almarai'
+                            : 'VarelaRound',
+                      ),
                     ),
                   ),
                 ],
