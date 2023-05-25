@@ -27,6 +27,7 @@ class PlaceBloc extends Bloc<PlaceEvent, PlaceState> {
     try {
       _placeSubscription?.cancel();
       final Place place = await _placeRepository.getPlace(event.id);
+      print('place = ${place.name}');
       yield PlaceLoaded(place: place);
     } catch (_) {}
   }

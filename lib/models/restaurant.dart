@@ -4,6 +4,9 @@ import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
+import 'package:get/get.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:multi_languges/controllers/auth/user_controller.dart';
 
 import 'package:multi_languges/models/place.dart';
 
@@ -313,7 +316,30 @@ class Restaurant extends Equatable {
     };
   }
 
+  double getDistance(double lat1, double lng1, double lat2, double lng2) {
+    final double distance = Geolocator.distanceBetween(
+      lat1,
+      lng1,
+      lat2,
+      lng2,
+    );
+    return distance;
+  }
+
   factory Restaurant.fromFirestore(DocumentSnapshot snap) {
+    final userController = Get.put(UserController());
+    userController.getUserData();
+    // print('user data ${userController.myData}');
+    Place restaurantLoacation = Place.fromMap(snap['location']);
+
+    // print('restaurantLoacation ${restaurantLoacation.lat}');
+    // print('restaurantLoacation ${restaurantLoacation.lng}');
+    final double distance = Geolocator.distanceBetween(
+      userController.myData['addresses'][0]['lat'],
+      userController.myData['addresses'][0]['lng'],
+      restaurantLoacation.lat,
+      restaurantLoacation.lng,
+    );
     return Restaurant(
       id: snap.id,
       name: snap['name'],
@@ -326,7 +352,8 @@ class Restaurant extends Equatable {
       menuItemsId: List<String>.from((snap['menuItemsId'])),
       deliveryTime: snap['deliveryTime'],
       deliveryFee: snap['deliveryFee'].toDouble(),
-      distance: snap['distance'].toDouble(),
+      // distance: snap['distance'].toDouble(),
+      distance: distance / 1000,
       ratingsId: List<String>.from((snap['ratingsId'])),
       priceCategory: snap['priceCategory'],
       addedAt: snap['addedAt'],

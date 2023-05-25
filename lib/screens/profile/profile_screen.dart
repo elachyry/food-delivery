@@ -7,6 +7,7 @@ import 'package:multi_languges/controllers/auth/user_controller.dart';
 import 'package:multi_languges/controllers/order_controller.dart';
 import 'package:multi_languges/models/status.dart';
 import 'package:multi_languges/screens/language_selection_screen.dart';
+import 'package:multi_languges/screens/location/navigation_screen.dart';
 import 'package:multi_languges/screens/notifications/notifications_screen.dart';
 import 'package:multi_languges/screens/profile/edit_profile_screen.dart';
 import 'package:multi_languges/screens/settings/settings_screen.dart';
@@ -268,7 +269,13 @@ class ProfileScreen extends StatelessWidget {
                   leadingIcon: Bootstrap.geo_alt,
                   title: 'address'.tr,
                   onTap: () {
-                    Get.toNamed(AppRoutes.locationScreenRoute);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        fullscreenDialog: true,
+                        builder: (context) => const NavigationScreen(),
+                      ),
+                    );
+                    // Get.toNamed(AppRoutes.locationScreenRoute);
                   },
                 ),
                 const SizedBox(

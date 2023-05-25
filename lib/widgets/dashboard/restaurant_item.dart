@@ -98,7 +98,7 @@ class RestaurantItem extends StatelessWidget {
                         color: Colors.white70,
                       ),
                       child: Text(
-                        '${restaurant.distance}km',
+                        '${restaurant.distance.toStringAsFixed(1)}km',
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.titleMedium,
                       ),

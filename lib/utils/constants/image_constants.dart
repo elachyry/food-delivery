@@ -101,4 +101,7 @@ class ImageConstants {
 
   //Cart Screen
   static const String emptyCart = 'assets/images/icons/empty-cart.png';
+
+  //Navigation Screen
+  static const String mapMarker = 'assets/images/icons/pin-point.png';
 }
