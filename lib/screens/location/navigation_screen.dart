@@ -10,15 +10,19 @@ import 'package:icons_plus/icons_plus.dart';
 import 'package:location/location.dart';
 import 'package:location/location.dart' as loc;
 
-import 'package:multi_languges/repositories/place/place_repository.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
+import 'package:food_delivery_express/repositories/place/place_repository.dart';
+import 'package:food_delivery_express/utils/constants/image_constants.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../controllers/location_controller.dart';
 import '../../models/place.dart';
+import '../../utils/app_routes.dart';
 
 class NavigationScreen extends StatefulWidget {
-  const NavigationScreen({super.key});
+  const NavigationScreen({super.key, this.fromDplash = false});
+
+  final bool fromDplash;
 
   @override
   State<NavigationScreen> createState() => _NavigationScreenState();
@@ -60,12 +64,15 @@ class _NavigationScreenState extends State<NavigationScreen> {
       appBar: AppBar(
         toolbarHeight: 80,
         actions: [
-          IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
-          ),
+          widget.fromDplash
+              ? Container()
+              : IconButton(
+                  onPressed: () {
+                    Get.back();
+                  },
+                  icon: const Icon(Icons.arrow_back_ios_rounded,
+                      color: Colors.black),
+                ),
           Expanded(
             child: Container(
               // margin: const EdgeInsets.symmetric(),
@@ -241,7 +248,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           Positioned(
             bottom: 0,
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.22,
+              // height: MediaQuery.of(context).size.height * 0.22,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
@@ -254,9 +261,9 @@ class _NavigationScreenState extends State<NavigationScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Delivery Location',
-                      style: TextStyle(
+                    Text(
+                      'delivery_location'.tr,
+                      style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
                       ),
@@ -279,7 +286,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
                         Expanded(
                           flex: 13,
                           child: Text(
-                            _address ?? 'Pick your destenation address',
+                            _address ?? 'pick_your_destenation_address'.tr,
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
@@ -310,7 +317,15 @@ class _NavigationScreenState extends State<NavigationScreen> {
                                       !locationController.isWithinRange.value ||
                                       locationController.isLoading.value
                                   ? null
-                                  : () {},
+                                  : () async {
+                                      SharedPreferences sharedPreferences =
+                                          await SharedPreferences.getInstance();
+
+                                      await sharedPreferences.setString(
+                                          'deliveryTo', _address!);
+                                      Get.offAllNamed(
+                                          AppRoutes.tabsScreenRoute);
+                                    },
                               child: locationController.isLoading.value
                                   ? const SizedBox(
                                       height: 22,
@@ -320,8 +335,8 @@ class _NavigationScreenState extends State<NavigationScreen> {
                                       ),
                                     )
                                   : Text(!locationController.isWithinRange.value
-                                      ? 'Sorry, we don\'t deliver here'
-                                      : 'Delivery here'.tr),
+                                      ? 'sorry_we_dont_deliver_here'.tr
+                                      : 'delivery_here'.tr),
                             ),
                           ),
                         ),

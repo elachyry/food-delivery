@@ -5,8 +5,8 @@ import 'package:collection/collection.dart';
 import 'package:equatable/equatable.dart';
 import 'package:get/get.dart';
 
-import 'package:multi_languges/controllers/restaurant_controller.dart';
-import 'package:multi_languges/models/coupon.dart';
+import 'package:food_delivery_express/controllers/restaurant_controller.dart';
+import 'package:food_delivery_express/models/coupon.dart';
 
 import '../models/menu_item.dart';
 

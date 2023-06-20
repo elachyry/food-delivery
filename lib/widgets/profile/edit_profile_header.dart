@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/controllers/auth/user_controller.dart';
+import 'package:food_delivery_express/controllers/auth/user_controller.dart';
 
 import '../../widgets/profile/select_image_modal_bottom_sheet.dart';
 import '../../utils/constants/image_constants.dart';

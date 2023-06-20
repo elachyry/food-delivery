@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:multi_languges/models/coupon.dart';
+import 'package:food_delivery_express/models/coupon.dart';
 
 import 'base_coupon_repository.dart';
 

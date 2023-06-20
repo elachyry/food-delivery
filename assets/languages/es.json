@@ -71,6 +71,9 @@
     "verification_code" : "Código de Verificación",
     "the_provided_phone_number_is_not_valid": "El número de teléfono proporcionado no es válido.",
     "your_account_has_been_created": "Su cuenta ha sido creada con éxito.",
+    "error": "Error",
+    "no_account_exists_for_that_phone": "No existe ninguna cuenta para ese número de teléfono.",
+    "no_accoun_exists_for_that_email": "No existe ninguna cuenta para ese correo electrónico.",
 
 
 
@@ -97,6 +100,121 @@
     "update_password": "Actualiza contraseña",
 
 
-    "enter_your_location": "Ingresa tu ubicación"
+    "enter_your_location": "Ingresa tu ubicación",
 
+
+    "your_order_has_been_placed": "Su pedido ha sido realizado con éxito.",
+    "your_order_has_been_cancelled": "Su pedido ha sido cancelado con éxito.",
+
+    "cart" : "Carro",
+    "nothing_to_show" : "Nada que mostrar",
+    "subtotal" : "Total parcial",
+    "delivery_fees" : "Cargos por envío",
+    "total" : "Total",
+    "coupon" : "Cupón",
+    "the_coupon_deleted_successfully" : "El cupón se eliminó con éxito.",
+    "do_you_have_a_oupon" : "¿Tienes un cupón?",
+    "enter_your_coupon_here" : "Introduce tu cupón aquí",
+    "please_enter_a_coupon" : "Introduce un cupón.",
+    "this_coupon_is_expired" : "Este cupón está vencido.",
+    "this_coupon_for_orders_over" : "Este cupón para pedidos superiores a",
+    "only" : "solo",
+    "the_coupon_added_successfully" : "El cupón se agregó con éxito.",
+    "this_coupon_is_not_valid_or_not_exist" : "Este cupón no es válido o no existe.",
+    "apply" : "Aplicar",
+    "are_you_sure" : "Estas seguro",
+    "Do_you_want_to_remove_this_item" : "¿Quieres eliminar este artículo?",
+    "no" : "No",
+    "yes" : "Sí",
+    "the_item_removed_from_cart_successfully" : "El artículo se eliminó del carrito con éxito.",
+    "checkout" : "caja",
+    "please_provide_an_address" : "Proporcione una dirección.",
+    "select_an_address" : "Seleccione una dirección",
+    "add_address" : "Añadir dirección",
+    "select_payment_method" : "Seleccionar método de pago",
+    "add_new_address" : "agregar nueva dirección",
+    "edit_address" : "Editar dirección",
+
+
+    "popular_categories" : "Categorías Populares",
+    "restaurants" : "Restaurantes",
+    "view_all" : "Ver todo",
+    "favorites" : "Favoritos",
+    "menu_items" : "Elementos de menú",
+    "delivery_location" : "Lugar de entrega",
+    "pick_your_destenation_address" : "Elige tu dirección",
+    "sorry_we_dont_deliver_here" : "Lo siento, no hacemos envíos aquí.",
+    "delivery_here" : "entrega aquí",
+    "deliver_to" : "Entregar a",
+    "select_a_location" : "Selecciona una ubicación",
+    "what_are_you_craving" : "¿Qué estás deseando?",
+
+    "notifications" : "Notificaciones",
+    "order_updates" : "Actualizaciones de pedidos",
+    "notification_when_your_order_status_changes" : "Notificación cuando cambia el estado de su pedido",
+    "new_restaurants" : "Nuevos Restaurantes",
+    "notification_when_a_new_restaurant_joins_us" : "Notificación cuando un nuevo restaurante se une a nosotros",
+    "new_items" : "Nuevos objetos",
+    "notification_when_your_favorites_restaurants_add_new_menus" : "Notificación cuando tus restaurantes favoritos agreguen nuevos menús",
+
+
+    "orders" : "Pedidos",
+    "cancel_confirmation" : "Cancelar Confirmación",
+    "do_you_want_to_cancel_this_order" : "¿Quieres cancelar este pedido?",
+    "give_your_feedback" : "Da tu opinión...",
+    "please_choose_a_rate" : "Por favor elige una calificación",
+    "please_enter_a_feedback" : "Por favor ingrese un comentario",
+    "you_have_been_added_the_feedback_successfully" : "Se le ha agregado la retroalimentación con éxito.",
+    "you_have_been_updated_the_feedback_successfully" : "Se han actualizado los comentarios con éxito.",
+    "update_your_feedback" : "Actualiza tus comentarios",
+    "send_feedback" : "Enviar comentarios",
+    "rate_this_restaurant" : "Califica este restaurante",
+    "tell_others_what_you_think" : "Dile a los demás lo que piensas",
+    "rate_restaurant_menus" : "Valorar los menús de los restaurantes",
+    "did_you_enjoy_it" : "¿Lo disfrutaste?",
+    "order_Id" : "Solicitar ID: ",
+    "payment_method" : "Método de pago",
+    "no_ratings" : "No hay votos",
+    "pending" : "Pendiente",
+    "cancelled" : "Cancelado",
+    "accepted" : "Aceptado",
+    "delivered" : "Entregado",
+    "cancel_this_order" : "Cancelar este pedido",
+    "see_details" : "Ver detalles",
+    "cancel" : "Cancelar",
+
+
+
+    "the_item_added_to_cart_successfully" : "El artículo se agregó al carrito con éxito.",
+    "read_less" : "Leer menos",
+    "read_more" : "Leer más",
+    "delivery_order" : "Orden de entrega ",
+    "go_to_cart" : "Ir al carrito",
+    "free_delivery" : "Entrega gratis",
+    "cash_on_delivery" : "Contrareembolso",
+
+
+
+    "add_to_cart" : "Añadir a la cesta",
+    "ingredients" : "Ingredientes",
+
+
+    "categories" : "Categorías",
+    "clear_all" : "Limpiar todo",
+    "popular_filters" : "Filtros populares",
+    "filter_by_price" : "Filtrar por precio",
+    "filtter" : "Filtrar",
+    "top_rated" : "Los más valorados",
+    "fast_delivery" : "Entrega rápida",
+    "new_added" : "Nuevo añadido",
+    "low" : "Bajo",
+    "medium" : "Medio",
+    "high" : "Alto",
+
+    "night_mode" : "Modo nocturno",
+    "language" : "Idioma",
+    "total_spend" : "Gasto total",
+    "total_orders" : "Pedidos totales",
+    "search" : "Buscar",
+    "addresses" : "Direcciones"
 }

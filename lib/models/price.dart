@@ -1,20 +1,21 @@
 import 'package:equatable/equatable.dart';
+import 'package:get/get.dart';
 
 class Price extends Equatable {
   final int id;
   final String price;
-  static List<Price> prices = const [
+  static List<Price> prices = [
     Price(
       id: 1,
-      price: 'Low',
+      price: 'low'.tr,
     ),
     Price(
       id: 2,
-      price: 'Medium',
+      price: 'medium'.tr,
     ),
     Price(
       id: 3,
-      price: 'High',
+      price: 'high'.tr,
     ),
   ];
 

@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:multi_languges/models/price.dart';
+import 'package:food_delivery_express/models/price.dart';
 
 class PriceFilter extends Equatable {
   final int id;

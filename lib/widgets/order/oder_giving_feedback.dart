@@ -1,9 +1,9 @@
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/controllers/auth/auth_controller.dart';
-import 'package:multi_languges/controllers/rating_controller.dart';
-import 'package:multi_languges/models/rating.dart';
+import 'package:food_delivery_express/controllers/auth/auth_controller.dart';
+import 'package:food_delivery_express/controllers/rating_controller.dart';
+import 'package:food_delivery_express/models/rating.dart';
 
 import 'order_item.dart';
 
@@ -37,14 +37,15 @@ class OrderGivingFeedback extends StatelessWidget {
           Column(
             children: [
               Column(
-                children: const [
+                children: [
                   Text(
-                    'Rate this restaurant',
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    'rate_this_restaurant'.tr,
+                    style: const TextStyle(
+                        fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    'Tell others what you think',
-                    style: TextStyle(
+                    'tell_others_what_you_think'.tr,
+                    style: const TextStyle(
                       fontSize: 14,
                       color: Colors.grey,
                     ),
@@ -91,7 +92,7 @@ class OrderGivingFeedback extends StatelessWidget {
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.grey.shade100,
-                    hintText: 'Give your feedback...',
+                    hintText: 'give_your_feedback'.tr,
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.circular(8),
@@ -118,8 +119,8 @@ class OrderGivingFeedback extends StatelessWidget {
                               : () {
                                   if (restaurnatRate == 0) {
                                     showSnackBar(
-                                        'Error',
-                                        'Please choose a rate',
+                                        'error'.tr,
+                                        'please_choose_a_rate'.tr,
                                         Colors.red.shade400);
                                     return;
                                   }
@@ -127,8 +128,8 @@ class OrderGivingFeedback extends StatelessWidget {
                                           .feedbackController.text ==
                                       '') {
                                     showSnackBar(
-                                        'Error',
-                                        'Please enter a feedback',
+                                        'error'.tr,
+                                        'please_enter_a_feedback'.tr,
                                         Colors.red.shade400);
                                     return;
                                   }
@@ -146,8 +147,9 @@ class OrderGivingFeedback extends StatelessWidget {
                                     ).toJson());
                                     ratingController.feedbackController.clear();
                                     showSnackBar(
-                                        'success',
-                                        'You have been added the feedback successfully.',
+                                        'success'.tr,
+                                        'you_have_been_added_the_feedback_successfully'
+                                            .tr,
                                         Colors.green.shade400);
                                   } else {
                                     ratingController.updateRating(rating.id, {
@@ -156,8 +158,9 @@ class OrderGivingFeedback extends StatelessWidget {
                                           .feedbackController.text,
                                     });
                                     showSnackBar(
-                                        'success',
-                                        'You have been updated the feedback successfully.',
+                                        'success'.tr,
+                                        'you_have_been_updated_the_feedback_successfully'
+                                            .tr,
                                         Colors.green.shade400);
                                   }
                                 },
@@ -167,8 +170,8 @@ class OrderGivingFeedback extends StatelessWidget {
                                 )
                               : Text(
                                   rating == null
-                                      ? 'Send Feedback'
-                                      : 'Update your Feedback',
+                                      ? 'send_feedback'.tr
+                                      : 'update_your_feedback'.tr,
                                   style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold),
@@ -189,14 +192,15 @@ class OrderGivingFeedback extends StatelessWidget {
             height: 8,
           ),
           Column(
-            children: const [
+            children: [
               Text(
-                'Rate restaurant menus',
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                'rate_restaurant_menus'.tr,
+                style:
+                    const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
               Text(
-                'Did you enjoy it?',
-                style: TextStyle(
+                'did_you_enjoy_it'.tr,
+                style: const TextStyle(
                   fontSize: 14,
                   color: Colors.grey,
                 ),

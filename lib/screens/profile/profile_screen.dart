@@ -2,18 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
-import 'package:multi_languges/controllers/auth/auth_controller.dart';
-import 'package:multi_languges/controllers/auth/user_controller.dart';
-import 'package:multi_languges/controllers/order_controller.dart';
-import 'package:multi_languges/models/status.dart';
-import 'package:multi_languges/screens/language_selection_screen.dart';
-import 'package:multi_languges/screens/location/navigation_screen.dart';
-import 'package:multi_languges/screens/notifications/notifications_screen.dart';
-import 'package:multi_languges/screens/profile/edit_profile_screen.dart';
-import 'package:multi_languges/screens/settings/settings_screen.dart';
-import 'package:multi_languges/utils/app_routes.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
-import 'package:multi_languges/widgets/profile/profile_list_item.dart';
+import 'package:food_delivery_express/controllers/auth/auth_controller.dart';
+import 'package:food_delivery_express/controllers/auth/user_controller.dart';
+import 'package:food_delivery_express/controllers/order_controller.dart';
+import 'package:food_delivery_express/models/status.dart';
+import 'package:food_delivery_express/screens/addresses/addresses_screen.dart';
+import 'package:food_delivery_express/screens/notifications/notifications_screen.dart';
+import 'package:food_delivery_express/screens/profile/edit_profile_screen.dart';
+import 'package:food_delivery_express/screens/settings/settings_screen.dart';
+import 'package:food_delivery_express/utils/app_routes.dart';
+import 'package:food_delivery_express/utils/constants/image_constants.dart';
+import 'package:food_delivery_express/widgets/profile/profile_list_item.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -190,7 +189,7 @@ class ProfileScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
-                            'Total Orders',
+                            'total_orders'.tr,
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.grey.shade500,
@@ -212,7 +211,7 @@ class ProfileScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(
-                            'Total Spend',
+                            'total_spend'.tr,
                             style: TextStyle(
                               fontSize: 18,
                               color: Colors.grey.shade500,
@@ -259,6 +258,7 @@ class ProfileScreen extends StatelessWidget {
                   leadingIcon: Bootstrap.bag_check,
                   title: 'my_orders'.tr,
                   onTap: () {
+                    ordersController.fetchOrders();
                     Get.toNamed(AppRoutes.ordersScreenRoute);
                   },
                 ),
@@ -272,7 +272,7 @@ class ProfileScreen extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         fullscreenDialog: true,
-                        builder: (context) => const NavigationScreen(),
+                        builder: (context) => AddressesScreen(),
                       ),
                     );
                     // Get.toNamed(AppRoutes.locationScreenRoute);
@@ -283,7 +283,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 ProfileListItem(
                   leadingIcon: Bootstrap.bell,
-                  title: 'Notifications'.tr,
+                  title: 'notifications'.tr,
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(

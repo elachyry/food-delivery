@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/screens/profile/profile_screen.dart';
-import 'package:multi_languges/utils/app_routes.dart';
+import 'package:food_delivery_express/screens/profile/profile_screen.dart';
+import 'package:food_delivery_express/utils/app_routes.dart';
 
 import '../utils/constants/image_constants.dart';
 

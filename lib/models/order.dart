@@ -4,8 +4,8 @@ import 'dart:convert';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:multi_languges/models/menu_item.dart';
-import 'package:multi_languges/models/status.dart';
+import 'package:food_delivery_express/models/menu_item.dart';
+import 'package:food_delivery_express/models/status.dart';
 
 class Order extends Equatable {
   final String id;

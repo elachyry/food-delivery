@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
-import 'package:multi_languges/controllers/menu_items_controller.dart';
-import 'package:multi_languges/models/restaurant.dart';
-import 'package:multi_languges/screens/meal_details/meal_details_screen.dart';
-import 'package:multi_languges/widgets/restaurant_details/food_item.dart';
+import 'package:food_delivery_express/blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
+import 'package:food_delivery_express/controllers/menu_items_controller.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
+import 'package:food_delivery_express/screens/meal_details/meal_details_screen.dart';
+import 'package:food_delivery_express/widgets/restaurant_details/food_item.dart';
 
 import '../../controllers/category_controller.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/controllers/auth/auth_controller.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
+import 'package:food_delivery_express/controllers/auth/auth_controller.dart';
+import 'package:food_delivery_express/utils/constants/image_constants.dart';
 
 class ForgotPasswordEmailScreen extends StatelessWidget {
   ForgotPasswordEmailScreen({super.key});

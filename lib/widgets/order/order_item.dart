@@ -1,4 +1,6 @@
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:food_delivery_express/utils/app_routes.dart';
+import 'package:food_delivery_express/widgets/order/cancel_order_confirmation_dialog.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
@@ -60,6 +62,8 @@ class _OrderItemState extends State<OrderItem> {
             activeStep = 1;
           } else if (widget.status == 'Delivered') {
             activeStep = 2;
+          } else if (widget.status == 'Cancelled') {
+            activeStep = 1;
           }
 
           final Restaurant restaurant = widget.restaurantController.restaurants
@@ -81,7 +85,7 @@ class _OrderItemState extends State<OrderItem> {
                     width: 8,
                   ),
                   Text(
-                    'Order Id: ',
+                    'order_Id'.tr,
                     style: Theme.of(context)
                         .textTheme
                         .titleLarge!
@@ -268,7 +272,7 @@ class _OrderItemState extends State<OrderItem> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                'Payment Method',
+                                                'payment_method'.tr,
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .titleMedium!
@@ -290,7 +294,7 @@ class _OrderItemState extends State<OrderItem> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                'Address',
+                                                'address'.tr,
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .titleMedium!
@@ -312,7 +316,7 @@ class _OrderItemState extends State<OrderItem> {
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
                                               Text(
-                                                'Total',
+                                                'total'.tr,
                                                 style: Theme.of(context)
                                                     .textTheme
                                                     .titleMedium!
@@ -491,7 +495,7 @@ class _OrderItemState extends State<OrderItem> {
                                   ),
                                   Text(
                                     rating.isNaN || ratings.isEmpty
-                                        ? 'No ratings'
+                                        ? 'no_ratings'.tr
                                         : '$rating (${ratings.length})',
                                     style: Theme.of(context)
                                         .textTheme
@@ -548,24 +552,63 @@ class _OrderItemState extends State<OrderItem> {
                   showTitle: true,
                   finishedStepTextColor: Colors.black,
                   onStepReached: (index) => setState(() => activeStep = index),
-                  steps: const [
-                    EasyStep(
-                      icon: Icon(Bootstrap.hourglass_split),
-                      title: 'Pending',
-                      activeIcon: Icon(Bootstrap.hourglass_split),
-                    ),
-                    EasyStep(
-                      icon: Icon(Icons.check),
-                      activeIcon: Icon(Icons.check),
-                      title: 'Accepted',
-                    ),
-                    EasyStep(
-                      icon: Icon(Bootstrap.check_all),
-                      activeIcon: Icon(Bootstrap.check_all),
-                      title: 'Delivered',
-                    ),
-                  ],
+                  steps: widget.status == 'Cancelled'
+                      ? [
+                          EasyStep(
+                            icon: const Icon(Bootstrap.hourglass_split),
+                            title: 'pending'.tr,
+                            activeIcon: const Icon(Bootstrap.hourglass_split),
+                          ),
+                          EasyStep(
+                            icon: const Icon(Bootstrap.x),
+                            activeIcon: const Icon(Bootstrap.x),
+                            title: 'cancelled'.tr,
+                          ),
+                        ]
+                      : [
+                          EasyStep(
+                            icon: const Icon(Bootstrap.hourglass_split),
+                            title: 'pending'.tr,
+                            activeIcon: const Icon(Bootstrap.hourglass_split),
+                          ),
+                          EasyStep(
+                            icon: const Icon(Icons.check),
+                            activeIcon: const Icon(Icons.check),
+                            title: 'accepted'.tr,
+                          ),
+                          EasyStep(
+                            icon: const Icon(Bootstrap.check_all),
+                            activeIcon: const Icon(Bootstrap.check_all),
+                            title: 'delivered'.tr,
+                          ),
+                        ],
                 ),
+                if (widget.status == 'Pending')
+                  SizedBox(
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextButton(
+                            onPressed: () async {
+                              bool shoudCancel =
+                                  await CancelOrderConfirmationDialog.show(
+                                      context) as bool;
+                              if (shoudCancel) {
+                                widget.orderController.cancelOrder(
+                                    widget.orders[widget.index].id);
+                                Navigator.of(context).popAndPushNamed(
+                                    AppRoutes.ordersScreenRoute);
+                              }
+                            },
+                            child: Text(
+                              'cancel_this_order'.tr,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 if (widget.status == 'Delivered')
                   SizedBox(
                     child: Column(
@@ -574,16 +617,16 @@ class _OrderItemState extends State<OrderItem> {
                         Column(
                           children: [
                             Column(
-                              children: const [
+                              children: [
                                 Text(
-                                  'Rate this restaurant',
-                                  style: TextStyle(
+                                  'rate_this_restaurant'.tr,
+                                  style: const TextStyle(
                                       fontSize: 22,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 Text(
-                                  'Tell others what you think',
-                                  style: TextStyle(
+                                  'tell_others_what_you_think'.tr,
+                                  style: const TextStyle(
                                     fontSize: 14,
                                     color: Colors.grey,
                                   ),
@@ -633,7 +676,7 @@ class _OrderItemState extends State<OrderItem> {
                                 decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Colors.grey.shade100,
-                                  hintText: 'Give your feedback...',
+                                  hintText: 'give_your_feedback'.tr,
                                   border: OutlineInputBorder(
                                     borderSide: BorderSide.none,
                                     borderRadius: BorderRadius.circular(8),
@@ -662,8 +705,8 @@ class _OrderItemState extends State<OrderItem> {
                                             : () {
                                                 if (restaurnatRate == 0) {
                                                   showSnackBar(
-                                                      'Error',
-                                                      'Please choose a rate',
+                                                      'error'.tr,
+                                                      'please_choose_a_rate'.tr,
                                                       Colors.red.shade400);
                                                   return;
                                                 }
@@ -672,8 +715,8 @@ class _OrderItemState extends State<OrderItem> {
                                                         .text ==
                                                     '') {
                                                   showSnackBar(
-                                                      'Error',
-                                                      'Please enter a feedback',
+                                                      'error'.tr,
+                                                      'please_enter_a_feedback',
                                                       Colors.red.shade400);
                                                   return;
                                                 }
@@ -698,8 +741,9 @@ class _OrderItemState extends State<OrderItem> {
                                                   ).toJson());
 
                                                   showSnackBar(
-                                                      'success',
-                                                      'You have been added the feedback successfully.',
+                                                      'success'.tr,
+                                                      'you_have_been_added_the_feedback_successfully'
+                                                          .tr,
                                                       Colors.green.shade400);
                                                   focusNode.unfocus();
                                                 } else {
@@ -711,8 +755,9 @@ class _OrderItemState extends State<OrderItem> {
                                                         .text,
                                                   });
                                                   showSnackBar(
-                                                      'success',
-                                                      'You have been updated the feedback successfully.',
+                                                      'success'.tr,
+                                                      'you_have_been_updated_the_feedback_successfully'
+                                                          .tr,
                                                       Colors.green.shade400);
                                                   focusNode.unfocus();
                                                 }
@@ -724,8 +769,8 @@ class _OrderItemState extends State<OrderItem> {
                                               )
                                             : Text(
                                                 rate == null
-                                                    ? 'Send Feedback'
-                                                    : 'Update your Feedback',
+                                                    ? 'send_feedback'.tr
+                                                    : 'update_your_feedback'.tr,
                                                 style: const TextStyle(
                                                     fontSize: 18,
                                                     fontWeight:
@@ -747,15 +792,15 @@ class _OrderItemState extends State<OrderItem> {
                           height: 8,
                         ),
                         Column(
-                          children: const [
+                          children: [
                             Text(
-                              'Rate restaurant menus',
-                              style: TextStyle(
+                              'rate_restaurant_menus'.tr,
+                              style: const TextStyle(
                                   fontSize: 22, fontWeight: FontWeight.bold),
                             ),
                             Text(
-                              'Did you enjoy it?',
-                              style: TextStyle(
+                              'did_you_enjoy_it'.tr,
+                              style: const TextStyle(
                                 fontSize: 14,
                                 color: Colors.grey,
                               ),
@@ -891,7 +936,7 @@ class _OrderItemState extends State<OrderItem> {
                                 });
                               },
                               child: Text(
-                                'See Details',
+                                'see_details'.tr,
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 15,

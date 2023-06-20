@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/controllers/language_controller.dart';
-import 'package:multi_languges/models/language.dart';
-import 'package:multi_languges/utils/constants/language_constants.dart';
+import 'package:food_delivery_express/controllers/language_controller.dart';
+import 'package:food_delivery_express/models/language.dart';
+import 'package:food_delivery_express/utils/constants/language_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<Map<String, Map<String, String>>> init() async {

@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/models/menu_item.dart';
+import 'package:food_delivery_express/models/menu_item.dart';
 
 import '../../controllers/cart_controller.dart';
 import '../../models/cart.dart';

@@ -101,7 +101,124 @@
     "update_password": "Update password",
 
 
-    "enter_your_location": "Enter your location"
+    "enter_your_location": "Enter your location",
+
+
+    "your_order_has_been_placed": "Your order has been placed successfully.",
+    "your_order_has_been_cancelled": "Your order has been canceled successfully.",
+
+    "cart" : "Cart",
+    "nothing_to_show" : "Nothing to show",
+    "subtotal" : "Subtotal",
+    "delivery_fees" : "Delivery Fees",
+    "total" : "Total",
+    "coupon" : "Coupon",
+    "the_coupon_deleted_successfully" : "The coupon was deleted successfully.",
+    "do_you_have_a_oupon" : "Do you have a Coupon?",
+    "enter_your_coupon_here" : "Enter your coupon here",
+    "please_enter_a_coupon" : "Please enter a coupon.",
+    "this_coupon_is_expired" : "This coupon is expired.",
+    "this_coupon_for_orders_over" : "This coupon for orders over",
+    "only" : "only",
+    "the_coupon_added_successfully" : "The coupon was added successfully.",
+    "this_coupon_is_not_valid_or_not_exist" : "This coupon is not valid or does not exist.",
+    "apply" : "Apply",
+    "are_you_sure" : "Are you sure?",
+    "Do_you_want_to_remove_this_item" : "Do you want to remove this item?",
+    "no" : "No",
+    "yes" : "Yes",
+    "the_item_removed_from_cart_successfully" : "The item was removed from the cart successfully.",
+    "checkout" : "Checkout",
+    "please_provide_an_address" : "Please provide an address.",
+    "select_an_address" : "Select an Address",
+    "add_address" : "Add address",
+    "select_payment_method" : "Select Payment Method",
+    "add_new_address" : "Add new address",
+    "edit_address" : "Edit address",
+
+    "popular_categories" : "Popular Categories",
+    "restaurants" : "Restaurants",
+    "view_all" : "View All",
+    "favorites" : "Favorites",
+    "menu_items" : "Menu Items",
+    "delivery_location" : "Delivery Location",
+    "pick_your_destenation_address" : "Pick your destination address",
+    "sorry_we_dont_deliver_here" : "Sorry, we don't deliver here",
+    "delivery_here" : "Delivery here",
+    "deliver_to" : "Deliver to",
+    "select_a_location" : "Select a location",
+    "what_are_you_craving" : "What are you craving?",
+
+
+    "notifications" : "Notifications",
+    "order_updates" : "Order updates",
+    "notification_when_your_order_status_changes" : "Notification when your order status changes",
+    "new_restaurants" : "New Restaurants",
+    "notification_when_a_new_restaurant_joins_us" : "Notification when a new restaurant joins us",
+    "new_items" : "New items",
+    "notification_when_your_favorites_restaurants_add_new_menus" : "Notification when your favorites restaurants add new menus",
+
+
+    "orders" : "Orders",
+    "cancel_confirmation" : "Cancel Confirmation",
+    "do_you_want_to_cancel_this_order" : "Do you want to cancel this order?",
+    "give_your_feedback" : "Give your feedback...",
+    "please_choose_a_rate" : "Please choose a rate",
+    "please_enter_a_feedback" : "Please enter a feedback",
+    "you_have_been_added_the_feedback_successfully" : "You have been added the feedback successfully.",
+    "you_have_been_updated_the_feedback_successfully" : "You have been updated the feedback successfully.",
+    "update_your_feedback" : "Update your Feedback",
+    "send_feedback" : "Send Feedback",
+    "rate_this_restaurant" : "Rate this restaurant",
+    "tell_others_what_you_think" : "Tell others what you think",
+    "rate_restaurant_menus" : "Rate restaurant menus",
+    "did_you_enjoy_it" : "Did you enjoy it?",
+    "order_Id" : "Order Id: ",
+    "payment_method" : "Payment Method",
+    "no_ratings" : "No ratings",
+    "pending" : "Pending",
+    "cancelled" : "Canceled",
+    "accepted" : "Accepted",
+    "delivered" : "Delivered",
+    "cancel_this_order" : "Cancel this order",
+    "see_details" : "See Details",
+    "cancel" : "Cancel",
+
+
+
+    "the_item_added_to_cart_successfully" : "The item was added to the cart successfully.",
+    "read_less" : "Read Less",
+    "read_more" : "Read More",
+    "delivery_order" : "Delivery order ",
+    "go_to_cart" : "Go to cart",
+    "free_delivery" : "Free Delivery",
+    "cash_on_delivery" : "Cash on Delivery",
+
+
+
+    "Delivery_order" : "Delivery order",
+    "add_to_cart" : "Add to cart",
+    "ingredients" : "Ingredients",
+
+
+    "categories" : "Categories",
+    "clear_all" : "Clear All",
+    "popular_filters" : "Popular filters",
+    "filter_by_price" : "Filter by price",
+    "filtter" : "Filter",
+    "top_rated" : "Top rated",
+    "fast_delivery" : "Fast delivery",
+    "new_added" : "New added",
+    "low" : "Low",
+    "medium" : "Medium",
+    "high" : "High",
+
+    "night_mode" : "Night mode",
+    "language" : "Language",
+    "total_spend" : "Total Spend",
+    "total_orders" : "Total Orders",
+    "search" : "Search",
+    "addresses" : "Addresses"
 
 
 }

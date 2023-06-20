@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/models/restaurant.dart';
-import 'package:multi_languges/widgets/restaurant_details/read_more_paragraph.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
+import 'package:food_delivery_express/widgets/restaurant_details/read_more_paragraph.dart';
 
 import '../../controllers/rating_controller.dart';
 import '../../models/rating.dart';
@@ -48,7 +48,7 @@ class Restaurantinformations extends StatelessWidget {
     bool freedelivery = restaurant!.deliveryFee == 0;
 
     if (freedelivery) {
-      delivery = 'Free Delivery';
+      delivery = 'free_delivery'.tr;
     }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +108,7 @@ class Restaurantinformations extends StatelessWidget {
                 ),
                 Text(
                   rating.isNaN || ratings.isEmpty
-                      ? 'No ratings'
+                      ? 'no_ratings'.tr
                       : '$rating (${ratings.length})',
                   style: Theme.of(context).textTheme.titleSmall!.copyWith(
                         color: Colors.grey,

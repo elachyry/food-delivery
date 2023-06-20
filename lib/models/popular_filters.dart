@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:multi_languges/models/popular.dart';
+import 'package:food_delivery_express/models/popular.dart';
 
 class PopularFilters extends Equatable {
   final int id;

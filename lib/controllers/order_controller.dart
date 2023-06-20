@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/controllers/auth/auth_controller.dart';
-import 'package:multi_languges/controllers/cart_controller.dart';
-import 'package:multi_languges/controllers/restaurant_controller.dart';
-import 'package:multi_languges/models/menu_item.dart';
-import 'package:multi_languges/models/status.dart';
-import 'package:multi_languges/repositories/order_repository.dart';
+import 'package:food_delivery_express/controllers/auth/auth_controller.dart';
+import 'package:food_delivery_express/controllers/cart_controller.dart';
+import 'package:food_delivery_express/controllers/restaurant_controller.dart';
+import 'package:food_delivery_express/models/menu_item.dart';
+import 'package:food_delivery_express/models/status.dart';
+import 'package:food_delivery_express/repositories/order_repository.dart';
 
 import '../models/order.dart';
 
@@ -67,11 +67,11 @@ class OrderController extends GetxController {
         await orderRepository.addOrder(order.toMap());
       }
       isLoading.value = false;
-      showSnackBar('Success', 'Your order has been placed successfully.',
-          Colors.green.shade400);
+      showSnackBar(
+          'Success', 'your_order_has_been_placed'.tr, Colors.green.shade400);
     } catch (error) {
       isLoading.value = false;
-      showSnackBar('Error', 'An error occurred, please try again later.',
+      showSnackBar('Error', 'an_error_occurred_please_try_again_later'.tr,
           Colors.red.shade400);
 
       rethrow;
@@ -90,12 +90,12 @@ class OrderController extends GetxController {
       await orderRepository.cancelOrder(id);
       fetchOrders();
       isLoading.value = false;
-      showSnackBar('Success', 'Your order has been cancelled successfully.',
-          Colors.green.shade400);
+      showSnackBar(
+          'Success', 'your_order_has_been_cancelled'.tr, Colors.green.shade400);
     } catch (error) {
       isLoading.value = false;
 
-      showSnackBar('Error', 'An error occurred, please try again later.',
+      showSnackBar('Error', 'an_error_occurred_please_try_again_later'.tr,
           Colors.red.shade400);
     }
   }

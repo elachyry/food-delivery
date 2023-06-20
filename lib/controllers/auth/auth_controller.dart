@@ -205,8 +205,15 @@ class AuthController extends GetxController {
           .where('phoneNumber', isGreaterThanOrEqualTo: phone)
           .get();
       isLoading.value = false;
-      // print(result.docs.first['phoneNumber']);
-      return result.docs.isNotEmpty;
+      print('result ${result.docs.first['phoneNumber']}');
+      if (result.docs.isNotEmpty) {
+        if (result.docs.first['phoneNumber'] == phone) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      return false;
     } catch (error) {
       isLoading.value = false;
 

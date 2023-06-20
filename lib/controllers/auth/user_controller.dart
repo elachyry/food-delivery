@@ -5,7 +5,9 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:multi_languges/utils/app_routes.dart';
+import 'package:location/location.dart';
+import 'package:food_delivery_express/utils/app_routes.dart';
+import 'package:location/location.dart' as loc;
 
 import '../../controllers/auth/auth_controller.dart';
 import '../../models/user.dart';
@@ -17,6 +19,7 @@ class UserController extends GetxController {
 
   final firestore = FirebaseFirestore.instance;
   final firestorage = FirebaseStorage.instance;
+  LocationData? currentLocation;
 
   var myData = {}.obs;
   final Rxn<File> _image = Rxn<File>();
@@ -38,6 +41,35 @@ class UserController extends GetxController {
     super.onInit();
     getUserData();
     getFavorites();
+    getCurrentLocation();
+  }
+
+  getCurrentLocation() async {
+    bool serviceEnabled;
+    PermissionStatus permissionGranted;
+    Location location = Location();
+
+    serviceEnabled = await location.serviceEnabled();
+
+    if (!serviceEnabled) {
+      serviceEnabled = await location.requestService();
+      if (!serviceEnabled) {
+        return;
+      }
+    }
+
+    permissionGranted = await location.hasPermission();
+    if (permissionGranted == PermissionStatus.denied) {
+      permissionGranted = await location.requestPermission();
+      if (permissionGranted != PermissionStatus.granted) {
+        return;
+      }
+    }
+
+    if (permissionGranted == loc.PermissionStatus.granted) {
+      location.changeSettings(accuracy: loc.LocationAccuracy.high);
+      currentLocation = await location.getLocation();
+    }
   }
 
   void getFavorites() async {

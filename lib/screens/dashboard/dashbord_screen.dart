@@ -27,27 +27,43 @@ class DashboardScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            DashboardHead(),
+            const DashboardHead(),
             Container(
               padding: const EdgeInsets.only(
                 left: 20,
-                top: 5,
+                top: 0,
                 bottom: 10,
               ),
               color: Colors.grey.shade200,
               alignment: Alignment.topCenter,
-              child: SizedBox(
-                height: 100,
-                child: Obx(
-                  () => ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: categoryController.categories.length,
-                    itemBuilder: (context, index) => CategoryItem(
-                      category: categoryController.categories[index],
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'popular_categories'.tr,
+                    style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  SizedBox(
+                    height: 100,
+                    child: Obx(
+                      () => ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: categoryController.categories.length > 8
+                            ? 8
+                            : categoryController.categories.length,
+                        itemBuilder: (context, index) => CategoryItem(
+                          category: categoryController.categories[index],
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
             ),
             Coupon.coupons.isEmpty ? Container() : const CouponSlide(),
@@ -62,7 +78,7 @@ class DashboardScreen extends StatelessWidget {
                       Row(
                         children: [
                           Text(
-                            'Restaurants',
+                            'restaurants'.tr,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleLarge!
@@ -90,7 +106,7 @@ class DashboardScreen extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          'View All',
+                          'view_all'.tr,
                           style:
                               Theme.of(context).textTheme.titleMedium!.copyWith(
                                     color: Theme.of(context).primaryColor,
@@ -120,8 +136,11 @@ class DashboardScreen extends StatelessWidget {
                               }
                               return ListView.builder(
                                   padding: EdgeInsets.zero,
-                                  itemCount:
-                                      restaurantController.restaurants.length,
+                                  itemCount: restaurantController
+                                              .restaurants.length >
+                                          8
+                                      ? 8
+                                      : restaurantController.restaurants.length,
                                   itemBuilder: (context, index) {
                                     final isFavorite = state.favorites.contains(
                                         restaurantController

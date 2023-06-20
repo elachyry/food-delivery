@@ -144,7 +144,7 @@ class _FeedbackItemState extends State<FeedbackItem> {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.grey.shade100,
-                hintText: 'Give your feedback...',
+                hintText: 'give_your_feedback'.tr,
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(8),
@@ -169,13 +169,17 @@ class _FeedbackItemState extends State<FeedbackItem> {
                           ? null
                           : () {
                               if (widget.menuItemRate == 0) {
-                                showSnackBar('Error', 'Please choose a rate',
+                                showSnackBar(
+                                    'error'.tr,
+                                    'please_choose_a_rate'.tr,
                                     Colors.red.shade400);
                                 return;
                               }
                               if (ratingController.feedbackController.text ==
                                   '') {
-                                showSnackBar('Error', 'Please enter a feedback',
+                                showSnackBar(
+                                    'error'.tr,
+                                    'please_enter_a_feedback'.tr,
                                     Colors.red.shade400);
                                 return;
                               }
@@ -196,8 +200,9 @@ class _FeedbackItemState extends State<FeedbackItem> {
                                   addedAt: DateTime.now().toIso8601String(),
                                 ).toJson());
                                 showSnackBar(
-                                    'success',
-                                    'You have been added the feedback successfully.',
+                                    'success'.tr,
+                                    'you_have_been_added_the_feedback_successfully'
+                                        .tr,
                                     Colors.green.shade400);
                                 focusNode.unfocus();
                               } else {
@@ -209,15 +214,16 @@ class _FeedbackItemState extends State<FeedbackItem> {
                                 focusNode.unfocus();
 
                                 showSnackBar(
-                                    'success',
-                                    'You have been updated the feedback successfully.',
+                                    'success'.tr,
+                                    'you_have_been_updated_the_feedback_successfully'
+                                        .tr,
                                     Colors.green.shade400);
                               }
                             },
                       child: Text(
                         widget.rate2 != null
-                            ? 'Update your Feedback'
-                            : 'Send Feedback',
+                            ? 'update_your_feedback'
+                            : 'send_feedback',
                         style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),

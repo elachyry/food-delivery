@@ -3,12 +3,14 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/controllers/auth/user_controller.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
+import 'package:food_delivery_express/controllers/auth/user_controller.dart';
+import 'package:food_delivery_express/controllers/restaurant_controller.dart';
+import 'package:food_delivery_express/utils/constants/image_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../controllers/cart_controller.dart';
 import '../utils/app_routes.dart';
+import 'location/navigation_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -23,12 +25,20 @@ class _SplashScreenState extends State<SplashScreen>
   late AnimationController _controller;
   final GlobalKey<ScaffoldState> _gloablKey = GlobalKey();
   int? initScreen;
+  String? deliveryTo;
   final userController = Get.put(UserController());
+  final restaurantController = Get.put(RestaurantController());
+  final cartController = Get.put(CartController());
 
   Future<void> initScreenPrefrences() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     initScreen = sharedPreferences.getInt('initScreen');
     await sharedPreferences.setInt('initScreen', 1);
+  }
+
+  Future<void> chooseDeliveryTo() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    deliveryTo = sharedPreferences.getString('deliveryTo');
   }
 
   @override
@@ -42,6 +52,7 @@ class _SplashScreenState extends State<SplashScreen>
     super.initState();
 
     initScreenPrefrences();
+    chooseDeliveryTo();
 
     _controller = AnimationController(
       vsync: this,
@@ -56,12 +67,19 @@ class _SplashScreenState extends State<SplashScreen>
 
       FirebaseAuth.instance.authStateChanges().listen((User? user) {
         if (user != null) {
+          if (deliveryTo == null || deliveryTo == '') {
+            Get.offAll(() => const NavigationScreen(
+                  fromDplash: true,
+                ));
+          } else {
+            userController.getUserData();
+            userController.getFavorites();
+            restaurantController.loadRedtaurants();
+            cartController.getCart();
+            Get.offAllNamed(AppRoutes.tabsScreenRoute);
+          }
           // User is already logged in, navigate to dashboard screen
-          userController.getUserData();
-          userController.getFavorites();
-          Get.offAllNamed(AppRoutes.tabsScreenRoute);
-          final cartController = Get.find<CartController>();
-          cartController.getCart();
+
           // print('user not null');
         } else {
           // print('user null');

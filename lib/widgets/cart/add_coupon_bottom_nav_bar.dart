@@ -55,7 +55,7 @@ class _AddCouponBottomNavBarState extends State<AddCouponBottomNavBar> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  'Coupon',
+                  'coupon'.tr,
                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                         color: Theme.of(context).primaryColorDark,
                         fontSize: 25,
@@ -91,7 +91,7 @@ class _AddCouponBottomNavBarState extends State<AddCouponBottomNavBar> {
                       textInputAction: TextInputAction.done,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: "Enter your coupon here".tr,
+                        hintText: "enter_your_coupon_here".tr,
                       ),
                     ),
                   ),
@@ -116,7 +116,7 @@ class _AddCouponBottomNavBarState extends State<AddCouponBottomNavBar> {
                         onPressed: () {
                           final couponCode = couponController.text;
                           if (couponCode.isEmpty) {
-                            showSnackBar('error'.tr, 'Please enter a coupon.',
+                            showSnackBar('error'.tr, 'please_enter_a_coupon'.tr,
                                 Colors.red.shade500);
                             return;
                           }
@@ -126,10 +126,10 @@ class _AddCouponBottomNavBarState extends State<AddCouponBottomNavBar> {
                                     element.code.toLowerCase() ==
                                     couponCode.toLowerCase().trim());
 
-                            if (coupon.validation.isBefore(DateTime.now())) {
+                            if (coupon.validation.isAfter(DateTime.now())) {
                               showSnackBar(
                                   'error'.tr,
-                                  'This coupon is expired.',
+                                  'This coupon is expired'.tr,
                                   Colors.red.shade500);
                               return;
                             }
@@ -137,7 +137,9 @@ class _AddCouponBottomNavBarState extends State<AddCouponBottomNavBar> {
                                 state.cart.grandTotal(state.cart.menuItems)) {
                               showSnackBar(
                                   'error'.tr,
-                                  'This coupon for orders over ${coupon.conditionAmount.toStringAsFixed(0)}Dh only.',
+                                  'this_coupon_for_orders_over'.tr +
+                                      '${coupon.conditionAmount.toStringAsFixed(0)}Dh' +
+                                      'only.'.tr,
                                   Colors.red.shade500);
 
                               return;
@@ -148,19 +150,19 @@ class _AddCouponBottomNavBarState extends State<AddCouponBottomNavBar> {
 
                             showSnackBar(
                                 'succes'.tr,
-                                'The coupon added successfully.',
+                                'the_coupon_added_successfully'.tr,
                                 Colors.green.shade500);
                             Navigator.of(context).pop();
                           } catch (_) {
                             showSnackBar(
                                 'error'.tr,
-                                'This coupon is not valid or not exist.',
+                                'this_coupon_is_not_valid_or_not_exist'.tr,
                                 Colors.red.shade500);
                             return;
                           }
                         },
                         child: Text(
-                          'Apply',
+                          'apply'.tr,
                           style:
                               Theme.of(context).textTheme.titleMedium!.copyWith(
                                     color: Colors.white,

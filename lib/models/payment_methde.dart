@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
+import 'package:get/get.dart';
+import 'package:food_delivery_express/utils/constants/image_constants.dart';
 
 class PaymentMethode extends Equatable {
   final String id;
@@ -14,10 +15,10 @@ class PaymentMethode extends Equatable {
   });
 
   static final List<PaymentMethode> paymentMethodes = [
-    const PaymentMethode(
+    PaymentMethode(
       id: '0',
-      name: 'Cash on Delivery',
-      image: Image(
+      name: 'cash_on_delivery'.tr,
+      image: const Image(
         image: AssetImage(
           ImageConstants.cashOnDelivery,
         ),

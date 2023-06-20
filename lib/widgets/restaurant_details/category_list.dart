@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:multi_languges/models/restaurant.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
 
 class CategoryList extends StatelessWidget {
   final int selectedIndex;

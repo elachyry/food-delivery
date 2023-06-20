@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/models/menu_item.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
+import 'package:food_delivery_express/models/menu_item.dart';
+import 'package:food_delivery_express/utils/constants/image_constants.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
 import '../../blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
@@ -91,7 +91,7 @@ class FoodItem extends StatelessWidget {
                                 // cartController.addToCart(menuItem);
                                 showSnackBar(
                                     'succes'.tr,
-                                    'The item added to cart successfully.',
+                                    'the_item_added_to_cart_successfully'.tr,
                                     Colors.green.shade500);
                               },
                               child: const Icon(

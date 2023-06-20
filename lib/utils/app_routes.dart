@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:multi_languges/screens/dashboard/tab_screen.dart';
-import 'package:multi_languges/screens/orders/orders_screen.dart';
+import 'package:food_delivery_express/screens/dashboard/tab_screen.dart';
+import 'package:food_delivery_express/screens/orders/orders_screen.dart';
 
 import '../screens/auth/phone_number_screen.dart';
 import '../screens/cart/cart_screen.dart';

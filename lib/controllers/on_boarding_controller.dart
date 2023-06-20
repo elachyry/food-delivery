@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:liquid_swipe/liquid_swipe.dart';
-import 'package:multi_languges/utils/app_routes.dart';
+import 'package:food_delivery_express/utils/app_routes.dart';
 
 import '../utils/constants/image_constants.dart';
 import '../widgets/on_boarding_item.dart';

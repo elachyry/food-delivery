@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:multi_languges/controllers/dashboard_controller.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
+import 'package:food_delivery_express/controllers/dashboard_controller.dart';
+import 'package:food_delivery_express/utils/constants/image_constants.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
 import '../../models/menu_item.dart';
@@ -45,20 +45,20 @@ class CartItem extends StatelessWidget {
           return showDialog(
             context: context,
             builder: (ctx) => AlertDialog(
-              title: const Text('Are you sure?'),
-              content: const Text('Do you want to remove this item?'),
+              title: Text('are_you_sure'.tr),
+              content: Text('Do_you_want_to_remove_this_item'.tr),
               actions: [
                 TextButton(
                   onPressed: () {
                     Navigator.of(ctx).pop(false);
                   },
-                  child: const Text('No'),
+                  child: Text('no'.tr),
                 ),
                 TextButton(
                   onPressed: () {
                     Navigator.of(ctx).pop(true);
                   },
-                  child: const Text('Yes'),
+                  child: Text('yes'.tr),
                 ),
               ],
             ),
@@ -88,7 +88,9 @@ class CartItem extends StatelessWidget {
                         .keys
                         .elementAt(index)),
               );
-          showSnackBar('succes'.tr, 'The item removed from cart successfully.',
+          showSnackBar(
+              'succes'.tr,
+              'the_item_removed_from_cart_successfully'.tr,
               Colors.green.shade500);
         },
         child: Obx(

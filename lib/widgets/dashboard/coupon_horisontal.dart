@@ -1,7 +1,7 @@
 import 'package:coupon_uikit/coupon_uikit.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:multi_languges/models/coupon.dart';
+import 'package:food_delivery_express/models/coupon.dart';
 
 class HorizontalCoupon extends StatelessWidget {
   final Coupon coupon;

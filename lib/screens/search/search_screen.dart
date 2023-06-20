@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:multi_languges/models/restaurant.dart';
-import 'package:multi_languges/widgets/dashboard/restaurant_item.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
+import 'package:food_delivery_express/widgets/dashboard/restaurant_item.dart';
 
 import '../../blocs/favorites/favorites_bloc.dart';
 import '../../controllers/restaurant_controller.dart';
 
 class SearchScreen extends StatefulWidget {
-  SearchScreen({super.key});
+  const SearchScreen({super.key});
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -34,7 +34,7 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
         centerTitle: true,
         title: Text(
-          'Search',
+          'search'.tr,
           textAlign: TextAlign.center,
           style: Theme.of(context)
               .textTheme
@@ -58,7 +58,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 ),
                 filled: true,
                 fillColor: Colors.white,
-                hintText: 'What are you craving?',
+                hintText: 'what_are_you_craving'.tr,
                 hintStyle: const TextStyle(fontSize: 16),
                 contentPadding:
                     const EdgeInsets.symmetric(horizontal: 50, vertical: 16),

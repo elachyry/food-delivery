@@ -71,6 +71,9 @@
     "verification_code" : "رمز التحقق",
     "the_provided_phone_number_is_not_valid": "رقم الهاتف الذي أدخلته غير صالح.",
     "your_account_has_been_created": "لقد تم إنشاء حسابك بنجاح.",
+    "error": "خطأ",
+    "no_account_exists_for_that_phone": "لا يوجد حساب مربوط برقم الهاتف هذا.",
+    "no_accoun_exists_for_that_email": "لا يوجد حساب مربوط بهذا البريد الإلكتروني.",
     
 
 
@@ -97,6 +100,126 @@
     "your_profile_has_been_updated": "لقد تم تحديث ملفك الشخصي بنجاح.",
 
 
-    "enter_your_location": "أدخل موقعك"
+    "enter_your_location": "أدخل موقعك",
+
+
+    "your_order_has_been_placed": "تم إضافة طلبك بنجاح.",
+    "your_order_has_been_cancelled": "تم إلغاء طلبك بنجاح.",
+
+    "cart" : "عربة التسوق",
+    "nothing_to_show" : "لا شيء لعرضه",
+    "subtotal" : "المجموع الفرعي",
+    "delivery_fees" : "رسوم التوصيل",
+    "total" : "المجموع",
+    "coupon" : "قسيمة",
+    "the_coupon_deleted_successfully" : "تم حذف القسيمة بنجاح.",
+    "do_you_have_a_oupon" : "هل لديك قسيمة؟",
+    "enter_your_coupon_here" : "أدخل قسيمتك هنا",
+    "please_enter_a_coupon" : "الرجاء إدخال قسيمة.",
+    "this_coupon_is_expired" : "هذه القسيمة منتهية الصلاحية.",
+    "this_coupon_for_orders_over" : "هذه القسيمة للطلبات أكثر",
+    "only" : "فقط",
+    "the_coupon_added_successfully" : "تمت إضافة القسيمة بنجاح.",
+    "this_coupon_is_not_valid_or_not_exist" : "هذه القسيمة غير صالحة أو غير موجودة.",
+    "apply" : "أضف القسيمة",
+    "are_you_sure" : "هل أنت متأكد؟",
+    "Do_you_want_to_remove_this_item" : "هل تريد إزالة هذا العنصر؟",
+    "no" : "نعم",
+    "yes" : "لا",
+    "the_item_removed_from_cart_successfully" : "تمت إزالة العنصر من عربة التسوق بنجاح.",
+    "checkout" : "الدفع",
+    "please_provide_an_address" : "يرجى تقديم عنوان.",
+    "select_an_address" : "اختر عنوانًا",
+    "add_address" : "اضف عنوان",
+    "select_payment_method" : "اختار طريقة الدفع",
+    "add_new_address" : "أضف عنوان جديدا",
+    "edit_address" : "تعديل العنوان",
+    
+
+
+    "popular_categories" : "الفئات الشائعة",
+    "restaurants" : "المطاعم",
+    "view_all" : "مشاهدة الكل",
+    "favorites" : "المفضلة",
+    "menu_items" : "عناصر القائمة",
+    "delivery_location" : "موقع التسليم",
+    "pick_your_destenation_address" : "اختر عنوانك",
+    "sorry_we_dont_deliver_here" : "عذرا ، نحن لا نقوم بالتوصيل الى هنا",
+    "delivery_here" : "التسليم هنا",
+    "deliver_to" : "يسلم إلى",
+    "select_a_location" : "اختر موقعا",
+    "what_are_you_craving" : "ماذا تشتهي؟",
+
+
+    "notifications" : "إشعارات",
+    "order_updates" : "تحديثات الطلبات",
+    "notification_when_your_order_status_changes" : "إعلام عندما تتغير حالة طلبك",
+    "new_restaurants" : "مطاعم جديدة",
+    "notification_when_a_new_restaurant_joins_us" : "إشعار عند انضمام مطعم جديد إلينا",
+    "new_items" : "عناصر جديدة",
+    "notification_when_your_favorites_restaurants_add_new_menus" : "إشعار عندما تضيف المطاعم المفضلة لديك قوائم جديدة",
+
+
+    "orders" : "الطلبات",
+    "cancel_confirmation" : "تأكيد الإلغاء",
+    "do_you_want_to_cancel_this_order" : "هل تريد إلغاء هذا الطلب؟",
+    "give_your_feedback" : "قدم تقييمك ...",
+    "please_choose_a_rate" : "الرجاء اختيار تقييما",
+    "please_enter_a_feedback" : "الرجاء إدخال الملاحظات",
+    "you_have_been_added_the_feedback_successfully" : "لقد تم إضافة التقييم بنجاح.",
+    "you_have_been_updated_the_feedback_successfully" : "لقد تم تحديث التقييم بنجاح.",
+    "update_your_feedback" : "تحديث التقييم",
+    "send_feedback" : "اضف التقييم",
+    "rate_this_restaurant" : "قيم هذا المطعم",
+    "tell_others_what_you_think" : "قل للآخرين ما هو رأيك",
+    "rate_restaurant_menus" : "قيم المطعم",
+    "did_you_enjoy_it" : "هل استمتعت بها؟",
+    "order_Id" : "رقم الطلب: ",
+    "payment_method" : "طريقة الدفع ",
+    "no_ratings" : "بدون تقييم",
+    "pending" : "قيد الانتظار",
+    "cancelled" : "ألغيت",
+    "accepted" : "قبلت",
+    "delivered" : "تم التوصيل",
+    "cancel_this_order" : "إلغاء هذا الطلب",
+    "see_details" : "انظر التفاصيل",
+    "cancel" : "إلغاء",
+
+
+
+
+    "the_item_added_to_cart_successfully" : "تمت إضافة العنصر إلى عربة التسوق بنجاح.",
+    "read_less" : "أقرأ أقل",
+    "read_more" : "اقرأ أكثر",
+    "delivery_order" : "طلب التسليم ",
+    "go_to_cart" : "اذهب إلى عربة التسوق",
+    "free_delivery" : "توصيل مجاني",
+    "cash_on_delivery" : "الدفع عند الاستلام",
+
+
+
+    "add_to_cart" : "أضف إلى عربة التسوق",
+    "ingredients" : "المكونات",
+
+
+    "categories" : "الفئات",
+    "clear_all" : "امسح الكل",
+    "popular_filters" : "فلاتر شائعة",
+    "filter_by_price" : "فلترة حسب السعر",
+    "filtter" : "فلتر",
+    "top_rated" : "الأعلى تقييما",
+    "fast_delivery" : "توصيل سريع",
+    "new_added" : "مضاف حديثا",
+    "low" : "منخفضة",
+    "medium" : "متوسطة",
+    "high" : "مرتفعة",
+
+    "night_mode" : "الوضع الليلي",
+    "language" : "اللغة",
+    "total_spend" : "المجموع المنفق",
+    "total_orders" : "مجموع الطلبات",
+    "search" : "بحث",
+    "addresses" : "العناويل"
+
 
 }

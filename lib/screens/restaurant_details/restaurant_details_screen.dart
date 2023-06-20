@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
-import 'package:multi_languges/models/restaurant.dart';
-import 'package:multi_languges/widgets/restaurant_details/category_list.dart';
-import 'package:multi_languges/widgets/restaurant_details/food_list_view.dart';
-import 'package:multi_languges/widgets/restaurant_details/restaurant_details_bottom_nav_bar.dart';
-import 'package:multi_languges/widgets/restaurant_details/restaurant_details_head.dart';
-import 'package:multi_languges/widgets/restaurant_details/restaurant_informatins.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
+import 'package:food_delivery_express/widgets/restaurant_details/category_list.dart';
+import 'package:food_delivery_express/widgets/restaurant_details/food_list_view.dart';
+import 'package:food_delivery_express/widgets/restaurant_details/restaurant_details_bottom_nav_bar.dart';
+import 'package:food_delivery_express/widgets/restaurant_details/restaurant_details_head.dart';
+import 'package:food_delivery_express/widgets/restaurant_details/restaurant_informatins.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../blocs/favorites/favorites_bloc.dart';

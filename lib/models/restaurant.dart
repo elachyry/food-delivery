@@ -6,9 +6,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
 import 'package:get/get.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:multi_languges/controllers/auth/user_controller.dart';
+import 'package:food_delivery_express/controllers/auth/user_controller.dart';
 
-import 'package:multi_languges/models/place.dart';
+import 'package:food_delivery_express/models/place.dart';
 
 class Restaurant extends Equatable {
   final String id;
@@ -334,9 +334,10 @@ class Restaurant extends Equatable {
 
     // print('restaurantLoacation ${restaurantLoacation.lat}');
     // print('restaurantLoacation ${restaurantLoacation.lng}');
+    // userController.myData['addresses'][0]['lat']
     final double distance = Geolocator.distanceBetween(
-      userController.myData['addresses'][0]['lat'],
-      userController.myData['addresses'][0]['lng'],
+      userController.currentLocation!.latitude as double,
+      userController.currentLocation!.longitude as double,
       restaurantLoacation.lat,
       restaurantLoacation.lng,
     );

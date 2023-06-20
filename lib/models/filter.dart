@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:multi_languges/models/category_filter.dart';
-import 'package:multi_languges/models/popular_filters.dart';
-import 'package:multi_languges/models/price_filter.dart';
+import 'package:food_delivery_express/models/category_filter.dart';
+import 'package:food_delivery_express/models/popular_filters.dart';
+import 'package:food_delivery_express/models/price_filter.dart';
 
 class Filter extends Equatable {
   final List<CategoryFilter> categoryFilters;

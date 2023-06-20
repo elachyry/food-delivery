@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/controllers/auth/auth_controller.dart';
-import 'package:multi_languges/models/user.dart';
+import 'package:food_delivery_express/controllers/auth/auth_controller.dart';
+import 'package:food_delivery_express/models/user.dart';
 
 import '../../utils/constants/image_constants.dart';
 import '../../widgets/auth/forgot_password/otp_item.dart';

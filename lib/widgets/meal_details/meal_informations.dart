@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:multi_languges/controllers/dashboard_controller.dart';
+import 'package:food_delivery_express/controllers/dashboard_controller.dart';
 
 import '../../controllers/ingredient_controller.dart';
 import '../../controllers/menu_items_controller.dart';
@@ -101,7 +101,7 @@ class Mealinformations extends StatelessWidget {
                       ),
                       Text(
                         rating.isNaN || ratings.isEmpty
-                            ? 'No ratings'
+                            ? 'no_ratings'.tr
                             : '$rating (${ratings.length})',
                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
                               color: Colors.grey,
@@ -191,7 +191,7 @@ class Mealinformations extends StatelessWidget {
         ),
         FittedBox(
           child: Text(
-            'Ingredients',
+            'ingredients'.tr,
             style: Theme.of(context).textTheme.titleLarge!.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 22,

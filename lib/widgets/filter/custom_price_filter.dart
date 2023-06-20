@@ -33,7 +33,7 @@ class CustomPriceFilter extends StatelessWidget {
                     },
                     child: Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 40, vertical: 10),
+                          horizontal: 10, vertical: 10),
                       margin: const EdgeInsets.only(top: 25, bottom: 10),
                       decoration: BoxDecoration(
                           color: state.filter.priceFilters[e.key].value

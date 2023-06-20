@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:get/get.dart';
 
 class Popular extends Equatable {
   final int id;
@@ -7,19 +8,19 @@ class Popular extends Equatable {
   static List<Popular> populars = [
     Popular(
       id: 1,
-      popular: 'Top rated',
+      popular: 'top_rated'.tr,
     ),
     Popular(
       id: 2,
-      popular: 'Free delivery',
+      popular: 'free_delivery'.tr,
     ),
     Popular(
       id: 3,
-      popular: 'Fast delivery',
+      popular: 'fast_delivery'.tr,
     ),
     Popular(
       id: 4,
-      popular: 'New added',
+      popular: 'new_added'.tr,
     ),
   ];
 

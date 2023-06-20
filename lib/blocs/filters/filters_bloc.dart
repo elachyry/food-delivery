@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/models/category_filter.dart';
-import 'package:multi_languges/models/filter.dart';
-import 'package:multi_languges/models/popular_filters.dart';
-import 'package:multi_languges/models/price_filter.dart';
+import 'package:food_delivery_express/models/category_filter.dart';
+import 'package:food_delivery_express/models/filter.dart';
+import 'package:food_delivery_express/models/popular_filters.dart';
+import 'package:food_delivery_express/models/price_filter.dart';
 
 import '../../controllers/category_controller.dart';
 

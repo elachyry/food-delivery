@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/models/category.dart';
-import 'package:multi_languges/models/restaurant.dart';
-import 'package:multi_languges/screens/restaurant_listing/restaurant_listing_screen.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
+import 'package:food_delivery_express/models/category.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
+import 'package:food_delivery_express/screens/restaurant_listing/restaurant_listing_screen.dart';
+import 'package:food_delivery_express/utils/constants/image_constants.dart';
 
 import '../../controllers/category_controller.dart';
 import '../../controllers/restaurant_controller.dart';

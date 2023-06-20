@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/controllers/auth/auth_controller.dart';
-import 'package:multi_languges/controllers/auth/user_controller.dart';
-import 'package:multi_languges/utils/app_routes.dart';
+import 'package:food_delivery_express/controllers/auth/auth_controller.dart';
+import 'package:food_delivery_express/controllers/auth/user_controller.dart';
+import 'package:food_delivery_express/utils/app_routes.dart';
 
 class PhoneNumberScreen extends StatelessWidget {
   PhoneNumberScreen({super.key});
@@ -132,6 +132,10 @@ class PhoneNumberScreen extends StatelessWidget {
                                               await AuthController.instance
                                                   .isPhoneAlreadyExist(
                                                       fieldController.text);
+                                          print(
+                                              'phone ${fieldController.text}');
+                                          print(
+                                              'isPhoneAlreadyExist ${isPhoneAlreadyExist}');
                                           if (isPhoneAlreadyExist) {
                                             showSnackBarError(
                                                 'error'.tr,

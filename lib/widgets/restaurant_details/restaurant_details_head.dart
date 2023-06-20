@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/controllers/auth/user_controller.dart';
-import 'package:multi_languges/controllers/restaurant_controller.dart';
-import 'package:multi_languges/models/restaurant.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
+import 'package:food_delivery_express/controllers/auth/user_controller.dart';
+import 'package:food_delivery_express/controllers/restaurant_controller.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
+import 'package:food_delivery_express/utils/constants/image_constants.dart';
 
 import '../../blocs/favorites/favorites_bloc.dart';
 

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/models/restaurant.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
 
 class RestaurantRepository extends GetxController {
   final CollectionReference _restaurantCollection =

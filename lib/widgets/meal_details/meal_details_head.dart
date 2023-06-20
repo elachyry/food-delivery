@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
+import 'package:food_delivery_express/blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
 
 import '../../controllers/dashboard_controller.dart';
 import '../../models/menu_item.dart';

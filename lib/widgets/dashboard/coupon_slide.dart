@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:clipboard/clipboard.dart';
 
-import 'package:multi_languges/widgets/dashboard/coupon_horisontal.dart';
+import 'package:food_delivery_express/widgets/dashboard/coupon_horisontal.dart';
 
 import '../../blocs/coupon/coupon_bloc.dart';
 

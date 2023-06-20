@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:multi_languges/screens/checkout/checkout_screen.dart';
+import 'package:food_delivery_express/screens/checkout/checkout_screen.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
 import '../../controllers/auth/user_controller.dart';
@@ -62,7 +62,7 @@ class CartBottomNavBar extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              'Coupon',
+                              'coupon'.tr,
                               style: Theme.of(context).textTheme.titleLarge,
                             ),
                             Row(
@@ -91,7 +91,7 @@ class CartBottomNavBar extends StatelessWidget {
                                         .add(const RemoveCoupon());
                                     Get.snackbar(
                                       'succes'.tr,
-                                      'The coupon deleted successfully.',
+                                      'the_coupon_deleted_successfully'.tr,
                                       snackPosition: SnackPosition.TOP,
                                       backgroundColor: Colors.green.shade500,
                                       colorText: Colors.white,
@@ -119,8 +119,8 @@ class CartBottomNavBar extends StatelessWidget {
                           style: TextButton.styleFrom(
                             padding: const EdgeInsets.all(10.0),
                           ),
-                          child: const Text(
-                            'Do you have a Coupon?',
+                          child: Text(
+                            'do_you_have_a_oupon'.tr,
                           ),
                         ),
                   const Divider(),
@@ -130,7 +130,7 @@ class CartBottomNavBar extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Total',
+                            'total'.tr,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
@@ -185,7 +185,7 @@ class CartBottomNavBar extends StatelessWidget {
                                           ));
                                     },
                           child: Text(
-                            'Continue',
+                            'continue'.tr,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!

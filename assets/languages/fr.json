@@ -73,7 +73,9 @@
     "verification_code" : "Code de Vérification",
     "the_provided_phone_number_is_not_valid": "Le numéro de téléphone fourni n'est pas valide.",
     "your_account_has_been_created": "Votre compte a été créé avec succès.",
-
+    "error": "Erreur",
+    "no_account_exists_for_that_phone": "Aucun compte n'existe pour ce numéro de téléphone.",
+    "no_accoun_exists_for_that_email": "Aucun compte n'existe pour cet e-mail.",
 
     "profile": "Profil",
     "settings": "Paramètres",
@@ -98,5 +100,123 @@
     "update_password": "Mettre à jour le mot de passe",
 
 
-    "enter_your_location": "Entrez votre emplacement"
+    "enter_your_location": "Entrez votre emplacement",
+
+
+
+    "your_order_has_been_placed": "Votre commande a été passée avec succès.",
+    "your_order_has_been_cancelled": "Votre commande a été annulée avec succès.",
+
+    "cart" : "Panier",
+    "nothing_to_show" : "Rien à montrer",
+    "subtotal" : "Sous-total",
+    "delivery_fees" : "Frais de livraison",
+    "total" : "Total",
+    "coupon" : "Coupon",
+    "the_coupon_deleted_successfully" : "Le coupon a été supprimé avec succès.",
+    "do_you_have_a_oupon" : "Avez-vous un coupon ?",
+    "enter_your_coupon_here" : "Entrez votre coupon ici",
+    "please_enter_a_coupon" : "Veuillez entrer un coupon.",
+    "this_coupon_is_expired" : "Ce coupon est expiré.",
+    "this_coupon_for_orders_over" : "Ce coupon pour les commandes supérieures à",
+    "only" : "seul",
+    "the_coupon_added_successfully" : "Le coupon a été ajouté avec succès.",
+    "this_coupon_is_not_valid_or_not_exist" : "Ce coupon n'est pas valide ou n'existe pas.",
+    "apply" : "Appliquer",
+    "are_you_sure" : "Es-tu sûr?",
+    "Do_you_want_to_remove_this_item" : "Voulez-vous supprimer cet élément ?",
+    "no" : "Non",
+    "yes" : "Oui",
+    "the_item_removed_from_cart_successfully" : "L'article a été supprimé du panier avec succès.",
+    "checkout" : "Caisse",
+    "please_provide_an_address" : "Veuillez fournir une adresse.",
+    "select_an_address" : "Sélectionnez une adresse",
+    "add_address" : "Ajoutez l'adresse",
+    "select_payment_method" : "Sélectionnez le mode de paiement",
+    "add_new_address" : "Ajouter une nouvelle adresse",
+    "edit_address" : "Modifier l'adresse",
+
+
+
+    "popular_categories" : "Catégories populaires",
+    "restaurants" : "Restaurants",
+    "view_all" : "Voir tout",
+    "favorites" : "Favoris",
+    "menu_items" : "Éléments de menu",
+    "delivery_location" : "Lieu de livraison",
+    "pick_your_destenation_address" : "Choisissez votre adresse",
+    "sorry_we_dont_deliver_here" : "Désolé, nous ne livrons pas ici",
+    "delivery_here" : "Livraison ici",
+    "deliver_to" : "Livrer à",
+    "select_a_location" : "sélectionner un emplacement",
+    "what_are_you_craving" : "De quoi as-tu envie ?",
+
+    "notifications" : "Notifications",
+    "order_updates" : "Mises à jour des ordres",
+    "notification_when_your_order_status_changes" : "Notification lorsque le statut de votre commande change",
+    "new_restaurants" : "Nouveaux restaurants",
+    "notification_when_a_new_restaurant_joins_us" : "Notification lorsqu'un nouveau restaurant nous rejoint",
+    "new_items" : "Nouveaux articles",
+    "notification_when_your_favorites_restaurants_add_new_menus" : "Notification lorsque vos restaurants favoris ajoutent de nouveaux menus",
+
+
+    "orders" : "Ordres",
+    "cancel_confirmation" : "Annuler la confirmation",
+    "do_you_want_to_cancel_this_order" : "Voulez-vous annuler cette commande ?",
+    "give_your_feedback" : "Donnez votre avis...",
+    "please_choose_a_rate" : "Veuillez saisir une note",
+    "please_enter_a_feedback" : "Veuillez saisir un commentaire",
+    "you_have_been_added_the_feedback_successfully" : "Vos commentaires ont été ajoutés avec succès.",
+    "you_have_been_updated_the_feedback_successfully" : "Vous avez été mis à jour les commentaires avec succès.",
+    "update_your_feedback" : "Mettez à jour vos commentaires",
+    "send_feedback" : "Envoyer des commentaires",
+    "rate_this_restaurant" : "Notez ce restaurant",
+    "tell_others_what_you_think" : "Dites aux autres ce que vous pensez",
+    "rate_restaurant_menus" : "Évaluer les menus du restaurant",
+    "did_you_enjoy_it" : "Avez-vous apprécié?",
+    "order_Id" : "Numéro de commande: ",
+    "payment_method" : "Mode de paiement",
+    "no_ratings" : "Pas de notes",
+    "pending" : "En attente",
+    "cancelled" : "Annulé",
+    "accepted" : "Accepté",
+    "delivered" : "Livré",
+    "cancel_this_order" : "Annuler cette commande",
+    "see_details" : "Voir les détails",
+    "cancel" : "Annuler",
+
+
+
+    "the_item_added_to_cart_successfully" : "L'article a été ajouté au panier avec succès.",
+    "read_less" : "Lire moins",
+    "read_more" : "En savoir plus",
+    "delivery_order" : "Commande de livraison ",
+    "go_to_cart" : "Aller au panier",
+    "free_delivery" : "Livraison gratuite",
+    "cash_on_delivery" : "Paiement à la livraison",
+
+
+
+    "add_to_cart" : "Ajouter au panier",
+    "ingredients" : "Ingrédients",
+
+
+    "categories" : "Catégories",
+    "clear_all" : "Effacer tout",
+    "popular_filters" : "Filtres populaires",
+    "filter_by_price" : "Filtrer par prix",
+    "filtter" : "Filtre",
+    "top_rated" : "Les mieux notés",
+    "fast_delivery" : "Livraison rapide",
+    "new_added" : "Nouveau ajouté",
+    "low" : "Faible",
+    "medium" : "Moyen",
+    "high" : "Haut",
+
+    "night_mode" : "Mode nuit",
+    "language" : "Langue",
+    "total_spend" : "Dépense totale",
+    "total_orders" : "Commandes totales",
+    "search" : "Recherche",
+    "addresses" : "Adresses"
 }

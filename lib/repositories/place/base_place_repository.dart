@@ -1,5 +1,5 @@
-import 'package:multi_languges/models/place.dart';
-import 'package:multi_languges/models/place_autocomplete.dart';
+import 'package:food_delivery_express/models/place.dart';
+import 'package:food_delivery_express/models/place_autocomplete.dart';
 
 abstract class BasePlaceRepository {
   Future<List<PlaceAutoComplete>?> getAutocomplete(String input) async {}

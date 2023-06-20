@@ -2,15 +2,15 @@ import 'package:custom_sliding_segmented_control/custom_sliding_segmented_contro
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
-import 'package:multi_languges/blocs/favorites/favorites_bloc.dart';
-import 'package:multi_languges/controllers/menu_items_controller.dart';
-import 'package:multi_languges/controllers/restaurant_controller.dart';
-import 'package:multi_languges/models/menu_item.dart';
-import 'package:multi_languges/models/restaurant.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
-import 'package:multi_languges/widgets/dashboard/restaurant_item.dart';
-import 'package:multi_languges/widgets/restaurant_details/food_item.dart';
+import 'package:food_delivery_express/blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
+import 'package:food_delivery_express/blocs/favorites/favorites_bloc.dart';
+import 'package:food_delivery_express/controllers/menu_items_controller.dart';
+import 'package:food_delivery_express/controllers/restaurant_controller.dart';
+import 'package:food_delivery_express/models/menu_item.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
+import 'package:food_delivery_express/utils/constants/image_constants.dart';
+import 'package:food_delivery_express/widgets/dashboard/restaurant_item.dart';
+import 'package:food_delivery_express/widgets/restaurant_details/food_item.dart';
 
 enum SegmentType {
   restaurants,
@@ -45,7 +45,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Favorites',
+          'favorites'.tr,
           style: Theme.of(context).textTheme.titleLarge!.copyWith(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
@@ -67,7 +67,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   height: 50,
                   children: {
                     SegmentType.restaurants: Text(
-                      'Restaurants',
+                      'restaurants'.tr,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(
@@ -79,7 +79,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       ),
                     ),
                     SegmentType.menuItesm: Text(
-                      'Menu Items',
+                      'menu_items'.tr,
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
                       style: TextStyle(

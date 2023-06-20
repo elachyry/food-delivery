@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:multi_languges/controllers/language_controller.dart';
-import 'package:multi_languges/utils/app_routes.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
-import 'package:multi_languges/widgets/language_item.dart';
+import 'package:food_delivery_express/controllers/language_controller.dart';
+
+import 'package:food_delivery_express/widgets/language_item.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -60,9 +59,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     darkMode = value;
                   });
                 },
-                title: const Text(
-                  'Night mode',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                title: Text(
+                  'night_mode'.tr,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -79,9 +79,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Bootstrap.translate,
                   color: Theme.of(context).primaryColor.withAlpha(150),
                 ),
-                title: const Text(
-                  'Language',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                title: Text(
+                  'language'.tr,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
                 ),
               ),
             ),

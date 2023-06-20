@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/controllers/order_controller.dart';
-import 'package:multi_languges/controllers/restaurant_controller.dart';
-import 'package:multi_languges/models/status.dart';
+import 'package:food_delivery_express/controllers/order_controller.dart';
+import 'package:food_delivery_express/controllers/restaurant_controller.dart';
+import 'package:food_delivery_express/models/status.dart';
 
 import '../../widgets/order/order_item.dart';
 
@@ -20,11 +20,7 @@ class OrdersScreen extends StatelessWidget {
           radius: 22,
           backgroundColor: Colors.white60,
           child: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_ios_new_outlined,
-              color: Colors.black,
-              size: 25,
-            ),
+            icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
             onPressed: () {
               Get.back();
             },
@@ -33,7 +29,7 @@ class OrdersScreen extends StatelessWidget {
       ),
       centerTitle: true,
       title: Text(
-        'Orders',
+        'orders'.tr,
         style: Theme.of(context).textTheme.titleLarge!.copyWith(
               fontWeight: FontWeight.bold,
               fontSize: 24,

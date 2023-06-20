@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:multi_languges/blocs/favorites/favorites_bloc.dart';
-import 'package:multi_languges/blocs/filters/filters_bloc.dart';
-import 'package:multi_languges/controllers/auth/user_controller.dart';
-import 'package:multi_languges/controllers/category_controller.dart';
-import 'package:multi_languges/models/restaurant.dart';
-import 'package:multi_languges/widgets/dashboard/restaurant_item.dart';
-import 'package:multi_languges/widgets/filter/show_category_modal_bottom_sheet.dart';
-import 'package:multi_languges/widgets/filter/show_filter_modal_bottom_sheet.dart';
+import 'package:food_delivery_express/blocs/favorites/favorites_bloc.dart';
+import 'package:food_delivery_express/blocs/filters/filters_bloc.dart';
+import 'package:food_delivery_express/controllers/auth/user_controller.dart';
+import 'package:food_delivery_express/controllers/category_controller.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
+import 'package:food_delivery_express/widgets/dashboard/restaurant_item.dart';
+import 'package:food_delivery_express/widgets/filter/show_category_modal_bottom_sheet.dart';
+import 'package:food_delivery_express/widgets/filter/show_filter_modal_bottom_sheet.dart';
 
 import '../../controllers/restaurant_controller.dart';
 
@@ -30,7 +30,7 @@ class RestaurantListingScreen extends StatelessWidget {
     final appbar = AppBar(
       backgroundColor: Colors.white,
       title: Text(
-        'Restaurants',
+        'restaurants'.tr,
         style: Theme.of(context).textTheme.titleLarge!.copyWith(
               fontWeight: FontWeight.bold,
               fontSize: 24,
@@ -67,7 +67,7 @@ class RestaurantListingScreen extends StatelessWidget {
                           color: Colors.black,
                         ),
                         label: Text(
-                          'Filters',
+                          'filtter'.tr,
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ),
@@ -87,7 +87,7 @@ class RestaurantListingScreen extends StatelessWidget {
                           color: Colors.black,
                         ),
                         label: Text(
-                          'Categories',
+                          'categories'.tr,
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ),

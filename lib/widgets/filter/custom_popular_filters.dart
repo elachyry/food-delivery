@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/blocs/filters/filters_bloc.dart';
+import 'package:food_delivery_express/blocs/filters/filters_bloc.dart';
 
 import '../../widgets/filter/show_filter_modal_bottom_sheet.dart';
 

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:http/http.dart' as http;
-import 'package:multi_languges/models/place.dart';
+import 'package:food_delivery_express/models/place.dart';
 
 import '../../models/place_autocomplete.dart';
 import '/repositories/place/base_place_repository.dart';

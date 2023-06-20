@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/blocs/filters/filters_bloc.dart';
-import 'package:multi_languges/models/restaurant.dart';
-import 'package:multi_languges/screens/restaurant_listing/restaurant_listing_screen.dart';
-import 'package:multi_languges/widgets/filter/custom_popular_filters.dart';
+import 'package:food_delivery_express/blocs/filters/filters_bloc.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
+import 'package:food_delivery_express/screens/restaurant_listing/restaurant_listing_screen.dart';
+import 'package:food_delivery_express/widgets/filter/custom_popular_filters.dart';
 
 import '../../controllers/rating_controller.dart';
 import '../../controllers/restaurant_controller.dart';
@@ -40,7 +40,7 @@ Future<dynamic> showFilterModalBotomSheet(BuildContext context) {
                     height: 15,
                   ),
                   Text(
-                    'Popular filters',
+                    'popular_filters'.tr,
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -54,7 +54,7 @@ Future<dynamic> showFilterModalBotomSheet(BuildContext context) {
                     height: 25,
                   ),
                   Text(
-                    'Filter by price',
+                    'filter_by_price'.tr,
                     style: Theme.of(context).textTheme.titleLarge!.copyWith(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -92,7 +92,7 @@ Future<dynamic> showFilterModalBotomSheet(BuildContext context) {
                       ),
                     ),
                     Text(
-                      'Filtter',
+                      'filtter'.tr,
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
                             fontWeight: FontWeight.bold,
                           ),
@@ -126,8 +126,8 @@ Future<dynamic> showFilterModalBotomSheet(BuildContext context) {
                                     );
                               }
                             },
-                            child: const Text(
-                              'Clear All',
+                            child: Text(
+                              'clear_all'.tr,
                             ),
                           );
                         } else {

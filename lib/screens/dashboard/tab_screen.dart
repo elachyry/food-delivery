@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/screens/favorites/favorites_screen.dart';
+import 'package:food_delivery_express/screens/favorites/favorites_screen.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
-import 'package:multi_languges/controllers/dashboard_controller.dart';
-import 'package:multi_languges/screens/dashboard/dashbord_screen.dart';
-import 'package:multi_languges/screens/profile/profile_screen.dart';
+import 'package:food_delivery_express/controllers/dashboard_controller.dart';
+import 'package:food_delivery_express/screens/dashboard/dashbord_screen.dart';
+import 'package:food_delivery_express/screens/profile/profile_screen.dart';
 
 import '../../controllers/auth/user_controller.dart';
 

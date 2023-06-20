@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:multi_languges/utils/app_routes.dart';
+import 'package:food_delivery_express/utils/app_routes.dart';
 
 import '../../models/menu_item.dart';
 import '../../controllers/dashboard_controller.dart';
@@ -101,7 +101,7 @@ class MealDetailsBottomNavBar extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Delivry order ',
+                            'Delivery_order'.tr,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
@@ -136,7 +136,7 @@ class MealDetailsBottomNavBar extends StatelessWidget {
                               );
                           showSnackBar(
                               'succes'.tr,
-                              'The item added to cart successfully.',
+                              'the_item_added_to_cart_successfully'.tr,
                               Colors.green.shade500);
                           controller.mealQty.value = 1;
                         }
@@ -158,7 +158,7 @@ class MealDetailsBottomNavBar extends StatelessWidget {
                           )),
                       child: FittedBox(
                         child: Text(
-                          'Add to cart',
+                          'add_to_cart'.tr,
                           style:
                               Theme.of(context).textTheme.titleMedium!.copyWith(
                                     fontWeight: FontWeight.bold,

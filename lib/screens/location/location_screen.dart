@@ -9,9 +9,9 @@ import 'package:location/location.dart' as loc;
 import 'package:location/location.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:multi_languges/blocs/autocomplete/autocomplete_bloc.dart';
-import 'package:multi_languges/blocs/geolocation/geolocation_bloc.dart';
-import 'package:multi_languges/widgets/location/location_search_box.dart';
+import 'package:food_delivery_express/blocs/autocomplete/autocomplete_bloc.dart';
+import 'package:food_delivery_express/blocs/geolocation/geolocation_bloc.dart';
+import 'package:food_delivery_express/widgets/location/location_search_box.dart';
 
 import '../../blocs/place/place_bloc.dart';
 import '../../utils/constants/image_constants.dart';
@@ -128,7 +128,6 @@ class _LocationScreenState extends State<LocationScreen> {
           bloc.BlocBuilder<PlaceBloc, PlaceState>(
             builder: (context, state) {
               if (state is PlaceLoading) {
-                print('PlaceLoading');
                 return SizedBox(
                     height: MediaQuery.of(context).size.height,
                     width: double.infinity,
@@ -163,7 +162,6 @@ class _LocationScreenState extends State<LocationScreen> {
                 WidgetsBinding.instance.addPostFrameCallback((_) {
                   destenation = LatLng(state.place.lat, state.place.lng);
                 });
-                print('PlaceLoaded');
                 return SizedBox(
                   height: MediaQuery.of(context).size.height,
                   width: double.infinity,

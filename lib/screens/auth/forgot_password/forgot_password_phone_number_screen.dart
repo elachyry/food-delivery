@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
 // import 'package:get/get.dart';
-// import 'package:multi_languges/controllers/auth/auth_controller.dart';
+// import 'package:food_delivery_express/controllers/auth/auth_controller.dart';
 
 // import '../../../utils/app_routes.dart';
 // import '../../../widgets/auth/forgot_password/forgot_passwor_item.dart';

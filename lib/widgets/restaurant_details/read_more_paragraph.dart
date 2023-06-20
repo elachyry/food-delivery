@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/controllers/dashboard_controller.dart';
+import 'package:food_delivery_express/controllers/dashboard_controller.dart';
 
 class ReadMoreParagraph extends StatelessWidget {
   final String text;
@@ -27,7 +27,7 @@ class ReadMoreParagraph extends StatelessWidget {
               controller.isExpanded.value = !controller.isExpanded.value;
             },
             child: Text(
-              controller.isExpanded.value ? "Read Less" : "Read More",
+              controller.isExpanded.value ? "read_less".tr : "read_more".tr,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(
                     color: Theme.of(context).primaryColorDark,
                     decoration: TextDecoration.underline,

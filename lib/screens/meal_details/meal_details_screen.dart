@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
-import 'package:multi_languges/models/menu_item.dart';
+import 'package:food_delivery_express/blocs/favoriteMenuItems/favorite_menu_items_bloc.dart';
+import 'package:food_delivery_express/models/menu_item.dart';
 
-import 'package:multi_languges/models/restaurant.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
 
 import '../../widgets/meal_details/meal_details_bottom_nav_bar.dart';
 import '../../widgets/meal_details/meal_details_head.dart';

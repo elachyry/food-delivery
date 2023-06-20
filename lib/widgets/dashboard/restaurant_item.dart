@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/blocs/favorites/favorites_bloc.dart';
-import 'package:multi_languges/controllers/auth/user_controller.dart';
-import 'package:multi_languges/controllers/restaurant_controller.dart';
-import 'package:multi_languges/models/restaurant.dart';
-import 'package:multi_languges/screens/restaurant_details/restaurant_details_screen.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
+import 'package:food_delivery_express/blocs/favorites/favorites_bloc.dart';
+import 'package:food_delivery_express/controllers/auth/user_controller.dart';
+import 'package:food_delivery_express/controllers/restaurant_controller.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
+import 'package:food_delivery_express/screens/restaurant_details/restaurant_details_screen.dart';
+import 'package:food_delivery_express/utils/constants/image_constants.dart';
 
 import '../../controllers/menu_items_controller.dart';
 import '../../controllers/rating_controller.dart';
@@ -50,7 +50,7 @@ class RestaurantItem extends StatelessWidget {
     rating = rating / ratings.length;
 
     if (freedelivery) {
-      delivery = 'Free Delivery';
+      delivery = 'free_delivery'.tr;
     }
     return InkWell(
       onTap: () {
@@ -191,7 +191,7 @@ class RestaurantItem extends StatelessWidget {
                         ),
                         Text(
                           rating.isNaN || ratings.isEmpty
-                              ? 'No ratings'
+                              ? 'no_ratings'.tr
                               : '$rating (${ratings.length})',
                           style:
                               Theme.of(context).textTheme.titleSmall!.copyWith(

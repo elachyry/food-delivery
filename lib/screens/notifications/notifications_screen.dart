@@ -24,7 +24,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       ),
       centerTitle: true,
       title: Text(
-        'Notifications'.tr,
+        'notifications'.tr,
         textAlign: TextAlign.center,
         style: Theme.of(context).textTheme.titleLarge!.copyWith(
             color: Colors.black, fontWeight: FontWeight.bold, fontSize: 24),
@@ -54,9 +54,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                       notifications = value;
                     });
                   },
-                  title: const Text(
-                    'Notifications',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  title: Text(
+                    'notifications'.tr,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -78,13 +79,14 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                       }
                     });
                   },
-                  title: const Text(
-                    'Order updates',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  title: Text(
+                    'order_updates'.tr,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: const Text(
-                    'Notification when your order status changes',
-                    style: TextStyle(
+                  subtitle: Text(
+                    'notification_when_your_order_status_changes'.tr,
+                    style: const TextStyle(
                       fontSize: 14,
                     ),
                   ),
@@ -105,13 +107,14 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                       }
                     });
                   },
-                  title: const Text(
-                    'New Restaurants',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  title: Text(
+                    'new_restaurants'.tr,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: const Text(
-                    'Notification when a new restaurant joins us',
-                    style: TextStyle(
+                  subtitle: Text(
+                    'notification_when_a_new_restaurant_joins_us'.tr,
+                    style: const TextStyle(
                       fontSize: 14,
                     ),
                   ),
@@ -131,13 +134,15 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                       }
                     });
                   },
-                  title: const Text(
-                    'New items',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  title: Text(
+                    'new_items'.tr,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  subtitle: const Text(
-                    'Notification when your favorites restaurants add new menus',
-                    style: TextStyle(
+                  subtitle: Text(
+                    'notification_when_your_favorites_restaurants_add_new_menus'
+                        .tr,
+                    style: const TextStyle(
                       fontSize: 14,
                     ),
                   ),

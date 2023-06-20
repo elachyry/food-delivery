@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:badges/badges.dart' as badges;
 
-import 'package:multi_languges/models/restaurant.dart';
-import 'package:multi_languges/utils/app_routes.dart';
+import 'package:food_delivery_express/models/restaurant.dart';
+import 'package:food_delivery_express/utils/app_routes.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
 
@@ -83,7 +83,7 @@ class RestaurantDetailsBottomNavBar extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Delivry order ',
+                            'delivery_order'.tr,
                             style: Theme.of(context)
                                 .textTheme
                                 .titleMedium!
@@ -131,7 +131,7 @@ class RestaurantDetailsBottomNavBar extends StatelessWidget {
                           )),
                       child: FittedBox(
                         child: Text(
-                          'Go to cart',
+                          'go_to_cart'.tr,
                           style:
                               Theme.of(context).textTheme.titleMedium!.copyWith(
                                     fontWeight: FontWeight.bold,

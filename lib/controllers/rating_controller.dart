@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy_stepper/easy_stepper.dart';
 import 'package:get/get.dart';
-import 'package:multi_languges/models/rating.dart';
+import 'package:food_delivery_express/models/rating.dart';
 
 import '../repositories/rating_repository.dart';
 

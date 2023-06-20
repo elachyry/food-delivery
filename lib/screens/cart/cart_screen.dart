@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:icons_plus/icons_plus.dart';
-import 'package:multi_languges/controllers/dashboard_controller.dart';
-import 'package:multi_languges/models/menu_item.dart';
-import 'package:multi_languges/utils/constants/image_constants.dart';
+import 'package:food_delivery_express/controllers/dashboard_controller.dart';
+import 'package:food_delivery_express/models/menu_item.dart';
+import 'package:food_delivery_express/utils/constants/image_constants.dart';
 
 import '../../blocs/cart/cart_bloc.dart';
 import '../../controllers/restaurant_controller.dart';
@@ -57,7 +57,7 @@ class CartScreen extends StatelessWidget {
       ],
       centerTitle: true,
       title: Text(
-        'Cart',
+        'cart'.tr,
         style: Theme.of(context).textTheme.titleLarge!.copyWith(
               fontWeight: FontWeight.bold,
               fontSize: 24,
@@ -102,7 +102,7 @@ class CartScreen extends StatelessWidget {
                           height: 10,
                         ),
                         Text(
-                          'Nothing to show!',
+                          'nothing_to_show',
                           textAlign: TextAlign.left,
                           style:
                               Theme.of(context).textTheme.titleLarge!.copyWith(
@@ -259,7 +259,7 @@ class CartScreen extends StatelessWidget {
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  'Subtotal',
+                                                  'subtotal'.tr,
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .titleMedium!
@@ -297,7 +297,7 @@ class CartScreen extends StatelessWidget {
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  'Delivery Fees',
+                                                  'delivery_fees'.tr,
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .titleMedium!
@@ -335,7 +335,7 @@ class CartScreen extends StatelessWidget {
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  'Total',
+                                                  'total'.tr,
                                                   style: Theme.of(context)
                                                       .textTheme
                                                       .titleMedium!
